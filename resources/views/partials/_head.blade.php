@@ -12,6 +12,7 @@
 <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 <!-- Scripts -->
+<script src="https://use.fontawesome.com/e3d24e6b06.js"></script>
 <script>
     window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),
