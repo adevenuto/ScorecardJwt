@@ -13,8 +13,8 @@
 
 <!-- Scripts -->
 <script src="https://use.fontawesome.com/e3d24e6b06.js"></script>
-<script>
+{{-- <script>
     window.Laravel = {!! json_encode([
         'csrfToken' => csrf_token(),
     ]) !!};
-</script>
+</script> --}}
