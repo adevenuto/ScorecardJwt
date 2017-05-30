@@ -1,3 +1,58 @@
+body {
+	position: relative;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*FOOTER*/
 #myFooter {
     background-color: #3c3d41;
@@ -86,6 +141,9 @@
 }
 
 /*SLIDE-IN NAV // NAV HAMBURGER*/
+.sidenav a:hover ,.sidebar a:focus{
+	color: #fff;
+}
 .sidenav {
     height: 100%; 
     width: 0;
@@ -97,17 +155,24 @@
     overflow-x: hidden;
     padding-top: 60px;
     transition: 0.5s;
+    a {
+	    padding: 8px 8px 8px 32px;
+	    text-decoration: none;
+	    font-size: 25px;
+	    color: #818181;
+	    display: block;
+	    transition: 0.3s
+	}
+	hr {
+		margin: 5px 32px 5px 32px;
+		border-color: #4c4c4c;
+	}
+	.logout, .logout:focus,.logout:hover {
+		color: #b51414;
+	}
 }
-.sidenav a {
-    padding: 8px 8px 8px 32px;
-    text-decoration: none;
-    font-size: 25px;
-    color: #818181;
-    display: block;
-    transition: 0.3s
-}
-.sidenav a:hover, .offcanvas a:focus{
-    color: #f1f1f1;
+#auth a {
+	font-size: 18px;
 }
 #hamburger {
     position: fixed;
