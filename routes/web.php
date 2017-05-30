@@ -16,4 +16,4 @@ Auth::routes();
 // Root
 Route::get('/', 'PagesController@getIndex');
 // Posts
-Route::get('/post/create' , ['uses'=>'PostsController@create', 'as'=>'post.create']);
+// Route::get('/post/create' , ['uses'=>'PostsController@create', 'as'=>'post.create']);
