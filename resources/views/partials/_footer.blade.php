@@ -39,6 +39,6 @@
         </div>
     </div>
     <div class="footer-copyright">
-        <p>&copy; <?php echo date("Y"); ?> CMSAPP</p>
+        <p>&copy; <?php echo date("Y"); ?> Scorecard - built with <i class="fa fa-heart"></i> by Anthony DeVenuto</p>
     </div>
 </footer>

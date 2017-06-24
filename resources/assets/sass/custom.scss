@@ -2,57 +2,6 @@ body {
 	position: relative;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 /*FOOTER*/
 #myFooter {
     background-color: #3c3d41;
@@ -64,13 +13,16 @@ body {
 	    padding-bottom: 3px;
 	    text-align: center;
 	}
+	.fa-heart {
+		color: #f00;
+	}
 	.row {
 	    margin-bottom: 60px;
 	}
 	.navbar-brand {
 	    margin-top: 45px;
 	    height: 65px;
-	}
+	}s
 	.footer-copyright p {
 	    margin: 10px;
 	    color: #ccc;
@@ -159,7 +111,7 @@ body {
 	    padding: 8px 8px 8px 32px;
 	    text-decoration: none;
 	    font-size: 25px;
-	    color: #818181;
+	    color: #a0a0a0;
 	    display: block;
 	    transition: 0.3s
 	}
@@ -167,12 +119,13 @@ body {
 		margin: 5px 32px 5px 32px;
 		border-color: #4c4c4c;
 	}
-	.logout, .logout:focus,.logout:hover {
-		color: #b51414;
-	}
 }
-#auth a {
-	font-size: 18px;
+.auth a {
+	font-size: 16px;
+	color: #fff;
+}
+#logout {
+	color: #f00;
 }
 #hamburger {
     position: fixed;
