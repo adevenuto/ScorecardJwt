@@ -2,7 +2,11 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <h2 class="logo"><a href="#"> LOGO </a></h2>
+                <h2 class="logo">
+                    <a href="/"> 
+                        <img src="{{asset('/img/scorecard-c-hole.png')}}" height="95px" width="165px" alt="logo">
+                    </a>
+                </h2>
             </div>
             <div class="col-sm-2">
                 <h5>Get started</h5>
@@ -39,6 +43,7 @@
         </div>
     </div>
     <div class="footer-copyright">
-        <p>&copy; <?php echo date("Y"); ?> Scorecard - built with <i class="fa fa-heart"></i> by Anthony DeVenuto</p>
+        <p>&copy; <?php echo date("Y"); ?> Scorecard</p>
+        <p>built with <i class="fa fa-heart"></i> by <a href="http://anthonydevenuto.com">Anthony DeVenuto</a></p>
     </div>
 </footer>
