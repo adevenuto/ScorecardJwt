@@ -11,9 +11,9 @@
             <div class="col-sm-2">
                 <h5>Get started</h5>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Sign up</a></li>
-                    <li><a href="#">Downloads</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/course/create">Create A Course</a></li>
+                    <li><a href="/courses">Courses</a></li>
                 </ul>
             </div>
             <div class="col-sm-2">

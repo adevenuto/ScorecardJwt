@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreateHolesTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('holes', function (Blueprint $table) {
@@ -24,11 +19,6 @@ class CreateHolesTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('holes');
