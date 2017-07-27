@@ -10,7 +10,6 @@
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="{{ asset('css/bootstrap-form-helpers.min.css') }}" rel="stylesheet">
-<link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
 <!-- Scripts -->
 <script src="https://use.fontawesome.com/e3d24e6b06.js"></script>

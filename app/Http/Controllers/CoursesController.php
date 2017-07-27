@@ -33,7 +33,7 @@ class CoursesController extends Controller
             'country_id'  => 'required',
             'state_id'  => 'required',
             'city_id'  => 'required',
-            'holes'  => 'max:36',
+            'course_holes'  => 'max:36',
             'tournament_tee_length' => 'nullable|max:4', 
             'back_tee_length' => 'nullable|max:4',
             'middle_tee_length' => 'nullable|max:4',
