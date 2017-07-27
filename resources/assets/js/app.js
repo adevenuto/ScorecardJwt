@@ -8,6 +8,7 @@
 require('./bootstrap');
 require('./main.js');
 require('./courseForm.js');
+require('./validate.js');
 // window.Vue = require('vue');
 
 /**

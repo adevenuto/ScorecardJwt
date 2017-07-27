@@ -1,10 +1,16 @@
 @extends('main')
+@section('courses.create')
+	<script src="{{ asset('js/validate.js') }}"></script>
+	<script src="{{ asset('js/bootstrap-formhelpers.min.js') }}"></script>
+@endsection
 @section('content')
-	<h1>Create a course</h1>
+	<div class="col-md-12">
+		<h1>Create a course</h1>
+	</div>
 	<div class="container">
 		<div class="row">
 			<form id="courseCreation" action="" method="POST">
-				<div class="col-md-4">
+				<div class="col-sm-4">
 					<label for="course_name" class="col-2 col-form-label">Name</label>
 					<div class="form-group">
 						<input type="text" class="form-control" id="course_name" name="course_name" required>
@@ -35,7 +41,6 @@
 							<option value="">Select Country</option>
 						</select>
 					</div>
-					
 					<label for="course_state" class="col-2 col-form-label">State</label>
 					<div class="form-group">
 						<select name="course_state" class="form-control states" id="stateId" required>
@@ -50,7 +55,7 @@
 						</select>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-sm-4">
 					<label for="tournament_tee_length" class="col-2 col-form-label">Tournament Tee Length</label>
 					<div class="form-group">
 						<input type="text" maxlength="4" class="form-control" id="tournament_tee_length" name="tournament_tee_length" placeholder="Enter Yards">
@@ -83,14 +88,77 @@
 					</select>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" type="checkbox" value="true">
-					    Course Offers Membership
+					    <input class="form-check-input" name="driving_range" type="checkbox" value="false">
+					    Driving Range
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="chipping_green" type="checkbox" value="false">
+					    Chipping Green
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="putting_green" type="checkbox" value="false">
+					    Putting Green
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="practice_bunker" type="checkbox" value="false">
+					    Practice Bunker
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="pull_carts" type="checkbox" value="false">
+					    Pull Carts
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="motorized_carts" type="checkbox" value="false">
+					    Motorized Carts
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="pro_shop" type="checkbox" value="false">
+					    Pro Shop
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="golf_lessons" type="checkbox" value="false">
+					    Lessons Offered
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="caddies" type="checkbox" value="false">
+					    Caddies
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="lockers" type="checkbox" value="false">
+					    Lockers
+					  </label>
+					</div>
+					<div class="form-check">
+					  <label class="form-check-label">
+					    <input class="form-check-input" name="restaurant" type="checkbox" value="false">
+					    Restaurant
 					  </label>
 					</div>
 				</div>
-				<div class="col-md-4">
+				<div class="col-sm-4">
 					
 				</div>
+				{{-- TEMP BTN --}}
+				<button type="submit" class="btn btn-block btn-success">Create Course</button>
+				
 			</form>
 		</div>
 	</div>

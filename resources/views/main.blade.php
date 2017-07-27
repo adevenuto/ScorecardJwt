@@ -13,5 +13,6 @@
 				@include('partials._footer')
 			</div>{{-- main end --}}
 			@include('partials/_scripts')
+			@yield('courses.create')
 		</body>
 </html>

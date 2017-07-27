@@ -7680,6 +7680,7 @@ body {
   background-color: #3c3d41;
   color: white;
   padding-top: 30px;
+  margin-top: 30px;
 }
 
 #myFooter .footer-copyright {
@@ -7937,4 +7938,9 @@ body {
 #courseCreation label {
   font-size: 13px;
   margin-bottom: 0;
+}
+
+#courseCreation .help-inline {
+  color: #0f0;
+  border-color: #0f0;
 }

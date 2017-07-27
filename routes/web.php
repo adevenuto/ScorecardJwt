@@ -19,7 +19,7 @@ Route::get('/', 'PagesController@getIndex');
 Route::get('course/create', 'CoursesController@create');
 Route::get('/courses', 'CoursesController@index');
 
-// create form countries/state/city
+// courses.create form countries/state/city
 Route::post("/getcountries", "CountriesController@getCountries");
 Route::post("/getstates/{id}", "StatesController@getStates");
 Route::post("/getcities/{id}", "CitiesController@getCities");
