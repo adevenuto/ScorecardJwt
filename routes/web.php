@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/', 'PagesController@getIndex');
 
 Route::get('course/create', 'CoursesController@create');
+Route::post('course/create', 'CoursesController@store');
 Route::get('/courses', 'CoursesController@index');
 
 // courses.create form countries/state/city

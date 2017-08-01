@@ -4,12 +4,22 @@
 	<script src="{{ asset('js/bootstrap-formhelpers.min.js') }}"></script>
 @endsection
 @section('content')
+	@if ($errors->any())
+	    <div class="alert alert-danger">
+	        <ul>
+	            @foreach ($errors->all() as $error)
+	                <li>{{ $error }}</li>
+	            @endforeach
+	        </ul>
+	    </div>
+	@endif
 	<div class="col-md-12">
 		<h1>Create a course</h1>
 	</div>
 	<div class="container">
 		<div class="row">
-			<form id="courseCreation" action="" method="POST">
+			<form id="courseCreation" action="/course/create" method="POST">
+			{{ csrf_field() }}
 				<div class="col-sm-4">
 					<label for="course_name" class="col-2 col-form-label">Name</label>
 					<div class="form-group">
@@ -21,11 +31,11 @@
 					</div>
 					<label for="course_phone_number" class="col-2 col-form-label">Phone Number</label>
 					<div class="form-group">
-						<input type="text" class="form-control bfh-phone" name="course_phone_number" data-format="+1 (ddd) ddd-dddd" required>
+						<input type="text" class="form-control bfh-phone" name="course_phone_number" data-format="+1 (ddd) ddd-dddd">
 					</div>
 					<label for="course_postal_code" class="col-2 col-form-label">Zip Code</label>
 					<div class="form-group">
-						<input type="text" class="form-control" id="course_postal_code" name="course_postal_code">
+						<input type="text" class="form-control" maxLength="14" id="course_postal_code" name="course_postal_code" required>
 					</div>
 					<label for="course_website" class="col-2 col-form-label">Website</label>
 					<div class="form-group">
@@ -37,20 +47,20 @@
 					</div>
 					<label for="course_country" class="col-2 col-form-label">Country</label>
 					<div class="form-group">
-						<select name="course_country" class="form-control countries" id="cityId" required="required">
+						<select name="course_country" class="form-control countries" id="cityId">
 							<option value="">Select Country</option>
 						</select>
 					</div>
 					<label for="course_state" class="col-2 col-form-label">State</label>
 					<div class="form-group">
-						<select name="course_state" class="form-control states" id="stateId" required>
+						<select name="course_state" class="form-control states" id="stateId">
 							<option value="">Select State</option>
 						</select>
 					</div>
 					
 					<label for="course_city" class="col-2 col-form-label">City</label>
 					<div class="form-group">
-						<select name="course_city" class="form-control cities" id="cityId" required>
+						<select name="course_city" class="form-control cities" id="cityId">
 							<option value="">Select City</option>
 						</select>
 					</div>
@@ -73,82 +83,82 @@
 						<input type="text" maxlength="4" class="form-control" id="front_tee_length" name="front_tee_length" placeholder="Enter Yards">
 					</div>
 					<label for="course_price" class="col-2 col-form-label">Price</label>
-					<select class="custom-select form-group form-control" name="course_price">
-						<option value="inexpensive" selected>$</option>
-						<option value="moderate">$$</option>
-						<option value="high">$$$</option>
-						<option value="expensive">$$$$</option>
+					<select class="custom-select form-group form-control" name="course_price" required>
+						<option value="$" selected>$</option>
+						<option value="$$">$$</option>
+						<option value="$$$">$$$</option>
+						<option value="$$$$">$$$$</option>
 					</select>
 					<label for="course_holes" class="col-2 col-form-label">Holes</label>
-					<select class="custom-select form-group form-control" name="course_holes">
-						<option value="9" selected>9</option>
+					<select class="custom-select form-group form-control" name="course_holes" required>
+						<option value="9">9</option>
 						<option value="18">18</option>
 						<option value="27">27</option>
 						<option value="36">36</option>
 					</select>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="driving_range" type="checkbox" value="false">
+					    <input class="form-check-input" name="driving_range" type="checkbox" value="1">
 					    Driving Range
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="chipping_green" type="checkbox" value="false">
+					    <input class="form-check-input" name="chipping_green" type="checkbox" value="1">
 					    Chipping Green
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="putting_green" type="checkbox" value="false">
+					    <input class="form-check-input" name="putting_green" type="checkbox" value="1">
 					    Putting Green
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="practice_bunker" type="checkbox" value="false">
+					    <input class="form-check-input" name="practice_bunker" type="checkbox" value="1">
 					    Practice Bunker
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="pull_carts" type="checkbox" value="false">
+					    <input class="form-check-input" name="pull_carts" type="checkbox" value="1">
 					    Pull Carts
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="motorized_carts" type="checkbox" value="false">
+					    <input class="form-check-input" name="motorized_carts" type="checkbox" value="1">
 					    Motorized Carts
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="pro_shop" type="checkbox" value="false">
+					    <input class="form-check-input" name="pro_shop" type="checkbox" value="1">
 					    Pro Shop
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="golf_lessons" type="checkbox" value="false">
+					    <input class="form-check-input" name="golf_lessons" type="checkbox" value="1">
 					    Lessons Offered
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="caddies" type="checkbox" value="false">
+					    <input class="form-check-input" name="caddies" type="checkbox" value="1">
 					    Caddies
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="lockers" type="checkbox" value="false">
+					    <input class="form-check-input" name="lockers" type="checkbox" value="1">
 					    Lockers
 					  </label>
 					</div>
 					<div class="form-check">
 					  <label class="form-check-label">
-					    <input class="form-check-input" name="restaurant" type="checkbox" value="false">
+					    <input class="form-check-input" name="restaurant" type="checkbox" value="1">
 					    Restaurant
 					  </label>
 					</div>

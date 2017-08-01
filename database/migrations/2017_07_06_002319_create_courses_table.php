@@ -22,10 +22,10 @@ class CreateCoursesTable extends Migration
             $table->string('course_website',255)->nullable();
             $table->string('course_email',255)->nullable();
             $table->string('course_price')->nullable();
-            $table->integer('country_id');
-            $table->integer('state_id');
-            $table->integer('city_id');
-            $table->string('holes');
+            $table->integer('country_id')->nullable();
+            $table->integer('state_id')->nullable();
+            $table->integer('city_id')->nullable();
+            $table->string('course_holes')->nullable();
             $table->string('tournament_tee_length',255)->nullable();
             $table->string('back_tee_length',255)->nullable();
             $table->string('middle_tee_length',255)->nullable();
@@ -34,7 +34,6 @@ class CreateCoursesTable extends Migration
             $table->string('back_tee_slope_rating',255)->nullable();
             $table->string('middle_tee_slope_rating',255)->nullable();
             $table->string('front_tee_slope_rating',255)->nullable();
-            $table->boolean('course_membership')->nullable();
             $table->boolean('driving_range')->nullable();
             $table->boolean('chipping_green')->nullable();
             $table->boolean('putting_green')->nullable();
