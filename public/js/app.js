@@ -11010,8 +11010,8 @@ return jQuery;
 
 __webpack_require__(28);
 __webpack_require__(30);
-__webpack_require__(29);
 __webpack_require__(31);
+__webpack_require__(29);
 // window.Vue = require('vue');
 
 /**
@@ -12026,6 +12026,31 @@ $(function () {
         } else {
             $(".cities option:gt(0)").remove();
         }
+    });
+});
+// THIS CREATES THE HOLE INPUTS (based on user selection)
+$(function () {
+    var holes = 0;
+    var teeSelection;
+    function appendHoles(attr) {
+        var template = $('.' + attr).clone();
+        var targetDiv = $('.holes');
+        if (holes >= 9) {
+            for (i = 1; i <= holes; i++) {
+                targetDiv.append(template);
+            }
+        } else {
+            // I need to validate course_holes here....
+            // $('#courseCreation').validate().$('.'+attr);
+        }
+    }
+    $('.tee-box').on('click', function () {
+        teeSelection = $(this).attr('data-tee-box');
+        appendHoles(teeSelection);
+    });
+    $('#course_holes').on('change', function () {
+        holes = $(this).val();
+        console.log(holes);
     });
 });
 

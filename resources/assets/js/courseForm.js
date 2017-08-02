@@ -104,7 +104,32 @@ $(function() {
         }
     });
 });
-
+// THIS CREATES THE HOLE INPUTS (based on user selection)
+$(function() {
+    var holes = 0;
+    var teeSelection;
+    function appendHoles(attr) {
+        var template = $('.'+attr).clone();
+        var targetDiv = $('.holes');
+        if (holes>=9) {
+            for (i=1;i<=holes;i++) {
+               targetDiv.append(template);
+            }
+        } else {
+            // I need to validate course_holes here....
+            // $('#courseCreation').validate().$('.'+attr);
+        }
+    }
+    $('.tee-box').on('click', function() {
+        teeSelection = $(this).attr('data-tee-box');
+        appendHoles(teeSelection);
+        
+    })
+    $('#course_holes').on('change', function() {
+        holes = $(this).val();
+        console.log(holes);
+    })
+});
 
 
 

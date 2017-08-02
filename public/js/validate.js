@@ -12,9 +12,6 @@ var v = $("#courseCreation").validate({
                                 course_postal_code: {
                                 	required: true
                                 },
-                                course_holes: {
-                                	required: true
-                                },
                                 course_price: {
                                 	required: true
                                 },

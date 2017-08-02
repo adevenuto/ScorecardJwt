@@ -1,12 +1,9 @@
 #courseCreation {
-	.form-control {
-		height: 26px;
-	}
 	.form-group {
 		margin-bottom: 10px;
 	}
 	.form-control {
-		font-size: 12px;
+		font-size: 14px;
 	}
 	label {
 		font-size: 13px;
@@ -15,5 +12,33 @@
 	.help-inline {
 		color: #f00;
 		border-color: #f00;
+	}
+	.custom-select {
+		margin: 0;
+	}
+	.input-group-addon {
+	    min-width: 150px;
+	    text-align: left;	
+	}
+	.tee-box {
+	    padding: 5px;
+	    margin-bottom: 5px;
+	    background: #d8d8d8;
+	    color: #040000;
+	    border: 1px solid #ababab;
+	    transition: all 200ms;
+	    cursor: pointer;
+	    &:hover {
+	    	border-color: #000;
+	    };
+	}
+	hr {
+		margin-bottom: 0;
+	}
+	.tee-box-selector {
+	    h4 {
+	    	font-size: 13px;
+	    	font-weight: bold;
+	    }
 	}
 }
