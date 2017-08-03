@@ -7679,6 +7679,10 @@ body, html {
   padding: 0 !important;
 }
 
+.caps {
+  text-transform: capitalize;
+}
+
 .rtl3 {
   border-top-left-radius: 3px !important;
 }
@@ -7974,7 +7978,12 @@ body {
   text-align: left;
 }
 
-#courseCreation .tee-box {
+#courseCreation .tee-box-controller h4 {
+  font-size: 13px;
+  font-weight: bold;
+}
+
+#courseCreation .tee-box-controller .tee-box-selector {
   padding: 5px;
   margin-bottom: 5px;
   background: #d8d8d8;
@@ -7984,15 +7993,18 @@ body {
   cursor: pointer;
 }
 
-#courseCreation .tee-box:hover {
+#courseCreation .tee-box-controller .tee-box-selector:hover {
   border-color: #000;
+}
+
+#courseCreation #holes .tee-box {
+  font-weight: bold;
+}
+
+#courseCreation #holes .hole {
+  margin-bottom: 5px;
 }
 
 #courseCreation hr {
   margin-bottom: 0;
-}
-
-#courseCreation .tee-box-selector h4 {
-  font-size: 13px;
-  font-weight: bold;
 }

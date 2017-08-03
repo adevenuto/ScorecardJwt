@@ -109,25 +109,34 @@ $(function() {
     var holes = 0;
     var teeSelection;
     function appendHoles(attr) {
-        var template = $('.'+attr).clone();
-        var targetDiv = $('.holes');
+        var targetDiv = $('#holes');
+        var teeBox = attr.replace(/_/g," ");
+        console.log(teeBox);
+        targetDiv.empty();
         if (holes>=9) {
+                var teeSelection = "<div class='tee-box caps'>"+teeBox+"</div>"
+                targetDiv.append(teeSelection)
             for (i=1;i<=holes;i++) {
-               targetDiv.append(template);
+                var hole =  "<div class='input-group input-group-sm hole'>" +
+                                "<span class='input-group-addon' id='sizing-addon3'>Hole: "+i+"</span>" +
+                                "<input type='text' class='form-control' maxLength='3' name='"+attr+"' aria-describedby='sizing-addon3' placeholder='Enter hole length'>" +
+                            "</div>";
+                targetDiv.append(hole);
             }
         } else {
-            // I need to validate course_holes here....
+            console.log('validate this bitch')
+            // I need to validate course_holes here manually....
             // $('#courseCreation').validate().$('.'+attr);
         }
     }
-    $('.tee-box').on('click', function() {
+    $('.tee-box-controller').on('click', '.tee-box-selector', function() {
         teeSelection = $(this).attr('data-tee-box');
         appendHoles(teeSelection);
-        
     })
     $('#course_holes').on('change', function() {
         holes = $(this).val();
-        console.log(holes);
+        var targetDiv = $('#holes');
+        targetDiv.empty();
     })
 });
 

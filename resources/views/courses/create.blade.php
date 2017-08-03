@@ -14,7 +14,7 @@
 	    </div>
 	@endif
 	<div class="col-md-12">
-		<h1>Create a course</h1>
+		<h1 class="caps">Create a course</h1>
 	</div>
 	<div class="container">
 		<div class="row">
@@ -168,34 +168,18 @@
 					  </label>
 					</div>
 					<hr>
-					<div class="tee-box-selector">
+					<div class="tee-box-controller">
 						<h4>Which tee box will you be playing?</h4>
-						<div class="tee-box" data-tee-box="tournament-tee-box">Tournament Tees</div>
-						<div class="tee-box" data-tee-box="back-tee-box">Back Tees</div>
-						<div class="tee-box" data-tee-box="middle-tee-box">Middle Tees</div>
-						<div class="tee-box" data-tee-box="front-tee-box">Front Tees</div>
+						<div class="tee-box-selector" data-tee-box="tournament_tee_length">Tournament Tees</div>
+						<div class="tee-box-selector" data-tee-box="back_tee_length">Back Tees</div>
+						<div class="tee-box-selector" data-tee-box="middle_tee_length">Middle Tees</div>
+						<div class="tee-box-selector" data-tee-box="front_tee_length">Front Tees</div>
 					</div>
 				</div>
 				<div class="col-sm-4">
 					<div id="hole-info">
-						<div class="col-md-12 pad0 holes">
-							{{-- TEMPLATEs FOR TEE-BOX SELECTION --}}
-							<div class="input-group input-group-sm tournament-tee-box">
-								<span class="input-group-addon" id="sizing-addon3">Tournament tee box</span>
-								<input type="text" class="form-control" maxLength="3" aria-describedby="sizing-addon3" placeholder="Enter hole length">
-							</div>
-							<div class="input-group input-group-sm back-tee-box hide">
-								<span class="input-group-addon" id="sizing-addon3">Back tee box</span>
-								<input type="text" class="form-control" maxLength="3" aria-describedby="sizing-addon3" placeholder="Enter hole length">
-							</div>
-							<div class="input-group input-group-sm middle-tee-box hide">
-								<span class="input-group-addon" id="sizing-addon3">Middle tee box</span>
-								<input type="text" class="form-control" maxLength="3" aria-describedby="sizing-addon3" placeholder="Enter hole length">
-							</div>
-							<div class="input-group input-group-sm front-tee-box hide">
-								<span class="input-group-addon" id="sizing-addon3">Front tee box</span>
-								<input type="text" class="form-control" maxLength="3" aria-describedby="sizing-addon3" placeholder="Enter hole length">
-							</div>
+						<div class="col-md-12 pad0" id="holes">
+							{{-- APPEND ALL HOLES HERE (from resources/assets/courseForm.js) --}}
 						</div>
 					</div>
 				</div>
