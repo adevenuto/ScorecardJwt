@@ -12035,7 +12035,7 @@ $(function () {
     function appendHoles(attr) {
         var targetDiv = $('#holes');
         var teeBox = attr.replace(/_/g, " ");
-        console.log(teeBox);
+        var holesInput = $('select[name=course_holes]');
         targetDiv.empty();
         if (holes >= 9) {
             var teeSelection = "<div class='tee-box caps'>" + teeBox + "</div>";
@@ -12045,9 +12045,8 @@ $(function () {
                 targetDiv.append(hole);
             }
         } else {
-            console.log('validate this bitch');
-            // I need to validate course_holes here manually....
-            // $('#courseCreation').validate().$('.'+attr);
+            // validate course_holes here...
+            holesInput.valid();
         }
     }
     $('.tee-box-controller').on('click', '.tee-box-selector', function () {
