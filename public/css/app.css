@@ -7699,6 +7699,13 @@ body, html {
   border-bottom-right-radius: 3px !important;
 }
 
+.close {
+  color: #000 !important;
+  opacity: 1;
+  top: -10px !important;
+  font-size: 30px;
+}
+
 body {
   position: relative;
 }
@@ -7974,7 +7981,7 @@ body {
 }
 
 #courseCreation .input-group-addon {
-  min-width: 150px;
+  min-width: 69px;
   text-align: left;
 }
 
@@ -8002,7 +8009,7 @@ body {
 }
 
 #courseCreation #holes .hole {
-  margin-bottom: 5px;
+  margin-bottom: 3px;
 }
 
 #courseCreation hr {

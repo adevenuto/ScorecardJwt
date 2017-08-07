@@ -12030,10 +12030,10 @@ $(function () {
 });
 // THIS CREATES THE HOLE INPUTS (based on user selection)
 $(function () {
-    var holes = 0;
+    var holes = $('select[name=course_holes]').val();
     var teeSelection;
+    var targetDiv = $('#holes');
     function appendHoles(attr) {
-        var targetDiv = $('#holes');
         var teeBox = attr.replace(/_/g, " ");
         var holesInput = $('select[name=course_holes]');
         targetDiv.empty();
@@ -12041,34 +12041,56 @@ $(function () {
             var teeSelection = "<div class='tee-box caps'>" + teeBox + "</div>";
             targetDiv.append(teeSelection);
             for (i = 1; i <= holes; i++) {
-                var hole = "<div class='input-group input-group-sm hole'>" + "<span class='input-group-addon' id='sizing-addon3'>Hole: " + i + "</span>" + "<input type='text' class='form-control' maxLength='3' name='" + attr + "' aria-describedby='sizing-addon3' placeholder='Enter hole length'>" + "</div>";
+                var hole = "<div class='input-group input-group-sm hole'>" + "<span class='input-group-addon' id='sizing-addon3'>Hole: " + i + "</span>" + "<input type='text' class='form-control num-only' maxLength='3' name='" + attr + "[]' aria-describedby='sizing-addon3' placeholder='Enter hole length' required>" + "</div>";
                 targetDiv.append(hole);
             }
         } else {
-            // validate course_holes here...
+            // validate course_holes field here...w/jqueryvalidate library
             holesInput.valid();
+            // reset tee-box selection when 'number of holes' is not selected
+            selectInputDefault('tee-box');
         }
-    }
-    $('.tee-box-controller').on('click', '.tee-box-selector', function () {
-        teeSelection = $(this).attr('data-tee-box');
-        appendHoles(teeSelection);
+    };
+    $('#tee-box').on('change', function (e) {
+        if (this.value === "") {
+            targetDiv.empty();
+        } else {
+            teeSelection = $(this).val();
+            appendHoles(teeSelection);
+        }
     });
     $('#course_holes').on('change', function () {
         holes = $(this).val();
-        var targetDiv = $('#holes');
         targetDiv.empty();
+        // reset tee-box selection when 'number of holes' is not selected
+        selectInputDefault('tee-box');
     });
+    function selectInputDefault(selectInputId) {
+        $("#" + selectInputId + " " + "option").prop('selected', function () {
+            return this.defaultSelected;
+        });
+    }
 });
 
 /***/ }),
 /* 30 */
 /***/ (function(module, exports) {
 
+// GLOBAl JS/JQUERY
+///////////////////
+
 // Slide In Nav
 $("#hamburger").on('click', function () {
-	$("#mySidenav").toggleClass('navIn');
-	$("#hamburger").toggleClass('open');
-	$("#overlay").toggleClass('overlay');
+  $("#mySidenav").toggleClass('navIn');
+  $("#hamburger").toggleClass('open');
+  $("#overlay").toggleClass('overlay');
+});
+
+// Only Allow Numbers To Be Entered
+$('body').on('keypress', '.num-only', function (e) {
+  if (e.which < 48 || e.which > 57) {
+    e.preventDefault();
+  }
 });
 
 /***/ }),

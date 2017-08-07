@@ -20,7 +20,7 @@ class CoursesController extends Controller
     }
 
     public function store(Request $request)
-    {
+    {   
         // validate incoming data
         $this->validate($request, array(
             'course_name' => 'required|max:255',
@@ -30,27 +30,9 @@ class CoursesController extends Controller
             'course_website'  => 'max:255',
             'course_email'  => 'max:255',
             'course_price'  => 'required',
-            'course_holes'  => 'max:36',
-            'tournament_tee_length' => 'nullable|max:4', 
-            'back_tee_length' => 'nullable|max:4',
-            'middle_tee_length' => 'nullable|max:4',
-            'front_tee_length' => 'nullable|max:4',
-            'tournament_tee_slope_rating' => 'nullable|max:6',
-            'back_tee_slope_rating' => 'nullable|max:6',
-            'middle_tee_slope_rating' => 'nullable|max:6',
-            'front_tee_slope_rating' => 'nullable|max:6',
-            // 'driving_range' => 'nullable',
-            // 'chipping_green' => 'nullable',
-            // 'putting_green' => 'nullable',
-            // 'practice_bunker' => 'nullable',
-            // 'pull_carts' => 'nullable',
-            // 'motorized_carts' => 'nullable',
-            // 'pro_shop' => 'nullable',
-            // 'golf_lessons' => 'nullable',
-            // 'caddies' => 'nullable',
-            // 'lockers' => 'nullable',
-            // 'restaurant' => 'nullable'
+            'course_holes'  => 'max:36'
         ));
+        
         $course = new Course;
         $course->course_name = $request->course_name;
         $course->course_address = $request->course_address;
@@ -63,14 +45,6 @@ class CoursesController extends Controller
         $course->state_id = $request->course_state;
         $course->city_id = $request->course_city;
         $course->course_holes = $request->course_holes;
-        $course->tournament_tee_length = $request->tournament_tee_length;
-        $course->back_tee_length = $request->back_tee_length;
-        $course->middle_tee_length = $request->middle_tee_length;
-        $course->front_tee_length = $request->front_tee_length;
-        $course->tournament_tee_slope_rating = $request->tournament_tee_slope_rating;
-        $course->back_tee_slope_rating = $request->back_tee_slope_rating;
-        $course->middle_tee_slope_rating = $request->middle_tee_slope_rating;
-        $course->front_tee_slope_rating = $request->front_tee_slope_rating;
         $course->driving_range = $request->driving_range;
         $course->chipping_green = $request->chipping_green;
         $course->putting_green = $request->putting_green;
@@ -83,6 +57,9 @@ class CoursesController extends Controller
         $course->lockers = $request->lockers;
         $course->restaurant = $request->restaurant;
         $course->save();
+
+        Log::info($course);
+        Log::info($request);
     }
 
     public function show($id)
@@ -105,3 +82,36 @@ class CoursesController extends Controller
         //
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 'tournament_tee_length' => 'nullable|max:4', 
+// 'back_tee_length' => 'nullable|max:4',
+// 'middle_tee_length' => 'nullable|max:4',
+// 'front_tee_length' => 'nullable|max:4',
+// 'tournament_tee_slope_rating' => 'nullable|max:6',
+// 'back_tee_slope_rating' => 'nullable|max:6',
+// 'middle_tee_slope_rating' => 'nullable|max:6',
+// 'front_tee_slope_rating' => 'nullable|max:6',
+
+
+// $course->tournament_tee_length = $request->tournament_tee_length;
+// $course->back_tee_length = $request->back_tee_length;
+// $course->middle_tee_length = $request->middle_tee_length;
+// $course->front_tee_length = $request->front_tee_length;
+// $course->tournament_tee_slope_rating = $request->tournament_tee_slope_rating;
+// $course->back_tee_slope_rating = $request->back_tee_slope_rating;
+// $course->middle_tee_slope_rating = $request->middle_tee_slope_rating;
+// $course->front_tee_slope_rating = $request->front_tee_slope_rating;

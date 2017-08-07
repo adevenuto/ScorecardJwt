@@ -4,15 +4,6 @@
 	<script src="{{ asset('js/bootstrap-formhelpers.min.js') }}"></script>
 @endsection
 @section('content')
-	@if ($errors->any())
-	    <div class="alert alert-danger">
-	        <ul>
-	            @foreach ($errors->all() as $error)
-	                <li>{{ $error }}</li>
-	            @endforeach
-	        </ul>
-	    </div>
-	@endif
 	<div class="col-md-12">
 		<h1 class="caps">Create a course</h1>
 	</div>
@@ -23,11 +14,11 @@
 				<div class="col-sm-4">
 					<label for="course_name" class="col-2 col-form-label">Name</label>
 					<div class="form-group">
-						<input type="text" class="form-control" id="course_name" name="course_name" data-msg="Pleases add course name" required>
+						<input type="text" class="form-control" id="course_name" name="course_name" data-msg="Pleases add course name">
 					</div>
 					<label for="course_address" class="col-2 col-form-label">Address</label>
 					<div class="form-group">
-						<input type="text" class="form-control" id="course_address" name="course_address" data-msg="Pleases add course address" required>
+						<input type="text" class="form-control" id="course_address" name="course_address" data-msg="Pleases add course address">
 					</div>
 					<label for="course_phone_number" class="col-2 col-form-label">Phone Number</label>
 					<div class="form-group">
@@ -35,11 +26,7 @@
 					</div>
 					<label for="course_postal_code" class="col-2 col-form-label">Zip Code</label>
 					<div class="form-group">
-						<input type="text" class="form-control" maxLength="14" id="course_postal_code" name="course_postal_code" data-msg="Pleases add course zipcode" required>
-					</div>
-					<label for="course_website" class="col-2 col-form-label">Website</label>
-					<div class="form-group">
-						<input type="text" class="form-control" id="course_website" name="course_website">
+						<input type="text" class="form-control num-only" maxLength="14" id="course_postal_code" name="course_postal_code" data-msg="Pleases add course zipcode">
 					</div>
 					<label for="course_email" class="col-2 col-form-label">Email</label>
 					<div class="form-group">
@@ -81,6 +68,10 @@
 					<div class="form-group">
 						<input type="text" maxlength="4" class="form-control" id="front_tee_length" name="front_tee_length" placeholder="Enter Yards">
 					</div> --}}
+					<label for="course_website" class="col-2 col-form-label">Website</label>
+					<div class="form-group">
+						<input type="text" class="form-control" id="course_website" name="course_website">
+					</div>
 					<div class="form-group">
 						<label for="course_price" class="col-2 col-form-label">Price</label>
 						<select class="custom-select form-group form-control required" name="course_price" data-msg="Please select a price">
@@ -92,13 +83,23 @@
 						</select>
 					</div>
 					<div class="form-group">
-						<label for="course_holes" class="col-2 col-form-label">Holes</label>
+						<label for="course_holes" class="col-2 col-form-label">Number Of Holes</label>
 						<select class="custom-select form-group form-control required" id="course_holes" name="course_holes" data-msg="Pleases select number of holes">
 							<option selected value="">Choose an option</option>
 							<option value="9">9</option>
 							<option value="18">18</option>
 							<option value="27">27</option>
 							<option value="36">36</option>
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="course_holes" class="col-2 col-form-label">Select A Tee Box</label>
+						<select class="custom-select form-group form-control required" id="tee-box" data-msg="Pleases select a tee-box">
+							<option selected value="">Choose an option</option>
+							<option value="gold_tee_length">Gold Tees</option>
+							<option value="blue_tee_length">Blue Tees</option>
+							<option value="white_tee_length">White Tees</option>
+							<option value="red_tee_length">Red Tees</option>
 						</select>
 					</div>
 					<div class="form-check">
@@ -167,14 +168,13 @@
 					    Restaurant
 					  </label>
 					</div>
-					<hr>
-					<div class="tee-box-controller">
+					{{-- <div class="tee-box-controller">
 						<h4>Which tee box will you be playing?</h4>
-						<div class="tee-box-selector" data-tee-box="tournament_tee_length">Tournament Tees</div>
-						<div class="tee-box-selector" data-tee-box="back_tee_length">Back Tees</div>
-						<div class="tee-box-selector" data-tee-box="middle_tee_length">Middle Tees</div>
-						<div class="tee-box-selector" data-tee-box="front_tee_length">Front Tees</div>
-					</div>
+						<div class="tee-box-selector" data-tee-box="gold_tee_length">Gold Tees</div>
+						<div class="tee-box-selector" data-tee-box="blue_tee_length">Blue Tees</div>
+						<div class="tee-box-selector" data-tee-box="white_tee_length">White Tees</div>
+						<div class="tee-box-selector" data-tee-box="red_tee_length">Red Tees</div>
+					</div> --}}
 				</div>
 				<div class="col-sm-4">
 					<div id="hole-info">
@@ -185,7 +185,6 @@
 				</div>
 				{{-- TEMP BTN --}}
 				<button type="submit" class="btn btn-block btn-success">Create Course</button>
-				
 			</form>
 		</div>
 	</div>

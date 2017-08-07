@@ -44,6 +44,6 @@
     </div>
     <div class="footer-copyright">
         <p>&copy; <?php echo date("Y"); ?> Scorecard</p>
-        <p>built with <i class="fa fa-heart"></i> by <a href="http://anthonydevenuto.com">Anthony DeVenuto</a></p>
+        <p>Built with <i class="fa fa-heart"></i> by <a href="http://anthonydevenuto.com">Anthony DeVenuto</a></p>
     </div>
 </footer>
