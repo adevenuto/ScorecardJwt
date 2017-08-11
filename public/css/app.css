@@ -7958,7 +7958,7 @@ body {
   }
 }
 
-#courseCreation {
+#create-course-form {
   /*.custom-select {
 		margin: 0;
 	}
@@ -7997,20 +7997,28 @@ body {
 	}*/
 }
 
-#courseCreation .form-group {
+#create-course-form .form-group {
   margin-bottom: 10px;
 }
 
-#courseCreation .form-control {
+#create-course-form .form-control {
   font-size: 14px;
 }
 
-#courseCreation label {
+#create-course-form label {
   font-size: 13px;
   margin-bottom: 0;
 }
 
-#courseCreation .help-inline {
+#create-course-form .help-inline {
   color: #f00;
   border-color: #f00;
+}
+
+#create-holes-form .input-group {
+  margin-bottom: 5px;
+}
+
+#create-holes-form hr {
+  margin: 5px 0;
 }

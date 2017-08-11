@@ -6,8 +6,8 @@
 @section('content')
 	<div class="container">
 		<div class="row">
-			<form id="courseCreation" action="/course/create" method="POST">
-			{{ csrf_field() }}
+			<form id="create-course-form" action="/course/create" method="POST">
+				{{ csrf_field() }}
 				<div class="col-md-8 col-md-offset-2">
 					<div class="col-md-12">
 						<h1 class="caps">Create a course</h1>
