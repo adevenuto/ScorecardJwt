@@ -32,7 +32,7 @@ class CoursesController extends Controller
             'course_price'  => 'required',
             'course_holes'  => 'max:36'
         ));
-        
+
         $course = new Course;
         $course->course_name = $request->course_name;
         $course->course_address = $request->course_address;
@@ -60,6 +60,8 @@ class CoursesController extends Controller
 
         Log::info($course);
         Log::info($request);
+
+        return redirect('course/'.$course->id.'/create/holes');
     }
 
     public function show($id)

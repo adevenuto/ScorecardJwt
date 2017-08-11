@@ -7958,6 +7958,45 @@ body {
   }
 }
 
+#courseCreation {
+  /*.custom-select {
+		margin: 0;
+	}
+	.input-group-addon {
+	    min-width: 69px;
+	    text-align: left;	
+	}
+	.tee-box-controller {
+	    h4 {
+	    	font-size: 13px;
+	    	font-weight: bold;
+	    }
+	    .tee-box-selector {
+		    padding: 5px;
+		    margin-bottom: 5px;
+		    background: #eeeeee;
+		    color: #040000;
+		    border: 1px solid #ababab;
+		    transition: all 200ms;
+		    cursor: pointer;
+		    &:hover {
+		    	border-color: #000;
+		    };
+		}
+	}
+	#holes {
+		.tee-box {
+			font-weight: bold;
+		}
+		.hole {
+			margin-bottom: 3px;
+		}
+	}
+	hr {
+		margin-bottom: 0;
+	}*/
+}
+
 #courseCreation .form-group {
   margin-bottom: 10px;
 }
@@ -7974,44 +8013,4 @@ body {
 #courseCreation .help-inline {
   color: #f00;
   border-color: #f00;
-}
-
-#courseCreation .custom-select {
-  margin: 0;
-}
-
-#courseCreation .input-group-addon {
-  min-width: 69px;
-  text-align: left;
-}
-
-#courseCreation .tee-box-controller h4 {
-  font-size: 13px;
-  font-weight: bold;
-}
-
-#courseCreation .tee-box-controller .tee-box-selector {
-  padding: 5px;
-  margin-bottom: 5px;
-  background: #eeeeee;
-  color: #040000;
-  border: 1px solid #ababab;
-  transition: all 200ms;
-  cursor: pointer;
-}
-
-#courseCreation .tee-box-controller .tee-box-selector:hover {
-  border-color: #000;
-}
-
-#courseCreation #holes .tee-box {
-  font-weight: bold;
-}
-
-#courseCreation #holes .hole {
-  margin-bottom: 3px;
-}
-
-#courseCreation hr {
-  margin-bottom: 0;
 }

@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Hole;
+use App\Course;
+use DB;
+use Log;
 
 class HolesController extends Controller
 {
@@ -13,8 +17,8 @@ class HolesController extends Controller
     }
 
     public function create()
-    {
-        //
+    {   $recentCourse = DB::table('courses')->latest('id')->first();
+        return view('holes.create')->with('course', $recentCourse);
     }
 
     public function store(Request $request)
