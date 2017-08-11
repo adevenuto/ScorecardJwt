@@ -110,19 +110,35 @@ $(function() {
     var teeSelection;
     var targetDiv = $('#holes');
     function appendHoles(attr) {
+        targetDiv.empty();
         var teeBox = attr.replace(/_/g," ");
         var holesInput = $('select[name=course_holes]');
-        targetDiv.empty();
-        if (holes>=9) {
-                var teeSelection = "<div class='tee-box caps'>"+teeBox+"</div>"
-                targetDiv.append(teeSelection)
+        var teeSelection = "<div class='tee-box caps'>"+teeBox+"</div>";
+        
+        if (holes>=27) {
+            var loopCount = (holes/9); 
+            targetDiv.append(teeSelection); 
+            while (loopCount > 0) {
+                for (i=1;i<=(9);i++) {
+                    var hole =  (i===1 ? "<input type='text' class='form-control input-sm' name='nine_hole_name' placeholder='Name of this group of holes'>": "") +
+                                "<div class='input-group input-group-sm hole'>" +
+                                    "<span class='input-group-addon' id='sizing-addon3'>Hole: "+i+"</span>" +
+                                    "<input type='text' class='form-control num-only' maxLength='3' name='"+attr+"[]' aria-describedby='sizing-addon3' placeholder='Enter hole length' required>" +
+                                "</div>";
+                    targetDiv.append(hole);
+                };
+                loopCount--;
+            };     
+            
+        } else if (holes>=9) {
+            targetDiv.append(teeSelection);
             for (i=1;i<=holes;i++) {
                 var hole =  "<div class='input-group input-group-sm hole'>" +
                                 "<span class='input-group-addon' id='sizing-addon3'>Hole: "+i+"</span>" +
                                 "<input type='text' class='form-control num-only' maxLength='3' name='"+attr+"[]' aria-describedby='sizing-addon3' placeholder='Enter hole length' required>" +
                             "</div>";
                 targetDiv.append(hole);
-            }
+            };
         } else {
             // validate course_holes field here...w/jqueryvalidate library
             holesInput.valid();
