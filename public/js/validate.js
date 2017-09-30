@@ -1,4 +1,4 @@
-var v = $("#courseCreation").validate({
+var v = $("#create-course-form").validate({
                               rules: {
                                 course_name: {
                                   	required: true

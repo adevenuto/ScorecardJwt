@@ -16,9 +16,10 @@ class HolesController extends Controller
         //
     }
 
-    public function create()
-    {   $recentCourse = DB::table('courses')->latest('id')->first();
-        return view('holes.create')->with('course', $recentCourse);
+    public function create($id)
+    {   
+        $course = Course::find($id);
+        return view('holes.create')->with('course', $course);
     }
 
     public function store(Request $request)

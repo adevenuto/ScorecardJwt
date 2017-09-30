@@ -47,6 +47,11 @@ class CreateCoursesTable extends Migration
             $table->boolean('restaurant')->nullable();
             $table->timestamps();
         });
+        Schema::create('course_user', function(Blueprint $table) {
+            $table->integer('course_id');
+            $table->integer('user_id');
+            $table->primary(['course_id', 'user_id']);
+        });
     }
 
     /**
@@ -57,5 +62,6 @@ class CreateCoursesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('courses');
+        Schema::dropIfExists('course_user');
     }
 }

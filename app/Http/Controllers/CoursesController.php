@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Log;
 use App\Course;
+use App\User;
 
 class CoursesController extends Controller
 {
@@ -58,8 +60,8 @@ class CoursesController extends Controller
         $course->restaurant = $request->restaurant;
         $course->save();
 
-        Log::info($course);
-        Log::info($request);
+        $user = Auth::user()->id;
+        $course->users()->attach($user);
 
         return redirect('course/'.$course->id.'/create/holes');
     }

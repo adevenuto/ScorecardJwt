@@ -7683,6 +7683,10 @@ body, html {
   text-transform: capitalize;
 }
 
+.b-rad5 {
+  border-radius: 5px !important;
+}
+
 .rtl3 {
   border-top-left-radius: 3px !important;
 }
@@ -7730,7 +7734,7 @@ body {
 }
 
 #myFooter .row {
-  margin-bottom: 60px;
+  margin-bottom: 30px;
 }
 
 #myFooter .navbar-brand {
@@ -7750,7 +7754,7 @@ body {
 }
 
 #myFooter h5 {
-  font-size: 18px;
+  font-size: 23px;
   color: white;
   font-weight: bold;
   margin-top: 30px;
@@ -7775,7 +7779,6 @@ body {
 #myFooter .social-networks {
   text-align: center;
   padding-top: 30px;
-  padding-bottom: 16px;
 }
 
 #myFooter .social-networks a {
@@ -7958,45 +7961,6 @@ body {
   }
 }
 
-#create-course-form {
-  /*.custom-select {
-		margin: 0;
-	}
-	.input-group-addon {
-	    min-width: 69px;
-	    text-align: left;	
-	}
-	.tee-box-controller {
-	    h4 {
-	    	font-size: 13px;
-	    	font-weight: bold;
-	    }
-	    .tee-box-selector {
-		    padding: 5px;
-		    margin-bottom: 5px;
-		    background: #eeeeee;
-		    color: #040000;
-		    border: 1px solid #ababab;
-		    transition: all 200ms;
-		    cursor: pointer;
-		    &:hover {
-		    	border-color: #000;
-		    };
-		}
-	}
-	#holes {
-		.tee-box {
-			font-weight: bold;
-		}
-		.hole {
-			margin-bottom: 3px;
-		}
-	}
-	hr {
-		margin-bottom: 0;
-	}*/
-}
-
 #create-course-form .form-group {
   margin-bottom: 10px;
 }
@@ -8017,8 +7981,4 @@ body {
 
 #create-holes-form .input-group {
   margin-bottom: 5px;
-}
-
-#create-holes-form hr {
-  margin: 5px 0;
 }
