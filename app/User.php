@@ -14,7 +14,7 @@ class User extends Authenticatable
     {
         return $this->type == $type;
     }
-    // has many courses
+    // user belongs to many courses
     public function courses() {
         return $this->belongsToMany('App\Course');
     }
