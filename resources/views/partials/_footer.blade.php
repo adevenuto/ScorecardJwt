@@ -2,11 +2,9 @@
     <div class="container">
         <div class="row">
             <div class="col-sm-3">
-                <h2 class="logo">
-                    <a href="/"> 
-                        <img src="{{asset('/img/scorecard-c-hole.png')}}" height="95px" width="165px" alt="logo">
-                    </a>
-                </h2>
+                <a href="/"> 
+                    <img src="{{asset('/img/logo.svg')}}" class="logo" width="85px" alt="logo">
+                </a>
             </div>
             <div class="col-sm-3">
                 <h5>Get started</h5>

@@ -10,7 +10,11 @@ use App\User;
 
 class CoursesController extends Controller
 {
-    
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index']]);
+    }
+
     public function index()
     {
         return view('courses.index');
