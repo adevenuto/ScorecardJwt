@@ -7673,6 +7673,17 @@ button.close {
 
 body, html {
   background-color: #fff;
+  font-size: 1rem;
+}
+
+.flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.clear {
+  clear: both;
 }
 
 .pad0 {
@@ -7685,6 +7696,10 @@ body, html {
 
 .b-rad5 {
   border-radius: 5px !important;
+}
+
+.b-rad3 {
+  border-radius: 3px !important;
 }
 
 .rtl3 {
@@ -7703,13 +7718,6 @@ body, html {
   border-bottom-right-radius: 3px !important;
 }
 
-.close {
-  color: #000 !important;
-  opacity: 1;
-  top: -10px !important;
-  font-size: 30px;
-}
-
 body {
   position: relative;
 }
@@ -7718,7 +7726,7 @@ body {
 #myFooter {
   background-color: #3c3d41;
   color: white;
-  padding-top: 30px;
+  padding-top: 20px;
   margin-top: 30px;
 }
 
@@ -7777,7 +7785,7 @@ body {
 }
 
 #myFooter .logo {
-  margin-top: 20px;
+  margin-top: 34px;
   margin-left: 20px;
 }
 
@@ -7955,6 +7963,9 @@ body {
   #myFooter {
     text-align: center;
   }
+  .logo {
+    margin-left: 20px;
+  }
 }
 
 @media screen and (max-height: 450px) {
@@ -7986,4 +7997,44 @@ body {
 
 #create-holes-form .input-group {
   margin-bottom: 5px;
+}
+
+#create-holes-form input {
+  border-color: #000;
+  box-shadow: none;
+  outline: none;
+}
+
+#create-holes-form .add-holes p {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+#create-holes-form .add-holes button {
+  margin-right: 20px;
+  padding: 2px 8px;
+  background: #f7f7f7;
+  color: #000;
+  border-color: #3d3e42;
+  transition: all 200ms;
+}
+
+#create-holes-form .add-holes button:hover {
+  background: #00ff09;
+  color: #000;
+  box-shadow: 0px 0px 3px #999;
+}
+
+#create-holes-form .holes-container .course-holes-header {
+  margin-bottom: 15px;
+}
+
+#create-holes-form .holes-container input {
+  font-size: .9rem;
+  border: 0;
+  border-bottom: 1px solid black;
+}
+
+#create-holes-form .holes-container .hole .seperator {
+  color: #ccd0d2;
 }

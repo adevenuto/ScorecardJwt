@@ -1,9 +1,9 @@
 <footer id="myFooter">
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-3 text-center">
                 <a href="/"> 
-                    <img src="{{asset('/img/logo.svg')}}" class="logo" width="85px" alt="logo">
+                    <img src="{{asset('/img/logo.svg')}}" class="logo" width="70px" alt="logo">
                 </a>
             </div>
             <div class="col-sm-3">
