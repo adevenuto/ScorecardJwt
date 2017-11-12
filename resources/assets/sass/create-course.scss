@@ -4,6 +4,12 @@
 	}
 	.form-control {
 		font-size: 14px;
+		border: 0;
+		border-bottom: 1px solid #000;
+		box-shadow: none;
+	}
+	.form-group select {
+		border: 1px solid #000;
 	}
 	label {
 		font-size: 13px;
@@ -12,6 +18,13 @@
 	.help-inline {
 		color: #f00;
 		border-color: #f00;
+	}
+	small {
+		font-size: 11px;
+		.asterik {
+			color: #f00;
+			font-size: 16px;
+		}
 	}
 }
 #create-holes-form {

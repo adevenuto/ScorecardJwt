@@ -15,6 +15,7 @@ class User extends Authenticatable
         return $this->type == $type;
     }
     // user belongs to many courses
+    // determine which courses user created
     public function courses() {
         return $this->belongsToMany('App\Course');
     }

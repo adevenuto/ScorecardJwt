@@ -14,10 +14,7 @@ class CreateHolesTable extends Migration
             $table->foreign('course_id')->references('id')->on('courses');
             $table->string('hole_number',255);
             $table->string('hole_group_name')->nullable();
-            $table->string('gold_tee_length')->nullable();
-            $table->string('blue_tee_length')->nullable();
-            $table->string('white_tee_length')->nullable();
-            $table->string('red_tee_length')->nullable();
+            $table->string('hole_tee_box')->nullable();
             $table->string('handicap')->nullable();
             $table->timestamps();
         });

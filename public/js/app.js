@@ -11999,8 +11999,12 @@ function locationInfo() {
                 $.each(data, function (i, country) {
                     var option = $('<option />');
                     option.attr('value', country.id).text(country.name);
+                    if (country.id === 231) {
+                        option.prop('selected', true);
+                    };
                     $('.countries').append(option);
                 });
+                $("#create-course-form option[value='231']").trigger('change');
                 $(".countries").prop("disabled", false);
             } else {
                 alert(data.msg);
@@ -12028,68 +12032,44 @@ $(function () {
         }
     });
 });
-// THIS CREATES THE HOLE INPUTS (based on user selection)
-// $(function() {
-//     var holes = $('select[name=course_holes]').val();
-//     var teeSelection;
-//     var targetDiv = $('#holes');
-//     function appendHoles(attr) {
-//         targetDiv.empty();
-//         var teeBox = attr.replace(/_/g," ");
-//         var holesInput = $('select[name=course_holes]');
-//         var teeSelection = "<div class='tee-box caps'>"+teeBox+"</div>";
-
-//         if (holes>=27) {
-//             var loopCount = (holes/9); 
-//             targetDiv.append(teeSelection); 
-//             while (loopCount > 0) {
-//                 for (i=1;i<=(9);i++) {
-//                     var hole =  (i===1 ? "<input type='text' class='form-control input-sm' name='nine_hole_name' placeholder='Name of this group of holes'>": "") +
-//                                 "<div class='input-group input-group-sm hole'>" +
-//                                     "<span class='input-group-addon' id='sizing-addon3'>Hole: "+i+"</span>" +
-//                                     "<input type='text' class='form-control num-only' maxLength='3' name='"+attr+"[]' aria-describedby='sizing-addon3' placeholder='Enter hole length' required>" +
-//                                 "</div>";
-//                     targetDiv.append(hole);
-//                 };
-//                 loopCount--;
-//             };     
-
-//         } else if (holes>=9) {
-//             targetDiv.append(teeSelection);
-//             for (i=1;i<=holes;i++) {
-//                 var hole =  "<div class='input-group input-group-sm hole'>" +
-//                                 "<span class='input-group-addon' id='sizing-addon3'>Hole: "+i+"</span>" +
-//                                 "<input type='text' class='form-control num-only' maxLength='3' name='"+attr+"[]' aria-describedby='sizing-addon3' placeholder='Enter hole length' required>" +
-//                             "</div>";
-//                 targetDiv.append(hole);
-//             };
-//         } else {
-//             // validate course_holes field here...w/jqueryvalidate library
-//             holesInput.valid();
-//             // reset tee-box selection when 'number of holes' is not selected
-//             selectInputDefault('tee-box');
-//         }
-//     };
-//     $('#tee-box').on('change', function(e) {
-//         if(this.value==="") {
-//             targetDiv.empty();
-//         } else {
-//             teeSelection = $(this).val();
-//             appendHoles(teeSelection);
-//         }
-//     })
-//     $('#course_holes').on('change', function() {
-//         holes = $(this).val();
-//         targetDiv.empty();
-//         // reset tee-box selection when 'number of holes' is not selected
-//         selectInputDefault('tee-box');
-//     })
-//     function selectInputDefault(selectInputId) {
-//         $("#"+selectInputId+" "+"option").prop('selected', function() {
-//             return this.defaultSelected;
-//         });
-//     }
-// });
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+/////////////////////////////////////////////////////////////////
+///////////// HANDLE COURSE HOLE CREATION ///////////////////////
+$(function () {
+    // Toggle 'Hole Group Name' Option
+    $('#holes-container').on('click', '.add-course-name-btn', function () {
+        var parent = $(this).closest('.holes');
+        var targetEl = parent.find('.course-name-input');
+        targetEl.fadeToggle('fast');
+    });
+    // THIS CREATES THE HOLE INPUT FIELDS (based on user selection)
+    var currentKey;
+    function generateRandomKey() {
+        var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        var key = "";
+        for (var i = 0; i < 4; i++) {
+            key += possible.charAt(Math.floor(Math.random() * possible.length));
+        }
+        currentKey = key;
+    }
+    function buildHolesForm(holeCount) {
+        var holesContainer = $('#holes-container');
+        var courseId = $('#course-id').val();
+        generateRandomKey();
+        holesContainer.append("<div class='col-sm-6'>" + "<form action='/course/" + courseId + "/create/holes' method='POST'>" + "<div class='course-holes'>" + "<div class='holes'>" + "<input type='text' class='course-name-input' placeholder='Hole Group Name'>" + "<div class='course-holes-header flex'>" + "<span class='col-xs-4'>Hole #</span>" + "<div class='col-xs-1'></div>" + "<span class='col-xs-7'>Hole Length</span>" + "<span class='add-course-name-btn b-rad3'>Course name</span>" + "</div>" + "<div class='hole-group-" + currentKey + "'>" +
+        // Individual holes rendered here
+        "</div>" + "</div>" + "</div>" + "</form>" + "</div>");
+        var currentHoleGroup = $(".hole-group-" + currentKey);
+        for (var i = 0; holeCount > i; i++) {
+            currentHoleGroup.append("<div class='hole flex'>" + "<input type='text' maxLength='2' value='" + (i + 1) + "'class='col-xs-4 num-only'>" + "<div class='col-xs-1 text-center seperator'>-</div>" + "<input type='text' maxLength='3' class='col-xs-7 num-only'>" + "</div>");
+        }
+    }
+    $('.hole-count').on('click', function () {
+        var holeCount = $(this).attr('data-hole-count');
+        holeCount == '9' ? buildHolesForm(holeCount) : buildHolesForm(holeCount);
+    });
+});
 
 /***/ }),
 /* 30 */

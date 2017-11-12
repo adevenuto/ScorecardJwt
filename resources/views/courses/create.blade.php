@@ -11,7 +11,10 @@
 				<div class="col-md-8 col-md-offset-2">
 					<div class="col-md-12">
 						<h1 class="caps">Create a course</h1>
-					</div>	
+						<small><span class="asterik">*</span> Please fill out the information as accurately as possible. This only has to be done once and the the course will be saved in our database for you and others to play.</small>
+						<hr>
+					</div>
+					{{-- General Info --}}
 					<div class="col-sm-6">
 						<label for="course_name" class="col-2 col-form-label">Name</label>
 						<div class="form-group">
@@ -67,26 +70,7 @@
 								<option value="$$$$">$$$$</option>
 							</select>
 						</div>
-						{{-- <div class="form-group">
-							<label for="course_holes" class="col-2 col-form-label">Number Of Holes</label>
-							<select class="custom-select form-group form-control required" id="course_holes" name="course_holes" data-msg="Pleases select number of holes">
-								<option selected value="">Choose an option</option>
-								<option value="9">9</option>
-								<option value="18">18</option>
-								<option value="27">27</option>
-								<option value="36">36</option>
-							</select>
-						</div> --}}
-						{{-- <div class="form-group">
-							<label for="course_holes" class="col-2 col-form-label">Select A Tee Box</label>
-							<select class="custom-select form-group form-control required" id="tee-box" data-msg="Pleases select a tee-box">
-								<option selected value="">Choose an option</option>
-								<option value="gold_tee_length">Gold Tees</option>
-								<option value="blue_tee_length">Blue Tees</option>
-								<option value="white_tee_length">White Tees</option>
-								<option value="red_tee_length">Red Tees</option>
-							</select>
-						</div> --}}
+						{{-- Amenities --}}
 						<div class="form-check">
 						  <label class="form-check-label">
 						    <input class="form-check-input" name="driving_range" type="checkbox" value="1">
@@ -153,30 +137,11 @@
 						    Restaurant
 						  </label>
 						</div>
-						{{-- <div class="tee-box-controller">
-							<h4>Which tee box will you be playing?</h4>
-							<div class="tee-box-selector" data-tee-box="gold_tee_length">Gold Tees</div>
-							<div class="tee-box-selector" data-tee-box="blue_tee_length">Blue Tees</div>
-							<div class="tee-box-selector" data-tee-box="white_tee_length">White Tees</div>
-							<div class="tee-box-selector" data-tee-box="red_tee_length">Red Tees</div>
-						</div> --}}
 					</div>
-					
 					<div class="col-md-12">
 						<button type="submit" class="btn btn-block btn-success">Create Course</button>
 					</div>
 				</div>
-				
-				
-				{{-- <div class="col-sm-4">
-					<div id="hole-info">
-						<div class="col-md-12 pad0" id="holes">
-							APPEND ALL HOLES HERE (from resources/assets/courseForm.js)
-						</div>
-					</div>
-				</div> --}}
-				{{-- TEMP BTN --}}
-				
 			</form>
 		</div>
 	</div>

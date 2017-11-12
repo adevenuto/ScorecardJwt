@@ -1,4 +1,4 @@
-#create-holes-form {
+#create-holes-forms {
 	input {
 		border-color: #000;
 		box-shadow: none;
@@ -12,20 +12,46 @@
 		button {
 		    margin-right: 20px;
 		    padding: 2px 8px;
-		    background: rgb(247, 247, 247);
-		    color: #000;
+		    background: #5dff62;
+		    color: #3d3e42;
+		    outline: none;
 		    border-color: #3d3e42;
 		    transition: all 200ms;
 		    &:hover {
 				background: #00ff09;
-			    color: #000;
-		        box-shadow: 0px 0px 3px #999;
+		        box-shadow: 0px 0px 2px #000;
 		    }
 		}
 	}
-	.holes-container {
+	#holes-container {
 		.course-holes-header {
+			position: relative;
 			margin-bottom: 15px;
+		}
+		.holes {
+		    padding-top: 47px;
+    		margin-top: 40px;
+		}
+		.course-name-input {
+			display: none;
+		    position: absolute;
+    		top: 0px;
+		}
+		.add-course-name-btn {
+			position: absolute;
+		    right: 0;
+		    top: -40px;
+		    font-size: 10px;
+		    color: #000;
+		    background: #eee;
+		    line-height: 10px;
+		    border: 1px solid #000;
+		    padding: 3px 8px;
+		    cursor: pointer;
+		    transition: all 200ms;
+		    &:hover {
+		    	background: transparent;
+		    }
 		}
 		input {
 			font-size: .9rem;
