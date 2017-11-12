@@ -30,6 +30,9 @@
 					<div id="holes-container" class="clear">
 						{{-- RENDER HOLES HERE (createForm.js) --}}
 					</div>
+					<div class="col-sm-12">
+						<button type="submit" class="btn btn-default btn-block b-rad3 create-holes-submit">Create Holes</button>
+					</div>
 				</div>
 			</div>
 		</div>

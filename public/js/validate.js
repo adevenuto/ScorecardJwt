@@ -28,3 +28,4 @@ var v = $("#create-course-form").validate({
                               errorElement: "span",
                               errorClass: "help-inline",
                             });
+

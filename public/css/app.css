@@ -8041,6 +8041,21 @@ body {
   box-shadow: 0px 0px 2px #000;
 }
 
+#create-holes-forms .create-holes-submit {
+  margin-top: 30px;
+  background: #5dff62;
+  color: #3d3e42;
+  outline: none;
+  border-color: #3d3e42;
+  transition: all 200ms;
+  font-size: 20px;
+}
+
+#create-holes-forms .create-holes-submit:hover {
+  background: #00ff09;
+  box-shadow: 0px 0px 2px #000;
+}
+
 #create-holes-forms #holes-container .course-holes-header {
   position: relative;
   margin-bottom: 15px;

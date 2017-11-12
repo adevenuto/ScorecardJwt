@@ -121,7 +121,8 @@ $(function() {
 
     })
     // THIS CREATES THE HOLE INPUT FIELDS (based on user selection)
-    var currentKey; 
+    var currentKey;
+    var holesContainer = $('#holes-container'); 
     function generateRandomKey() {
         var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         var key = "";
@@ -131,7 +132,6 @@ $(function() {
         currentKey = key;
     }
     function buildHolesForm(holeCount) {
-        var holesContainer = $('#holes-container');
         var courseId = $('#course-id').val();
         generateRandomKey();
         holesContainer.append(
@@ -158,9 +158,9 @@ $(function() {
         for (var i = 0; holeCount > i; i++) {
             currentHoleGroup.append(
                 "<div class='hole flex'>"+
-                    "<input type='text' maxLength='2' value='"+(i+1)+"'class='col-xs-4 num-only'>"+
+                    "<input type='text' name='hole_number' maxLength='2' value='"+(i+1)+"'class='col-xs-4 num-only' required>"+
                     "<div class='col-xs-1 text-center seperator'>-</div>"+
-                    "<input type='text' maxLength='3' class='col-xs-7 num-only'>"+
+                    "<input type='text' name='hole_length' maxLength='3' class='col-xs-7 num-only' required>"+
                 "</div>"
             )
         }
@@ -168,6 +168,14 @@ $(function() {
     $('.hole-count').on('click', function(){   
         var holeCount = $(this).attr('data-hole-count');
         holeCount == '9' ? buildHolesForm(holeCount) : buildHolesForm(holeCount);
+    })
+    $('.create-holes-submit').on('click', function(){
+        var forms = holesContainer.find('form');
+        if (forms.length > 0) {
+           forms.each(function(i, form){
+            console.log($(form).serialize());
+           })
+        }
     })
 });
 
