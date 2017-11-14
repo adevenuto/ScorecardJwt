@@ -8099,3 +8099,7 @@ body {
 #create-holes-forms #holes-container .hole .seperator {
   color: #ccd0d2;
 }
+
+#create-holes-forms .error-field {
+  border-color: #f00 !important;
+}

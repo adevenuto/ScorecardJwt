@@ -158,24 +158,48 @@ $(function() {
         for (var i = 0; holeCount > i; i++) {
             currentHoleGroup.append(
                 "<div class='hole flex'>"+
-                    "<input type='text' name='hole_number' maxLength='2' value='"+(i+1)+"'class='col-xs-4 num-only' required>"+
+                    "<input type='text' name='hole_number' maxLength='2' value='"+(i+1)+"' class='col-xs-4 num-only' required>"+
                     "<div class='col-xs-1 text-center seperator'>-</div>"+
                     "<input type='text' name='hole_length' maxLength='3' class='col-xs-7 num-only' required>"+
                 "</div>"
             )
         }
     }
-    $('.hole-count').on('click', function(){   
+    function createHoles() {
+        console.log('here')
+    }
+    $('.hole-count').on('click', function(){
+        // Check whether 9 or 18 holes are selected  
         var holeCount = $(this).attr('data-hole-count');
         holeCount == '9' ? buildHolesForm(holeCount) : buildHolesForm(holeCount);
     })
-    $('.create-holes-submit').on('click', function(){
+    $('.create-holes-submit').on('click', function(e){
+        // validate that input fields are filled out on submittle,
+        // if not, add error-field class
+        e.preventDefault();
+        var validated = true;
+        var inputsContainer = $('#create-holes-forms'); 
         var forms = holesContainer.find('form');
-        if (forms.length > 0) {
-           forms.each(function(i, form){
-            console.log($(form).serialize());
-           })
+        var inputsToValidate = inputsContainer.find('input');
+        inputsToValidate.each(function(i, input){
+            if ($(input).is(':visible') && $(input).val() == "") {
+                $(input).addClass('error-field');
+                validated = false;
+            }
+        })
+        if (validated) {
+            if (!$('#holes-container').children().length == 0) {
+                console.log('Submit Form')
+            } else {
+                alert('Please select number of holes to proceed.')
+            }
         }
+    })
+    $('#create-holes-forms').on('keyup touchend', 'input', function(e){
+        // validate that input field is not empty, 
+        // if it is add class error-field, if not, remove.
+        var _this = $(this);
+        _this.val() == "" ?  _this.addClass('error-field') : _this.removeClass('error-field');
     })
 });
 
