@@ -66,6 +66,17 @@
 		    	background: transparent;
 		    }
 		}
+		.hole-group-container {
+			position: relative;
+			margin-bottom: 20px;
+			.remove-hole-group-btn {
+				position: absolute;
+				top: 0;
+				right: 15px;
+				color: #000;
+				cursor: pointer;
+			}
+		}
 		input {
 			font-size: .9rem;
 			border: 0;

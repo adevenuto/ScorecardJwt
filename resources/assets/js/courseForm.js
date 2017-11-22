@@ -135,7 +135,8 @@ $(function() {
         var courseId = $('#course-id').val();
         generateRandomKey();
         holesContainer.append(
-            "<div class='col-sm-6'>"+
+            "<div class='col-sm-6 hole-group-container'>"+
+                "<i class='remove-hole-group-btn'>X</i>"+
                 "<form action='/course/"+courseId+"/create/holes' method='POST'>"+
                     "<div class='course-holes'>"+
                         "<div class='holes'>"+
@@ -166,8 +167,13 @@ $(function() {
         }
     }
     function createHoles() {
-        console.log('here')
+        // Loop through forms here
+        // Submit each form via Ajax per iteration
     }
+    // Remove Hole Groups
+    $('#create-holes-forms').on('click', '.remove-hole-group-btn', function(){
+        $(this).closest('.hole-group-container').remove();
+    })
     $('.hole-count').on('click', function(){
         // Check whether 9 or 18 holes are selected  
         var holeCount = $(this).attr('data-hole-count');

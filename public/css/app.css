@@ -8011,6 +8011,20 @@ body {
   font-size: 16px;
 }
 
+#create-course-form .create-course-submit {
+  background: #5dff62;
+  color: #3d3e42;
+  outline: none;
+  border-color: #3d3e42;
+  transition: all 200ms;
+  font-size: 20px;
+}
+
+#create-course-form .create-course-submit:hover {
+  background: #00ff09;
+  box-shadow: 0px 0px 2px #000;
+}
+
 #create-holes-form .input-group {
   margin-bottom: 5px;
 }
@@ -8088,6 +8102,19 @@ body {
 
 #create-holes-forms #holes-container .add-course-name-btn:hover {
   background: transparent;
+}
+
+#create-holes-forms #holes-container .hole-group-container {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+#create-holes-forms #holes-container .hole-group-container .remove-hole-group-btn {
+  position: absolute;
+  top: 0;
+  right: 15px;
+  color: #000;
+  cursor: pointer;
 }
 
 #create-holes-forms #holes-container input {

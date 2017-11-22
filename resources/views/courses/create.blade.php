@@ -139,7 +139,7 @@
 						</div>
 					</div>
 					<div class="col-md-12">
-						<button type="submit" class="btn btn-block btn-success">Create Course</button>
+						<button type="submit" class="btn btn-block btn-success b-rad3 create-course-submit">Create Course</button>
 					</div>
 				</div>
 			</form>
