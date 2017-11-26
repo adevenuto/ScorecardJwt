@@ -141,6 +141,7 @@ $(function() {
                     "<div class='course-holes'>"+
                         "<div class='holes'>"+
                             "<input type='text' class='course-name-input' placeholder='Hole Group Name'>"+
+                            "<i class='fa fa-question-circle' data-toggle='popover-course-name' title='Course Name' data-content='Typically this is not needed, however, 27+ hole layouts ussually have indivdually named 9 or 18 hole courses.'></i>"+
                             "<div class='course-holes-header flex'>"+
                                 "<span class='col-xs-4'>Hole #</span>"+
                                 "<div class='col-xs-1'></div>"+
@@ -169,6 +170,7 @@ $(function() {
     function createHoles() {
         // Loop through forms here
         // Submit each form via Ajax per iteration
+        console.log('here')
     }
     // Remove Hole Groups
     $('#create-holes-forms').on('click', '.remove-hole-group-btn', function(){
@@ -195,7 +197,8 @@ $(function() {
         })
         if (validated) {
             if (!$('#holes-container').children().length == 0) {
-                console.log('Submit Form')
+                // Enter creatHoles() function to create holes
+                createHoles();
             } else {
                 alert('Please select number of holes to proceed.')
             }

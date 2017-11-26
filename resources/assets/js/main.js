@@ -15,3 +15,14 @@ $('body').on('keypress', '.num-only', function(e) {
       e.preventDefault();
     }
 });
+
+// Bootstrap popover 
+$('body').popover({
+	placement: 'top',
+    container: 'body',
+    html: true,
+    selector: '[data-toggle="popover-course-name"]',
+})
+
+
+// var _this = $(e.target)[0]['dataset']['toggle'];

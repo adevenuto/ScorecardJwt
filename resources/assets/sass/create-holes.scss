@@ -45,6 +45,12 @@
 		    padding-top: 47px;
     		margin-top: 40px;
 		}
+		.fa-question-circle {
+			position: absolute;
+		    right: 104px;
+		    top: 48px;
+		    color: #b7babb;
+		}
 		.course-name-input {
 			display: none;
 		    position: absolute;
@@ -91,4 +97,16 @@
 	.error-field {
 		border-color: #f00 !important;
 	}
+}
+/*BOOTSTRAP POPOVERS*/
+.popover {
+	border-radius: 4px;
+}
+.popover-title {
+	font-size: 10px;
+	padding: 5px;
+}
+.popover-content {
+	font-size: 10px;
+	padding: 5px;
 }

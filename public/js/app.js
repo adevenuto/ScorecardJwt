@@ -12057,7 +12057,7 @@ $(function () {
     function buildHolesForm(holeCount) {
         var courseId = $('#course-id').val();
         generateRandomKey();
-        holesContainer.append("<div class='col-sm-6 hole-group-container'>" + "<i class='remove-hole-group-btn'>X</i>" + "<form action='/course/" + courseId + "/create/holes' method='POST'>" + "<div class='course-holes'>" + "<div class='holes'>" + "<input type='text' class='course-name-input' placeholder='Hole Group Name'>" + "<div class='course-holes-header flex'>" + "<span class='col-xs-4'>Hole #</span>" + "<div class='col-xs-1'></div>" + "<span class='col-xs-7'>Hole Length</span>" + "<span class='add-course-name-btn b-rad3'>Course name</span>" + "</div>" + "<div class='hole-group-" + currentKey + "'>" +
+        holesContainer.append("<div class='col-sm-6 hole-group-container'>" + "<i class='remove-hole-group-btn'>X</i>" + "<form action='/course/" + courseId + "/create/holes' method='POST'>" + "<div class='course-holes'>" + "<div class='holes'>" + "<input type='text' class='course-name-input' placeholder='Hole Group Name'>" + "<i class='fa fa-question-circle' data-toggle='popover-course-name' title='Course Name' data-content='Typically this is not needed, however, 27+ hole layouts ussually have indivdually named 9 or 18 hole courses.'></i>" + "<div class='course-holes-header flex'>" + "<span class='col-xs-4'>Hole #</span>" + "<div class='col-xs-1'></div>" + "<span class='col-xs-7'>Hole Length</span>" + "<span class='add-course-name-btn b-rad3'>Course name</span>" + "</div>" + "<div class='hole-group-" + currentKey + "'>" +
         // Individual holes rendered here
         "</div>" + "</div>" + "</div>" + "</form>" + "</div>");
         var currentHoleGroup = $(".hole-group-" + currentKey);
@@ -12065,10 +12065,11 @@ $(function () {
             currentHoleGroup.append("<div class='hole flex'>" + "<input type='text' name='hole_number' maxLength='2' value='" + (i + 1) + "' class='col-xs-4 num-only' required>" + "<div class='col-xs-1 text-center seperator'>-</div>" + "<input type='text' name='hole_length' maxLength='3' class='col-xs-7 num-only' required>" + "</div>");
         }
     }
-    function createHoles() {}
-    // Loop through forms here
-    // Submit each form via Ajax per iteration
-
+    function createHoles() {
+        // Loop through forms here
+        // Submit each form via Ajax per iteration
+        console.log('here');
+    }
     // Remove Hole Groups
     $('#create-holes-forms').on('click', '.remove-hole-group-btn', function () {
         $(this).closest('.hole-group-container').remove();
@@ -12094,7 +12095,8 @@ $(function () {
         });
         if (validated) {
             if (!$('#holes-container').children().length == 0) {
-                console.log('Submit Form');
+                // Enter creatHoles() function to create holes
+                createHoles();
             } else {
                 alert('Please select number of holes to proceed.');
             }
@@ -12129,6 +12131,16 @@ $('body').on('keypress', '.num-only', function (e) {
     e.preventDefault();
   }
 });
+
+// Bootstrap popover 
+$('body').popover({
+  placement: 'top',
+  container: 'body',
+  html: true,
+  selector: '[data-toggle="popover-course-name"]'
+});
+
+// var _this = $(e.target)[0]['dataset']['toggle'];
 
 /***/ }),
 /* 31 */
