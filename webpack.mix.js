@@ -16,4 +16,4 @@ mix.js('resources/assets/js/app.js', 'public/js')
 	.options({
 		processCssUrls: false
 	});
-mix.browserSync('scorecard.dev');
+mix.browserSync('scorecard.tony');

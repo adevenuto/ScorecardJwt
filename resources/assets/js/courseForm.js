@@ -21,7 +21,7 @@ function ajaxCall() {
     }
 }
 function locationInfo() {
-    var rootUrl = "http://scorecard.dev";
+    var rootUrl = "http://scorecard.tony";
     var call = new ajaxCall();
     this.getCities = function(id) {
         $(".cities option:gt(0)").remove();

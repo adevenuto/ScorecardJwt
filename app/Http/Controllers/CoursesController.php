@@ -29,12 +29,12 @@ class CoursesController extends Controller
     {   
         // validate incoming data
         $this->validate($request, array(
-            'course_name' => 'required|max:255',
-            'course_address'  => 'required|max:255',
-            'course_phone_number'  => 'max:50',
+            'course_name' => 'required|unique:courses|max:255',
+            'course_address'  => 'required|unique:courses|max:255',
+            'course_phone_number'  => 'unique:courses|max:50',
             'course_postal_code'  => 'required|max:18',
-            'course_website'  => 'max:255',
-            'course_email'  => 'max:255',
+            'course_website'  => 'unique:courses|max:255',
+            'course_email'  => 'unique:courses|max:255',
             'course_price'  => 'required',
             'course_holes'  => 'max:36'
         ));
