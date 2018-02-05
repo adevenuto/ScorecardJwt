@@ -12168,12 +12168,26 @@ $(function () {
     function buildHolesForm(holeCount) {
         var courseId = $('#course-id').val();
         generateRandomKey();
-        holesContainer.append("<div class='col-sm-6 hole-group-container'>" + "<i class='remove-hole-group-btn'>X</i>" + "<form action='/course/" + courseId + "/create/holes' method='POST'>" + "<div class='course-holes'>" + "<div class='holes'>" + "<input type='text' class='course-name-input' placeholder='Hole Group Name'>" + "<i class='fa fa-question-circle' data-toggle='popover-course-name' title='Course Name' data-content='Typically this is not needed, however, 27+ hole layouts ussually have indivdually named 9 or 18 hole courses.'></i>" + "<div class='course-holes-header flex'>" + "<span class='col-xs-4'>Hole #</span>" + "<div class='col-xs-1'></div>" + "<span class='col-xs-7'>Hole Length</span>" + "<span class='add-course-name-btn b-rad3'>Course name</span>" + "</div>" + "<div class='hole-group-" + currentKey + "'>" +
+        holesContainer.append("<div class='col-sm-6 hole-group-container'>" +
+        // "<div class='row'>"+
+
+        //         "<i class='remove-hole-group-btn pull-right'>remove</i>"+
+
+        // "</div>"+
+        "<form action='/course/" + courseId + "/create/holes' method='POST'>" + "<div class='course-holes'>" + "<div class='holes'>" + "<input type='text' class='course-name-input' placeholder='Hole Group Name'>" +
+        // "<i class='fa fa-question-circle' data-toggle='popover-course-name' title='Course Name' data-content='Typically this is not needed, however, 27+ hole layouts ussually have indivdually named 9 or 18 hole courses.'></i>"+
+        // "<div class='course-holes-header flex'>"+
+        //     "<span class='col-xs-4'>Hole #</span>"+
+        //     "<div class='col-xs-1'></div>"+
+        //     "<span class='col-xs-7'>Hole Length</span>"+
+        //     "<span class='add-course-name-btn b-rad3'>Course name</span>"+
+        // "</div>"+
+        "<div class='hole-group-" + currentKey + "'>" +
         // Individual holes rendered here
         "</div>" + "</div>" + "</div>" + "</form>" + "</div>");
         var currentHoleGroup = $(".hole-group-" + currentKey);
         for (var i = 0; holeCount > i; i++) {
-            currentHoleGroup.append("<div class='hole flex'>" + "<input type='text' name='hole_number' maxLength='2' value='" + (i + 1) + "' class='col-xs-4 num-only' required>" + "<div class='col-xs-1 text-center seperator'>-</div>" + "<input type='text' name='hole_length' maxLength='3' class='col-xs-7 num-only' required>" + "</div>");
+            currentHoleGroup.append("<div class='hole'>" + "<input type='text' name='hole_number' maxLength='2' value='" + (i + 1) + "' class='col-xs-2 num-only' required>" + "<div class='col-xs-1 text-center seperator'>-</div>" + "<input type='text' name='hole_length' maxLength='3' class='col-xs-3 num-only' required>" + "</div>");
         }
     }
     function createHoles() {

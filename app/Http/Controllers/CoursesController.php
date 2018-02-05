@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Webpatser\Uuid\Uuid;
 use Log;
 use App\Course;
 use App\User;
@@ -16,12 +17,14 @@ class CoursesController extends Controller
     }
 
     public function index()
-    {
-        return view('courses.index');
+    {   
+        $uuid = Uuid::generate(4);
+        $courses = Course::all();
+        return view('courses.index')->with(['courses' => $courses, 'uuid' => $uuid]);
     }
 
     public function create()
-    {
+    {   
         return view('courses.create');
     }
 
