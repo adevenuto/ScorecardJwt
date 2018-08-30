@@ -20,16 +20,8 @@
 						</div>
 						<hr>
 					</div>
-					<div class="add-holes col-sm-6 clear">
-						<p>Add Holes:</p>
-						<button class="btn btn-success btn-small b-rad3 hole-count" data-hole-count="9">Add 9 Holes</button>	
-						<button class="btn btn-success btn-small b-rad3 hole-count" data-hole-count="18">Add 18 Holes</button>
-						<hr>
-					</div>
+					
 					<input type="hidden" id="course-id" value="{{$course->id}}">
-					<div id="holes-container" class="clear">
-						{{-- RENDER HOLES HERE (createForm.js) --}}
-					</div>
 					<div class="col-sm-12">
 						<button type="submit" class="btn btn-default btn-block b-rad3 create-holes-submit">Create Holes</button>
 					</div>

@@ -39,7 +39,7 @@ class CoursesController extends Controller
             'course_website'  => 'unique:courses|max:255',
             'course_email'  => 'unique:courses|max:255',
             'course_price'  => 'required',
-            'course_holes'  => 'max:36'
+            'course_holes'  => 'required'
         ));
 
         $course = new Course;
@@ -50,21 +50,10 @@ class CoursesController extends Controller
         $course->course_website = $request->course_website;
         $course->course_email = $request->course_email;
         $course->course_price = $request->course_price;
-        $course->country_id = $request->course_country;
-        $course->state_id = $request->course_state;
-        $course->city_id = $request->course_city;
+        $course->course_country = $request->course_country;
+        $course->course_state = $request->course_state;
+        $course->course_city = $request->course_city;
         $course->course_holes = $request->course_holes;
-        $course->driving_range = $request->driving_range;
-        $course->chipping_green = $request->chipping_green;
-        $course->putting_green = $request->putting_green;
-        $course->practice_bunker = $request->practice_bunker;
-        $course->pull_carts = $request->pull_carts;
-        $course->motorized_carts = $request->motorized_carts;
-        $course->pro_shop = $request->pro_shop;
-        $course->golf_lessons = $request->golf_lessons;
-        $course->caddies = $request->caddies;
-        $course->lockers = $request->lockers;
-        $course->restaurant = $request->restaurant;
         $course->save();
 
         $user = Auth::user()->id;

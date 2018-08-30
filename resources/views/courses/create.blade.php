@@ -13,7 +13,7 @@
 						<h1 class="caps">Create a course</h1>
 						<small><span class="asterik">*</span> Please fill out the information as accurately as possible. This only has to be done once and the the course will be saved in our database for you and others to play.</small>
 						<hr>
-					</div>
+					</div>                      
 					{{-- General Info --}}
 					<div class="col-sm-6">
 						<label for="course_name" class="col-2 col-form-label">Name</label>
@@ -32,23 +32,18 @@
 						<div class="form-group">
 							<input type="text" class="form-control num-only" maxLength="14" id="course_postal_code" name="course_postal_code" data-msg="Pleases add course zipcode">
 						</div>
+
 						<label for="course_country" class="col-2 col-form-label">Country</label>
 						<div class="form-group">
-							<select name="course_country" class="form-control countries" id="cityId" data-msg="Pleases select a country">
-								<option value="">Select Country</option>
-							</select>
+							<input name="course_country" class="form-control">
 						</div>
 						<label for="course_state" class="col-2 col-form-label">State</label>
 						<div class="form-group">
-							<select name="course_state" class="form-control states" id="stateId" data-msg="Pleases select a state">
-								<option value="">Select State</option>
-							</select>
+							<input name="course_state" class="form-control">
 						</div>
 						<label for="course_city" class="col-2 col-form-label">City</label>
 						<div class="form-group">
-							<select name="course_city" class="form-control cities" id="cityId" data-msg="Pleases select a city">
-								<option value="">Select City</option>
-							</select>
+							<input name="course_city" class="form-control">
 						</div>
 					</div>
 					<div class="col-sm-6">
@@ -70,72 +65,14 @@
 								<option value="$$$$">$$$$</option>
 							</select>
 						</div>
-						{{-- Amenities --}}
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="driving_range" type="checkbox" value="1">
-						    Driving Range
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="chipping_green" type="checkbox" value="1">
-						    Chipping Green
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="putting_green" type="checkbox" value="1">
-						    Putting Green
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="practice_bunker" type="checkbox" value="1">
-						    Practice Bunker
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="pull_carts" type="checkbox" value="1">
-						    Pull Carts
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="motorized_carts" type="checkbox" value="1">
-						    Motorized Carts
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="pro_shop" type="checkbox" value="1">
-						    Pro Shop
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="golf_lessons" type="checkbox" value="1">
-						    Lessons Offered
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="caddies" type="checkbox" value="1">
-						    Caddies
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="lockers" type="checkbox" value="1">
-						    Lockers
-						  </label>
-						</div>
-						<div class="form-check">
-						  <label class="form-check-label">
-						    <input class="form-check-input" name="restaurant" type="checkbox" value="1">
-						    Restaurant
-						  </label>
+						<label for="course_holes" class="col-2 col-form-label">Number of holes</label>
+						<div class="form-group">
+							<div class="radio">
+							  	<label><input type="radio" value="9" name="course_holes" checked>9 holes</label>
+							</div>
+							<div class="radio">
+							  	<label><input type="radio" value="18" name="course_holes">18 holes</label>
+							</div>
 						</div>
 					</div>
 					<div class="col-md-12">

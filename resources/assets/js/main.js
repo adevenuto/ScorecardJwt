@@ -16,13 +16,6 @@ $('body').on('keypress', '.num-only', function(e) {
     }
 });
 
-// Bootstrap popover 
-$('body').popover({
-	placement: 'top',
-    container: 'body',
-    html: true,
-    selector: '[data-toggle="popover-course-name"]',
-})
 
 
-// var _this = $(e.target)[0]['dataset']['toggle'];
+
