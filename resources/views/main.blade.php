@@ -5,13 +5,14 @@
 	</head>
 	<body>
 		@include('partials/_nav')
-
 		<div id="main">
 			<div class="container-fluid">
 				@include('partials/_notifications')
 			</div> 
 		  	<div class="container">
-				@yield('content')
+				<div id="app">
+					<app-main></app-main>
+				</div>
 			</div>
 			@include('partials._footer')
 		</div>{{-- main end --}}

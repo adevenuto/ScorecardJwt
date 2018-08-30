@@ -13,8 +13,9 @@
 
 
 Auth::routes();
-// Root
-Route::get('/', 'PagesController@getIndex');
+Route::get('{any}', function () {
+    return view('main');
+})->where('any', '.*');
 
 // Courses
 Route::get('course/create', 'CoursesController@create');

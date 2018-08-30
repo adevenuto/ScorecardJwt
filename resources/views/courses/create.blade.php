@@ -1,6 +1,5 @@
 @extends('main')
 @section('courses.create')
-	<script src="{{ asset('js/validate.js') }}"></script>
 	<script src="{{ asset('js/bootstrap-formhelpers.min.js') }}"></script>
 @endsection
 @section('content')
