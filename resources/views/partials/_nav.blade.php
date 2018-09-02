@@ -1,11 +1,11 @@
-<div id="overlay"></div>
+{{-- <div id="overlay"></div>
 <div id="hamburger">
     <span></span>
     <span></span>
     <span></span>
-</div>{{-- hanmbuger end --}}
+</div>
 <div id="mySidenav" class="sidenav">
-    <a href="#">About</a>
+    <a href="/test">About</a>
     <a href="#">Services</a>
     <a href="#">Clients</a>
     <a href="#">Contact</a>
@@ -25,4 +25,4 @@
         </form>
         @endif
     </div>
-</div>{{-- mySidenav end --}}
+</div>{{-- mySidenav end --}} 

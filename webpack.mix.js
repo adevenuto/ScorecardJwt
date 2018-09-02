@@ -16,4 +16,16 @@ mix.js('resources/assets/js/app.js', 'public/js')
 	.options({
 		processCssUrls: false
 	});
-mix.browserSync('scorecard.tony');
+mix.browserSync({
+	proxy: 'http://scorecard.tony',
+	browser: 'chrome',
+	open: false,
+	notify: false,
+	files: [
+       'app/**/*',
+       'public/**/*',
+       'resources/views/**/*',
+       'resources/lang/**/*',
+       'routes/**/*'
+    ]
+});
