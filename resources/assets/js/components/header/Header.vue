@@ -1,7 +1,7 @@
 <template>
 	<div id="header-main">
 		<div id="header-logo">
-			<p>Brand</p>
+			<span>Brand</span>
 		</div>
 		<div id="hamburger">
 			<span></span>
@@ -10,6 +10,7 @@
 		</div>
 	</div>
 </template>
+
 <script>
 	export default {
 		name: 'app-header'
@@ -23,7 +24,13 @@
 		align-content: center;
 		justify-content: space-between;
 		background: #444;
-		padding: 10px 15px;
+		padding: 10px 20px;
+		color: #fff;
+	}
+	#header-main #header-logo {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
 	}
 	#hamburger {
     position: relative;
@@ -52,15 +59,15 @@
         -o-transition: .25s ease-in-out;
         transition: .25s ease-in-out;
     }
-    /* Hamburger starting position */
+    /*Hamburger starting position*/
 	#hamburger span:nth-child(1) {
-	  top: 0px;
+	  top: 3px;
 	}
 	#hamburger span:nth-child(2) {
-	  top: 14px;
+	  top: 17px;
 	}
 	#hamburger span:nth-child(3) {
-	  top: 28px;
+	  top: 31px;
 	}
 	/* Hamburger animation nav-in */
 	#hamburger.open span:nth-child(1) {
