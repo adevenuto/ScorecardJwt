@@ -23,7 +23,7 @@
 		flex-direction: row;
 		align-content: center;
 		justify-content: space-between;
-		background: #444;
+		background: #3c3d41;
 		padding: 10px 20px;
 		color: #fff;
 	}

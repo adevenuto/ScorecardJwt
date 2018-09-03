@@ -1,5 +1,5 @@
 <template>
-	<div id="myFooter">
+	<div id="footer-main">
 	    <div class="container">
 	        <div class="row">
 	            <div class="col-sm-3 text-center">
@@ -54,102 +54,103 @@
 	}
 </script>
 
-<style lang="scss" scoped>
+<style scoped>
 	/*FOOTER*/
-	#myFooter {
+	#footer-main {
 	    background-color: #3c3d41;
 	    color: white;
 	    padding-top: 20px;
 	    margin-top: 30px;
-	    .footer-copyright {
-	        background-color: #333333;
-	        padding-top: 3px;
-	        padding-bottom: 3px;
-	        text-align: center;
-	    }
-	    .fa-heart {
-	        color: #f00;
-	    }
-	    .row {
-	        margin-bottom: 30px;
-	    }
-	    .navbar-brand {
-	        margin-top: 45px;
-	        height: 65px;
-	    }
-	    .footer-copyright p {
-	        margin: 10px;
-	        color: #ccc;
-	    }
-	    ul {
-	        list-style-type: none;
-	        padding-left: 0;
-	        line-height: 1.7;
-	    }
-	    h5 {
-	        font-size: 23px;
-	        color: white;
-	        font-weight: bold;
-	        margin-top: 30px;
-	    }
-	    h2 a {
-	        font-size: 50px;
-	        text-align: center;
-	        color: #fff;
-	    }
-	    a {
-	        color: #d2d1d1;
-	        text-decoration: none;
-	        &:hover, &:focus {
-	            text-decoration: none;
-	            color: white;
-	        }
-	    }
-	    .logo {
-	        margin-top: 41px;
-	        margin-left: 20px;
-	    }
-	    .social-networks {
-	        text-align: center;
-	        padding-top: 30px;
-	        a {
-	            font-size: 32px;
-	            color: #f9f9f9;
-	            padding: 10px;
-	            transition: 0.2s;
-	            &:hover {
-	                text-decoration: none;
-	            }
-	        }
-	    }
-	    .facebook:hover {
-	        color: #0077e2;
-	    }
-	    .google:hover {
-	        color: #ef1a1a;
-	    }
-	    .twitter:hover {
-	        color: #00aced;
-	    }
-	    .btn {
-	        color: white;
-	        background-color: transparent;
-	        border: 1px solid #fff;
-	        font-size: 16px;
-	        border-radius: 20px;
-	        width: 150px;
-	        display: block;
-	        margin: 0 auto;
-	        margin-top: 10px;
-	        line-height: 25px;
-	        transition: 0.2s;
-	        &:hover {
-	            background-color: rgba(1, 212, 223, 0.98);
-	        }
-	    }
+	}
+	#footer-main .footer-copyright {
+        background-color: #333333;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        text-align: center;
+    }
+	    
+    #footer-main .fa-heart {
+        color: #f00;
+    }
+    #footer-main .row {
+        margin-bottom: 30px;
+    }
+    #footer-main .navbar-brand {
+        margin-top: 45px;
+        height: 65px;
+    }
+    #footer-main .footer-copyright p {
+        margin: 10px;
+        color: #ccc;
+    }
+    #footer-main ul {
+        list-style-type: none;
+        padding-left: 0;
+        line-height: 1.7;
+    }
+    #footer-main h5 {
+        font-size: 23px;
+        color: white;
+        font-weight: bold;
+        margin-top: 30px;
+    }
+    #footer-main h2 a {
+        font-size: 50px;
+        text-align: center;
+        color: #fff;
+    }
+    #footer-main a {
+        color: #d2d1d1;
+        text-decoration: none;
+    }
+    #footer-main a:hover, #footer-main a:focus {
+        text-decoration: none;
+        color: white;
+    }
+	#footer-main .logo {
+        margin-top: 41px;
+        margin-left: 20px;
+    }
+   	#footer-main .social-networks {
+        text-align: center;
+        padding-top: 30px;
+    }
+   	#footer-main .social-networks a {
+        font-size: 32px;
+        color: #f9f9f9;
+        padding: 10px;
+        transition: 0.2s;
+    }
+    #footer-main .social-networks a:hover {     
+        text-decoration: none;
+    }
+    #footer-main .social-networks .facebook:hover {
+        color: #0077e2;
+    }
+    #footer-main .social-networks .google:hover {
+        color: #ef1a1a;
+    }
+    #footer-main .social-networks .twitter:hover {
+        color: #00aced;
+    }
+    #footer-main .social-networks .btn {
+        color: white;
+        background-color: transparent;
+        border: 1px solid #fff;
+        font-size: 16px;
+        border-radius: 20px;
+        width: 150px;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+        line-height: 25px;
+        transition: 0.2s;     
+	}
+	#footer-main .social-networks .btn:hover {  
+        background-color: rgba(1, 212, 223, 0.98);
 	}
 	@media screen and (max-width: 767px) {
-    	#myFooter {
+    	#footer-main {
         	text-align: center;
         }
     }
