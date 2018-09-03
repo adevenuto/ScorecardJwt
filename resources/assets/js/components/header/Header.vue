@@ -1,9 +1,12 @@
 <template>
 	<div id="header-main">
 		<div id="header-logo">
-			<span>Brand</span>
+			<img src="/img/logo.svg" class="logo" width="29px" alt="logo">
+			<span class="title">SCOR</span>
 		</div>
-		<div id="hamburger">
+		<div id="hamburger" 
+			 @click="toggleSideNav"
+			 :class="{ 'open': sideNavStatus}">
 			<span></span>
 			<span></span>
 			<span></span>
@@ -13,7 +16,17 @@
 
 <script>
 	export default {
-		name: 'app-header'
+		name: 'app-header',
+		computed: {
+			sideNavStatus() {
+				return this.$store.getters.sideNavStatus;
+			}
+		},
+		methods: {
+			toggleSideNav() {
+				this.$store.commit('toggleSideNav');
+			}
+		}
 	}
 </script>
 
@@ -29,17 +42,21 @@
 	}
 	#header-main #header-logo {
 		display: flex;
-		flex-direction: column;
-		justify-content: center;
+		flex-direction: row;
+		align-items: center;
+	}
+	#header-main #header-logo .title {
+		font-size: 24px;
+		margin-left: 5px;
 	}
 	#hamburger {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    width: 40px;
-    height: 40px;
-    z-index: 9999;    
+	    position: relative;
+	    display: flex;
+	    flex-direction: column;
+	    justify-content: space-around;
+	    width: 40px;
+	    height: 40px;
+    	z-index: 9999;    
 	}
 	#hamburger span {
         display: block;
@@ -69,9 +86,30 @@
 	#hamburger span:nth-child(3) {
 	  top: 31px;
 	}
+	/*#hamburger:after {
+		content: '';
+	    height: inherit;
+	    width: inherit;
+	    border: 1px solid #0f0;
+	    border-radius: 4px;
+	    position: fixed;
+	    transition: right .32s cubic-bezier(0.35, 0.68, 0.43, 1);;
+	    right: -90px;
+	}*/
 	/* Hamburger animation nav-in */
+	#hamburger.open span {
+		background: #fff;
+	}
+	/*#hamburger.open:after {
+		content: '';
+	    height: inherit;
+	    width: inherit;
+	    border: 1px solid #0f0;
+	    position: fixed;
+	    right: 20px;
+	}*/
 	#hamburger.open span:nth-child(1) {
-	    top: 18px;
+	    top: 17px;
 	    -webkit-transform: rotate(135deg);
 	    -moz-transform: rotate(135deg);
 	    -o-transform: rotate(135deg);
@@ -79,10 +117,12 @@
 	}
 	#hamburger.open span:nth-child(2) {
 	    opacity: 0;
-	    left: -60px;
+	    background: #0f0;
+	    left: -80px;
+	    width: 0;
 	}
 	#hamburger.open span:nth-child(3) {
-	    top: 18px;
+	    top: 17px;
 	    -webkit-transform: rotate(-135deg);
 	    -moz-transform: rotate(-135deg);
 	    -o-transform: rotate(-135deg);

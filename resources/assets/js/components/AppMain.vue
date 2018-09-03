@@ -1,7 +1,9 @@
 <template>
 	<div id="app-main">
     	<!-- <router-view></router-view> -->
-    	<div id="overlay"></div>
+    	<div id="overlay"
+    		 @click="toggleSideNav" 
+    	     :class="{ 'overlay': sideNavStatus}"></div>
     	<Header/>
 		<SideBarNav/>
     	<div class="container">
@@ -34,9 +36,17 @@
         name: 'app-main',
         components: {Header, Footer, SideBarNav},
         computed: {
+        	sideNavStatus() {
+				return this.$store.getters.sideNavStatus;
+			},
         	welcome() {
         		return this.$store.getters.welcome;
         	}
+        },
+        methods: {
+        	toggleSideNav() {
+				this.$store.commit('toggleSideNav');
+			},
         }
     }
 </script>
@@ -49,7 +59,7 @@
 	    position: absolute;
 	    width: 100%;
 	    height: 100%;
-	    background-color: rgba(0,0,0,.20);
+	    background-color: rgba(0,0,0,.30);
 	    z-index: 8888;
 	    display: none;
 	    opacity: 0;

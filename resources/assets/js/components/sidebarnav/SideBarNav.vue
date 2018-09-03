@@ -1,6 +1,7 @@
 <template>
 	<div id="sidebar-container">
-		<div id="mySidenav" class="sidenav">
+		<div id="mySidenav" 
+			 :class="[{'navIn': sideNavStatus}, 'sidenav']">
 		    <a href="/test">About</a>
 		    <a href="#">Services</a>
 		    <a href="#">Clients</a>
@@ -27,7 +28,12 @@
 
 <script>
 	export default {
-		name: 'app-sidebar-nav'
+		name: 'app-sidebar-nav',
+		computed: {
+			sideNavStatus() {
+				return this.$store.getters.sideNavStatus;
+			}
+		}
 	}
 </script>
 
@@ -39,7 +45,7 @@
 	    z-index: 9999;
 	    top: 0;
 	    left: 0;
-	    background-color: #111;
+	    background-color: rgba(17, 17, 17, 0.86);
 	    overflow-x: hidden;
 	    padding-top: 60px;
 	    transition: 0.5s;
@@ -48,7 +54,7 @@
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;
-        color: #a0a0a0;
+        color: #fff;
         display: block;
         transition: 0.3s
     }
@@ -65,7 +71,9 @@
 	}
 	/*Triggered by jQuery*/
 	#sidebar-container .sidenav.navIn {
-	    width: 250px;
+	    width: 240px;
+	    box-shadow: 0px 0px 0px 1px #0f0, 
+	    0px 0px 0px 3px #000;
 	}
 </style>
 
