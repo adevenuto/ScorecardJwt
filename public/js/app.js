@@ -1022,10 +1022,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_router__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_vuex__ = __webpack_require__(57);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routes__ = __webpack_require__(36);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_AppMain_vue__ = __webpack_require__(44);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_AppMain_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_AppMain_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_appStore_js__ = __webpack_require__(78);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue__ = __webpack_require__(44);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue__);
 __webpack_require__(34);
 __webpack_require__(35);
+
+
 
 
 
@@ -1036,6 +1039,7 @@ __webpack_require__(35);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */]);
 
+var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_4__store_appStore_js__["a" /* default */]);
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
     routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* routes */],
     mode: 'history'
@@ -1044,8 +1048,9 @@ var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     el: '#app',
     router: router,
+    store: store,
     components: {
-        AppMain: __WEBPACK_IMPORTED_MODULE_4__components_AppMain_vue___default.a
+        AppMain: __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue___default.a
     }
 });
 
@@ -1942,7 +1947,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app-main',
-    components: { Header: __WEBPACK_IMPORTED_MODULE_0__header_Header_vue___default.a, Footer: __WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue___default.a, SideBarNav: __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default.a }
+    components: { Header: __WEBPACK_IMPORTED_MODULE_0__header_Header_vue___default.a, Footer: __WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue___default.a, SideBarNav: __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default.a },
+    computed: {
+        welcome: function welcome() {
+            return this.$store.getters.welcome;
+        }
+    }
 });
 
 /***/ }),
@@ -32491,12 +32501,10 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "overlay"
     }
-  }), _vm._v(" "), _c('Header'), _vm._v(" "), _c('SideBarNav'), _vm._v(" "), _vm._m(0), _vm._v(" "), _c('Footer')], 1)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }), _vm._v(" "), _c('Header'), _vm._v(" "), _c('SideBarNav'), _vm._v(" "), _c('div', {
     staticClass: "container"
-  }, [_c('h1', [_vm._v("Temp Text to take up space")]), _vm._v(" "), _c('p', [_vm._v("qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!")]), _vm._v(" "), _c('p', [_vm._v("Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.")]), _vm._v(" "), _c('p', [_vm._v("Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.")]), _vm._v(" "), _c('p', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam eveniet nobis fuga, rem officiis amet, provident, corrupti iste atque possimus minus nulla alias neque repellendus esse eius soluta voluptatibus")]), _vm._v(" "), _c('p', [_vm._v("qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!")]), _vm._v(" "), _c('p', [_vm._v("Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.")]), _vm._v(" "), _c('p', [_vm._v("Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.")])])
-}]}
+  }, [_c('h1', [_vm._v(_vm._s(_vm.welcome))]), _vm._v(" "), _c('p', [_vm._v("qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!")]), _vm._v(" "), _c('p', [_vm._v("Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.")]), _vm._v(" "), _c('p', [_vm._v("Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.")]), _vm._v(" "), _c('p', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam eveniet nobis fuga, rem officiis amet, provident, corrupti iste atque possimus minus nulla alias neque repellendus esse eius soluta voluptatibus")]), _vm._v(" "), _c('p', [_vm._v("qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!")]), _vm._v(" "), _c('p', [_vm._v("Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.")]), _vm._v(" "), _c('p', [_vm._v("Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.")])]), _vm._v(" "), _c('Footer')], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -47820,6 +47828,24 @@ if(false) {
  // When the module is disposed, remove the <style> tags
  module.hot.dispose(function() { update(); });
 }
+
+/***/ }),
+/* 78 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+	state: {
+		welcome: 'lets play some golf!!!'
+	},
+	getters: {
+		welcome: function welcome(state) {
+			return state.welcome;
+		}
+	},
+	mutations: {},
+	actions: {}
+});
 
 /***/ })
 /******/ ]);

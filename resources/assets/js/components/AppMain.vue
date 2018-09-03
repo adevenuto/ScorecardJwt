@@ -5,7 +5,7 @@
     	<Header/>
 		<SideBarNav/>
     	<div class="container">
-    		<h1>Temp Text to take up space</h1> 
+    		<h1>{{ welcome }}</h1> 
 
 	    	<p>qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!</p> 
 
@@ -32,7 +32,12 @@
 	import SideBarNav from './sidebarnav/SideBarNav.vue';
     export default {
         name: 'app-main',
-        components: {Header, Footer, SideBarNav}
+        components: {Header, Footer, SideBarNav},
+        computed: {
+        	welcome() {
+        		return this.$store.getters.welcome;
+        	}
+        }
     }
 </script>
 
