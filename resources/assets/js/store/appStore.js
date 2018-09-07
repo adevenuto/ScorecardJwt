@@ -8,6 +8,9 @@ export default {
 	getters: {
 		sideNavStatus(state) {
 			return state.navigation.sideNavIn;
+		},
+		welcome(state) {
+			return state.welcome;
 		}
 	},
 	mutations: {

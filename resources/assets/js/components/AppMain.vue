@@ -46,7 +46,7 @@
         methods: {
         	toggleSideNav() {
 				this.$store.commit('toggleSideNav');
-			},
+			}
         }
     }
 </script>

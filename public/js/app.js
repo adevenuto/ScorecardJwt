@@ -2508,6 +2508,9 @@ var routes = [{
 	getters: {
 		sideNavStatus: function sideNavStatus(state) {
 			return state.navigation.sideNavIn;
+		},
+		welcome: function welcome(state) {
+			return state.welcome;
 		}
 	},
 	mutations: {
