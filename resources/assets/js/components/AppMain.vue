@@ -55,6 +55,7 @@
 	    -o-transition: .25s ease-in-out;
 	    transition: .25s ease-in-out;nsition: .25s ease-in-out;
 	}
+	
 
 	/*Triggered by jQuery*/
 	#app-main #overlay.overlay {

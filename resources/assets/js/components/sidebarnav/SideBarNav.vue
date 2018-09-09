@@ -2,12 +2,12 @@
 	<div id="sidebar-container">
 		<div id="mySidenav" 
 			 :class="[{'navIn': sideNavStatus}, 'sidenav']">
-		    <a href="/test">About</a>
-		    <a href="#">Services</a>
-		    <a href="#">Clients</a>
-		    <a href="#">Contact</a>
+		    <a href="/test" @click="toggleSideNav">About</a>
+		    <a href="#" @click="toggleSideNav">Services</a>
+		    <a href="#" @click="toggleSideNav">Clients</a>
+		    <a href="#" @click="toggleSideNav">Contact</a>
 		    <hr>
-		    <div class="auth">
+		    <div class="auth" @click="toggleSideNav">
 		        <router-link to="/login">login</router-link>
 		    </div>
 		</div>
@@ -23,7 +23,9 @@
 			}
 		},
 		methods: {
-			
+			toggleSideNav() {
+				this.$store.commit('toggleSideNav');
+			}
 		}
 	}
 </script>
@@ -33,15 +35,15 @@
 	    height: 100%; 
 	    width: 0;
 	    position: fixed;
-	    z-index: 9999;
+	    z-index: 8888;
 	    top: 0;
-	    left: 0;
+	    right: 0;
 	    background-color: rgba(17, 17, 17, 0.86);
 	    overflow-x: hidden;
 	    padding-top: 60px;
-	    transition: 0.5s;
+	    transition: 0.3s;
 	}
-  	#sidebar-container .sidenav  a {
+  	#sidebar-container .sidenav a {
         padding: 8px 8px 8px 32px;
         text-decoration: none;
         font-size: 25px;

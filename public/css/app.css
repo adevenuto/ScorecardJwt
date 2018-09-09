@@ -7656,6 +7656,22 @@ body, html {
   font-size: 1rem;
 }
 
+/**  Scrollbar-Track Styles */
+::-webkit-scrollbar {
+  width: 12px;
+  /* for vertical scrollbars */
+  height: 12px;
+  /* for horizontal scrollbars */
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.5);
+}
+
 a, a:hover, a:visited, a:focus {
   text-decoration: none;
   color: #fff;

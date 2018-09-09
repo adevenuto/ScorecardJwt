@@ -60,7 +60,6 @@
 	    background-color: #3c3d41;
 	    color: white;
 	    padding-top: 20px;
-	    margin-top: 30px;
 	}
 	#footer-main .footer-copyright {
         background-color: #333333;
