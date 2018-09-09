@@ -1,9 +1,11 @@
 <template>
 	<div id="header-main">
-		<div id="header-logo">
-			<img src="/img/logo.svg" class="logo" width="29px" alt="logo">
-			<span class="title">SCOR</span>
-		</div>
+		<router-link to="/">
+			<div id="header-logo">
+				<img src="/img/logo.svg" class="logo" width="29px" alt="logo">
+				<span class="title">SCOR</span>
+			</div>
+		</router-link>
 		<div id="hamburger" 
 			 @click="toggleSideNav"
 			 :class="{ 'open': sideNavStatus}">

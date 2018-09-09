@@ -7656,6 +7656,12 @@ body, html {
   font-size: 1rem;
 }
 
+a, a:hover, a:visited, a:focus {
+  text-decoration: none;
+  color: #fff;
+  cursor: pointer;
+}
+
 #create-course-form .form-group {
   margin-bottom: 10px;
 }

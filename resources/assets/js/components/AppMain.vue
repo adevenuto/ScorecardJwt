@@ -1,27 +1,12 @@
 <template>
 	<div id="app-main">
-    	<!-- <router-view></router-view> -->
     	<div id="overlay"
     		 @click="toggleSideNav" 
     	     :class="{ 'overlay': sideNavStatus}"></div>
     	<Header/>
 		<SideBarNav/>
     	<div class="container">
-    		<h1>{{ welcome }}</h1> 
-
-	    	<p>qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!</p> 
-
-	    	<p>Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.</p> 
-
-			<p>Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.</p>
-
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam eveniet nobis fuga, rem officiis amet, provident, corrupti iste atque possimus minus nulla alias neque repellendus esse eius soluta voluptatibus</p> 
-
-	    	<p>qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!</p> 
-
-	    	<p>Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.</p> 
-
-			<p>Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.</p>
+    		<router-view></router-view>
     	</div>
     	
     	<Footer/>
@@ -32,9 +17,10 @@
 	import Header from './header/Header.vue';
 	import Footer from './footer/Footer.vue';
 	import SideBarNav from './sidebarnav/SideBarNav.vue';
+	import Login from './auth/Login.vue';
     export default {
         name: 'app-main',
-        components: {Header, Footer, SideBarNav},
+        components: {Header, Footer, SideBarNav, Login},
         computed: {
         	sideNavStatus() {
 				return this.$store.getters.sideNavStatus;

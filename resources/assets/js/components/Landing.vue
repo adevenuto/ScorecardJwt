@@ -1,10 +1,8 @@
 <template>
     <div>
     	Landing Page
-    	<p>
-    		<router-link to="/test">Test</router-link>
-    	</p>
-    	<h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.</h3><h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.</h3><h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.</h3><h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.</h3><h3>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.</h3>
+    
+    	<h3>Boudin pastrami pork belly t-bone biltong andouille jowl landjaeger ham hock ribeye prosciutto short loin shankle doner. Picanha hamburger t-bone sausage. Pancetta shoulder brisket, buffalo sausage turducken venison frankfurter pork loin ribeye drumstick tenderloin spare ribs. Rump swine cow corned beef cupim andouille ribeye bacon. Short loin porchetta shankle shank cupim chuck shoulder turducken ground round filet mignon tenderloin burgdoggen ribeye. Venison strip steak ham swine turkey. Filet mignon kielbasa chicken pig shoulder fatback turducken jerky burgdoggen biltong beef pork chop t-bone pork loin.</h3>
     </div>
 </template>
 

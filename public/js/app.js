@@ -2190,6 +2190,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue__ = __webpack_require__(56);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_Login_vue__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__auth_Login_vue__);
 //
 //
 //
@@ -2205,28 +2207,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
+
 
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'app-main',
-    components: { Header: __WEBPACK_IMPORTED_MODULE_0__header_Header_vue___default.a, Footer: __WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue___default.a, SideBarNav: __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default.a },
+    components: { Header: __WEBPACK_IMPORTED_MODULE_0__header_Header_vue___default.a, Footer: __WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue___default.a, SideBarNav: __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default.a, Login: __WEBPACK_IMPORTED_MODULE_3__auth_Login_vue___default.a },
     computed: {
         sideNavStatus: function sideNavStatus() {
             return this.$store.getters.sideNavStatus;
@@ -2256,35 +2244,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'landing'
 });
 
 /***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    name: 'test'
-});
-
-/***/ }),
+/* 34 */,
 /* 35 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -2367,6 +2333,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'app-header',
@@ -2404,18 +2372,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'app-sidebar-nav',
@@ -2423,7 +2379,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		sideNavStatus: function sideNavStatus() {
 			return this.$store.getters.sideNavStatus;
 		}
-	}
+	},
+	methods: {}
 });
 
 /***/ }),
@@ -2480,8 +2437,8 @@ $(function () {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue__ = __webpack_require__(52);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__components_Landing_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Test_vue__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_Test_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_Test_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue__ = __webpack_require__(77);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
 
 
@@ -2489,8 +2446,8 @@ var routes = [{
 	path: '/',
 	component: __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue___default.a
 }, {
-	path: '/test',
-	component: __WEBPACK_IMPORTED_MODULE_1__components_Test_vue___default.a
+	path: '/login',
+	component: __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue___default.a
 }];
 
 /***/ }),
@@ -32752,40 +32709,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Component = __webpack_require__(1)(
-  /* script */
-  __webpack_require__(34),
-  /* template */
-  __webpack_require__(57),
-  /* scopeId */
-  null,
-  /* cssModules */
-  null
-)
-Component.options.__file = "/home/vagrant/Code/scorecard.tony/resources/assets/js/components/Test.vue"
-if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
-if (Component.options.functional) {console.error("[vue-loader] Test.vue: functional components are not supported with templates, they should use render functions.")}
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-226f8eb8", Component.options)
-  } else {
-    hotAPI.reload("data-v-226f8eb8", Component.options)
-  }
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
+/* 53 */,
 /* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32900,25 +32824,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 57 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._v("\n\t\tTest Page\n\t\t"), _c('p', [_c('router-link', {
-    attrs: {
-      "to": "/"
-    }
-  }, [_vm._v("back to landing")])], 1), _vm._v(" "), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")])])
-},staticRenderFns: []}
-module.exports.render._withStripped = true
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-     require("vue-hot-reload-api").rerender("data-v-226f8eb8", module.exports)
-  }
-}
-
-/***/ }),
+/* 57 */,
 /* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -32950,7 +32856,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "href": "#"
     }
-  }, [_vm._v("Contact")]), _vm._v(" "), _c('hr')])])
+  }, [_vm._v("Contact")]), _vm._v(" "), _c('hr'), _vm._v(" "), _c('div', {
+    staticClass: "auth"
+  }, [_c('router-link', {
+    attrs: {
+      "to": "/login"
+    }
+  }, [_vm._v("login")])], 1)])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -32969,19 +32881,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "id": "header-main"
     }
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
-    class: {
-      'open': _vm.sideNavStatus
-    },
+  }, [_c('router-link', {
     attrs: {
-      "id": "hamburger"
-    },
-    on: {
-      "click": _vm.toggleSideNav
+      "to": "/"
     }
-  }, [_c('span'), _vm._v(" "), _c('span'), _vm._v(" "), _c('span')])])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
+  }, [_c('div', {
     attrs: {
       "id": "header-logo"
     }
@@ -32994,8 +32898,18 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('span', {
     staticClass: "title"
-  }, [_vm._v("SCOR")])])
-}]}
+  }, [_vm._v("SCOR")])])]), _vm._v(" "), _c('div', {
+    class: {
+      'open': _vm.sideNavStatus
+    },
+    attrs: {
+      "id": "hamburger"
+    },
+    on: {
+      "click": _vm.toggleSideNav
+    }
+  }, [_c('span'), _vm._v(" "), _c('span'), _vm._v(" "), _c('span')])], 1)
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -33143,7 +33057,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('Header'), _vm._v(" "), _c('SideBarNav'), _vm._v(" "), _c('div', {
     staticClass: "container"
-  }, [_c('h1', [_vm._v(_vm._s(_vm.welcome))]), _vm._v(" "), _c('p', [_vm._v("qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!")]), _vm._v(" "), _c('p', [_vm._v("Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.")]), _vm._v(" "), _c('p', [_vm._v("Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.")]), _vm._v(" "), _c('p', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam eveniet nobis fuga, rem officiis amet, provident, corrupti iste atque possimus minus nulla alias neque repellendus esse eius soluta voluptatibus")]), _vm._v(" "), _c('p', [_vm._v("qui nostrum tempora deserunt a! Consequatur adipisci tempora itaque inventore quae laudantium dignissimos vel, assumenda mollitia explicabo fugiat, laborum, est vero cumque voluptates incidunt quo!")]), _vm._v(" "), _c('p', [_vm._v("Perspiciatis laborum doloremque, nulla placeat. Ducimus fuga architecto reprehenderit fugiat ab, provident minus explicabo hic eius saepe animi, esse rem aliquid quasi mollitia cupiditate quis tempora facere.")]), _vm._v(" "), _c('p', [_vm._v("Assumenda temporibus, molestias quisquam perspiciatis at iure obcaecati qui, cupiditate nobis, praesentium nostrum ullam architecto, eligendi minus eveniet sint.")])]), _vm._v(" "), _c('Footer')], 1)
+  }, [_c('router-view')], 1), _vm._v(" "), _c('Footer')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -33158,12 +33072,10 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._v("\n\tLanding Page\n\t"), _c('p', [_c('router-link', {
-    attrs: {
-      "to": "/test"
-    }
-  }, [_vm._v("Test")])], 1), _vm._v(" "), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")]), _c('h3', [_vm._v("Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus incidunt fuga cupiditate dolore aliquam ratione et officia sit atque, vero magni consequuntur expedita, eveniet asperiores, consequatur fugiat omnis non. Natus fuga sed reprehenderit nemo eveniet porro omnis dolor perferendis quaerat.")])])
-},staticRenderFns: []}
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', [_vm._v("\n\tLanding Page\n\n\t"), _c('h3', [_vm._v("Boudin pastrami pork belly t-bone biltong andouille jowl landjaeger ham hock ribeye prosciutto short loin shankle doner. Picanha hamburger t-bone sausage. Pancetta shoulder brisket, buffalo sausage turducken venison frankfurter pork loin ribeye drumstick tenderloin spare ribs. Rump swine cow corned beef cupim andouille ribeye bacon. Short loin porchetta shankle shank cupim chuck shoulder turducken ground round filet mignon tenderloin burgdoggen ribeye. Venison strip steak ham swine turkey. Filet mignon kielbasa chicken pig shoulder fatback turducken jerky burgdoggen biltong beef pork chop t-bone pork loin.")])])
+}]}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -47885,6 +47797,174 @@ module.exports = function(module) {
 __webpack_require__(12);
 module.exports = __webpack_require__(13);
 
+
+/***/ }),
+/* 73 */,
+/* 74 */,
+/* 75 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'Login'
+});
+
+/***/ }),
+/* 76 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+/***/ }),
+/* 77 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(79)
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(75),
+  /* template */
+  __webpack_require__(78),
+  /* scopeId */
+  "data-v-604a50b0",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/vagrant/Code/scorecard.tony/resources/assets/js/components/auth/Login.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] Login.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-604a50b0", Component.options)
+  } else {
+    hotAPI.reload("data-v-604a50b0", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 78 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _vm._m(0)
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-6 jumbotron mx-auto"
+  }, [_c('form', {
+    attrs: {
+      "action": ""
+    }
+  }, [_c('div', {
+    staticClass: "form-label-group"
+  }, [_c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "text",
+      "id": "inputName",
+      "placeholder": "Name",
+      "required": ""
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "inputName"
+    }
+  }, [_vm._v("Name")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-label-group"
+  }, [_c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "email",
+      "id": "inputEmail",
+      "placeholder": "Email Address",
+      "required": ""
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "inputEmail"
+    }
+  }, [_vm._v("Email address")])]), _vm._v(" "), _c('div', {
+    staticClass: "form-label-group"
+  }, [_c('input', {
+    staticClass: "form-control",
+    attrs: {
+      "type": "password",
+      "id": "inputPassword",
+      "placeholder": "Password",
+      "required": ""
+    }
+  }), _vm._v(" "), _c('label', {
+    attrs: {
+      "for": "inputPassword"
+    }
+  }, [_vm._v("Password")])])])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-604a50b0", module.exports)
+  }
+}
+
+/***/ }),
+/* 79 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(76);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("69f9d9db", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-604a50b0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-604a50b0\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Login.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

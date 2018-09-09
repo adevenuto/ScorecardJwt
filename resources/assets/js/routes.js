@@ -1,12 +1,12 @@
 import Landing from './components/Landing.vue';
-import Test from './components/Test.vue';
+import Login from './components/auth/Login.vue';
 export const routes = [
 	{
 		path: '/',
 		component: Landing
 	},
 	{
-		path: '/test',
-		component: Test
+		path: '/login',
+		component: Login
 	}
 ]
