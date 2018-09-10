@@ -6,7 +6,9 @@
     	<Header/>
 		<SideBarNav/>
     	<div class="container">
-    		<router-view></router-view>
+    		<transition name="fade">
+	    		<router-view></router-view>
+	    	</transition>
     	</div>
     	
     	<Footer/>
@@ -61,6 +63,19 @@
 	#app-main #overlay.overlay {
 	    display: block;
 	    opacity: 1;
+	}
+
+	.fade-enter-active, .fade-leave-active {
+	  transition-property: opacity;
+	  transition-duration: .20s;
+	}
+
+	.fade-enter-active {
+	  transition-delay: .20s;
+	}
+
+	.fade-enter, .fade-leave-active {
+	  opacity: 0
 	}
 </style>
 

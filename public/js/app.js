@@ -1356,17 +1356,30 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_2_vuex
 
 var store = new __WEBPACK_IMPORTED_MODULE_2_vuex__["a" /* default */].Store(__WEBPACK_IMPORTED_MODULE_4__store_appStore_js__["a" /* default */]);
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* routes */],
-    mode: 'history'
+	routes: __WEBPACK_IMPORTED_MODULE_3__routes__["a" /* routes */],
+	mode: 'history'
 });
+router.beforeEach(function (to, from, next) {
+	var requiresAuth = to.matched.some(function (record) {
+		return record.meta.requiresAuth;
+	});
+	var currentUser = store.state.currentUser;
 
+	if (requiresAuth && !currentUser) {
+		next('/login');
+	} else if (to.path == '/login' && currentUser) {
+		next('/');
+	} else {
+		next();
+	}
+});
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
-    el: '#app',
-    router: router,
-    store: store,
-    components: {
-        AppMain: __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue___default.a
-    }
+	el: '#app',
+	router: router,
+	store: store,
+	components: {
+		AppMain: __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue___default.a
+	}
 });
 
 /***/ }),
@@ -2245,6 +2258,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 
 
@@ -2282,6 +2297,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     name: 'landing'
@@ -2293,6 +2312,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_auth__ = __webpack_require__(77);
 //
 //
 //
@@ -2316,8 +2336,36 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
+
 /* harmony default export */ __webpack_exports__["default"] = ({
-	name: 'Login'
+	name: 'Login',
+	data: function data() {
+		return {
+			form: {
+				name: '',
+				email: '',
+				password: ''
+			},
+			login_error: null
+		};
+	},
+
+	methods: {
+		authenticate: function authenticate() {
+			var _this = this;
+
+			// this.$store.dispatch('login');
+
+			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a" /* login */])(this.$data.form).then(function (res) {
+				_this.$store.commit('loginSuccess', res);
+				_this.$router.push({ path: '/' });
+			}).catch(function (err) {
+				// why is this err passsed as object and res is not
+				_this.$store.commit('loginFailed', { err: err });
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -2518,7 +2566,10 @@ $(function () {
 
 var routes = [{
 	path: '/',
-	component: __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue___default.a
+	component: __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue___default.a,
+	meta: {
+		requiresAuth: true
+	}
 }, {
 	path: '/login',
 	component: __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue___default.a
@@ -2529,24 +2580,57 @@ var routes = [{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_auth__ = __webpack_require__(77);
+
+
+
+var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["b" /* getLocalUser */])();
+
 /* harmony default export */ __webpack_exports__["a"] = ({
 	state: {
 		navigation: {
 			sideNavIn: false
 		},
-		welcome: 'lets play some golf!!!'
+		currentUser: user,
+		isLoggedIn: !!user,
+		loading: false,
+		auth_error: null
 	},
 	getters: {
 		sideNavStatus: function sideNavStatus(state) {
 			return state.navigation.sideNavIn;
 		},
-		welcome: function welcome(state) {
-			return state.welcome;
+		currentUser: function currentUser(state) {
+			return state.currentUser;
+		},
+		isLoggiedIn: function isLoggiedIn(state) {
+			return state.isLoggedIn;
+		},
+		isLoading: function isLoading(state) {
+			return state.loading;
+		},
+		authError: function authError(state) {
+			return state.auth_error;
 		}
 	},
 	mutations: {
 		toggleSideNav: function toggleSideNav(state) {
 			state.navigation.sideNavIn = !state.navigation.sideNavIn;
+		},
+		loginSuccess: function loginSuccess(state, payload) {
+			state.currentUser = Object.assign({}, payload.user, { token: payload.access_token });
+			localStorage.setItem('user', JSON.stringify(state.currentUser));
+			state.isLoggedIn = true;
+			state.loading = false;
+			state.auth_errors = null;
+		},
+		loginFailed: function loginFailed(state, payload) {
+			state.auth_errors = payload.err;
+		},
+		logOut: function logOut() {
+			localStorage.removeItem('user');
+			state.isLoggedIn = false;
+			state.currentUser = null;
 		}
 	},
 	actions: {}
@@ -4954,7 +5038,7 @@ exports.push([module.i, "\n#header-main[data-v-4e7176d9] {\n\t\tdisplay: -ms-fle
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\nform[data-v-604a50b0] {\n\tbackground: #757575;\n\tborder-radius: 5px;\n\tpadding: 20px;\n\tmargin: 30px 0;\n\tbox-shadow: 0px 0px 2px 0px #999;\n}\nform label[data-v-604a50b0] {\n\tcolor: #ececec;\n}\nform input[data-v-604a50b0] {\n\theight: 40px;\n\tfont-size: 1.2rem;\n\tborder-color: #3c3d41;\n\tcolor: #3c3d41;\n\tbackground-color: #fff;\n}\nform button[data-v-604a50b0] {\n\tfont-weight: bold;\n\tfont-size: 1.3rem;\n\tbackground: #3e8c41;\n\tborder: 1px solid #fff;\n\tcolor: #fff;\n}\nform button[data-v-604a50b0]:hover {\n\tbackground: #00ce07;\n\tcolor: #fff;\n}\n[data-v-604a50b0]::-webkit-input-placeholder { /* Chrome */\n  color: #9e9e9e;\n}\n[data-v-604a50b0]:-ms-input-placeholder { /* IE 10+ */\n  color: #9e9e9e;\n}\n[data-v-604a50b0]::-moz-placeholder { /* Firefox 19+ */\n  color: #9e9e9e;\n  opacity: 1;\n}\n[data-v-604a50b0]:-moz-placeholder { /* Firefox 4 - 18 */\n  color: #9e9e9e;\n  opacity: 1;\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-604a50b0] {\n\tbackground: #757575;\n\tborder-radius: 5px;\n\tpadding: 20px;\n\tmargin: 40px 0;\n\tbox-shadow: 0px 0px 2px 0px #999;\n}\nform label[data-v-604a50b0] {\n\tcolor: #ececec;\n}\nform input[data-v-604a50b0] {\n\theight: 40px;\n\tfont-size: 1.2rem;\n\tborder-color: #3c3d41;\n\tcolor: #3c3d41;\n\tbackground-color: #fff;\n\ttransition: 100ms ease;\n}\nform button[data-v-604a50b0] {\n\tfont-weight: bold;\n\tfont-size: 1.3rem;\n\tbackground: #3e8c41;\n\tborder: 1px solid #fff;\n\tcolor: #fff;\n}\nform button[data-v-604a50b0]:hover {\n\tbackground: #00ce07;\n\tcolor: #fff;\n}\n[data-v-604a50b0]::-webkit-input-placeholder { /* Chrome */\n  color: #9e9e9e;\n}\n[data-v-604a50b0]:-ms-input-placeholder { /* IE 10+ */\n  color: #9e9e9e;\n}\n[data-v-604a50b0]::-moz-placeholder { /* Firefox 19+ */\n  color: #9e9e9e;\n  opacity: 1;\n}\n[data-v-604a50b0]:-moz-placeholder { /* Firefox 4 - 18 */\n  color: #9e9e9e;\n  opacity: 1;\n}\n", ""]);
 
 /***/ }),
 /* 47 */
@@ -4968,7 +5052,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n#app-main[data-v-ad4c8478] {\n\tposition: relative;\n}\n#app-main #overlay[data-v-ad4c8478] {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0,0,0,.30);\n    z-index: 8888;\n    display: none;\n    opacity: 0;\n    transition: .25s ease-in-out;nsition: .25s ease-in-out;\n}\n\n\n/*Triggered by jQuery*/\n#app-main #overlay.overlay[data-v-ad4c8478] {\n    display: block;\n    opacity: 1;\n}\n", ""]);
+exports.push([module.i, "\n#app-main[data-v-ad4c8478] {\n\tposition: relative;\n}\n#app-main #overlay[data-v-ad4c8478] {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n    background-color: rgba(0,0,0,.30);\n    z-index: 8888;\n    display: none;\n    opacity: 0;\n    transition: .25s ease-in-out;nsition: .25s ease-in-out;\n}\n\n\n/*Triggered by jQuery*/\n#app-main #overlay.overlay[data-v-ad4c8478] {\n    display: block;\n    opacity: 1;\n}\n.fade-enter-active[data-v-ad4c8478], .fade-leave-active[data-v-ad4c8478] {\n  transition-property: opacity;\n  transition-duration: .20s;\n}\n.fade-enter-active[data-v-ad4c8478] {\n  transition-delay: .20s;\n}\n.fade-enter[data-v-ad4c8478], .fade-leave-active[data-v-ad4c8478] {\n  opacity: 0\n}\n", ""]);
 
 /***/ }),
 /* 49 */
@@ -33017,48 +33101,94 @@ if (false) {
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _vm._m(0)
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _c('div', {
     staticClass: "col-sm-6 col-sm-offset-3 pt-3"
   }, [_c('form', {
-    attrs: {
-      "action": ""
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        return _vm.authenticate($event)
+      }
     }
   }, [_c('div', {
     staticClass: "form-group"
   }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.name),
+      expression: "form.name"
+    }],
     staticClass: "form-control",
     attrs: {
       "type": "text",
       "id": "inputName",
       "placeholder": "Name",
       "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.name)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.form, "name", $event.target.value)
+      }
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.email),
+      expression: "form.email"
+    }],
     staticClass: "form-control",
     attrs: {
       "type": "email",
       "id": "inputEmail",
       "placeholder": "Email Address",
       "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.form, "email", $event.target.value)
+      }
     }
   })]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.password),
+      expression: "form.password"
+    }],
     staticClass: "form-control",
     attrs: {
       "type": "password",
       "id": "inputPassword",
       "placeholder": "Password",
       "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.password)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.form, "password", $event.target.value)
+      }
     }
   })]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-block"
   }, [_vm._v("Login")])])])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()
@@ -33206,7 +33336,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     }
   }), _vm._v(" "), _c('Header'), _vm._v(" "), _c('SideBarNav'), _vm._v(" "), _c('div', {
     staticClass: "container"
-  }, [_c('router-view')], 1), _vm._v(" "), _c('Footer')], 1)
+  }, [_c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [_c('router-view')], 1)], 1), _vm._v(" "), _c('Footer')], 1)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
@@ -33223,7 +33357,19 @@ if (false) {
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
   return _vm._m(0)
 },staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', [_vm._v("\n\tLanding Page\n\n\t"), _c('h3', [_vm._v("Boudin pastrami pork belly t-bone biltong andouille jowl landjaeger ham hock ribeye prosciutto short loin shankle doner. Picanha hamburger t-bone sausage. Pancetta shoulder brisket, buffalo sausage turducken venison frankfurter pork loin ribeye drumstick tenderloin spare ribs. Rump swine cow corned beef cupim andouille ribeye bacon. Short loin porchetta shankle shank cupim chuck shoulder turducken ground round filet mignon tenderloin burgdoggen ribeye. Venison strip steak ham swine turkey. Filet mignon kielbasa chicken pig shoulder fatback turducken jerky burgdoggen biltong beef pork chop t-bone pork loin.")])])
+  return _c('div', [_c('div', {
+    staticClass: "col-sm-12"
+  }, [_c('img', {
+    staticClass: "img-responsive",
+    staticStyle: {
+      "margin": "0 auto"
+    },
+    attrs: {
+      "src": "http://res.publicdomainfiles.com/pdf_view/56/13528810214208.png",
+      "alt": "",
+      "width": "500px"
+    }
+  })])])
 }]}
 module.exports.render._withStripped = true
 if (false) {
@@ -47972,6 +48118,31 @@ module.exports = function(module) {
 __webpack_require__(13);
 module.exports = __webpack_require__(14);
 
+
+/***/ }),
+/* 75 */,
+/* 76 */,
+/* 77 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (immutable) */ __webpack_exports__["a"] = login;
+/* harmony export (immutable) */ __webpack_exports__["b"] = getLocalUser;
+function login(credentials) {
+	return axios.post('/api/auth/login', credentials).then(function (res) {
+		return res.data;
+	}).then(function (err) {
+		return err;
+	});
+}
+
+function getLocalUser() {
+	var user = localStorage.getItem('user');
+	if (!user) {
+		return null;
+	}
+	return JSON.parse(user);
+}
 
 /***/ })
 /******/ ]);

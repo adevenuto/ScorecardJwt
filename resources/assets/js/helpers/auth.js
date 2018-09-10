@@ -1,15 +1,15 @@
-export function login() {
+export function login(credentials) {
 	return axios.post('/api/auth/login', credentials)
-			.then((response) => {
-				console.log(response.data);
+			.then((res) => {
+				return res.data;
 			})
 			.then((err) =>{
-				console.log(err);
+				return err;
 			})
 }
 
 export function getLocalUser() {
-	const user = LocalStorage.getItem('user');
+	const user = localStorage.getItem('user');
 	if (!user) {
 		return null;
 	}

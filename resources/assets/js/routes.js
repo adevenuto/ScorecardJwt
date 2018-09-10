@@ -3,7 +3,10 @@ import Login from './components/auth/Login.vue';
 export const routes = [
 	{
 		path: '/',
-		component: Landing
+		component: Landing,
+		meta: {
+			requiresAuth: true
+		}
 	},
 	{
 		path: '/login',
