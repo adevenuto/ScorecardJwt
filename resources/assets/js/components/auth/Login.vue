@@ -15,14 +15,15 @@
       		</div>
       		
 	        <button class="btn btn-block">Login</button>
-      		
+
+      		<template v-if="authError">
+      			<p class="auth-errors">{{authError}}</p>
+      		</template>
 		</form>
 	</div>
 </template>
 
 <script>
-	import {login} from '../../helpers/auth';
-
 	export default {
 		name: 'Login',
 		data() {
@@ -32,22 +33,26 @@
 					email: '',
 					password: ''
 				},
-				login_error: null
+				err: 'Username or password are incorrect'
+			}
+		},
+		computed: {
+			authError() {
+				return this.$store.getters.authError;
 			}
 		},
 		methods: {
 			authenticate() {
-				// this.$store.dispatch('login');
+				let credentials = this.$data.form; 
+				return axios.post('/api/auth/login', credentials)
+					.then( payload => {
+						this.$store.commit('loginSuccess', payload);
+		 				this.$router.push({path: '/dashboard'});
+					})
+					.catch( err => {
+						this.$store.commit('loginFailed', this.$data.err);
+					})
 
-			 	login(this.$data.form)
-			 		.then((res) => {
-			 			this.$store.commit('loginSuccess', res);
-			 			this.$router.push({path: '/'});
-			 		})
-			 		.catch((err) => {
-			 			// why is this err passsed as object and res is not
-						this.$store.commit('loginFailed', {err});
-			 		})
 			}
 		}
 	}
@@ -82,6 +87,15 @@
 	form button:hover {
 		background: #00ce07;
 		color: #fff;
+	}
+	.auth-errors {
+	    color: #f00;
+	    margin-top: 15px;
+	    display: inline-block;
+	    padding: 0 10px;
+	    border-radius: 15px;
+	    background: #fff;
+	    border: 1px solid #f00;
 	}
 	::-webkit-input-placeholder { /* Chrome */
 	  color: #9e9e9e;

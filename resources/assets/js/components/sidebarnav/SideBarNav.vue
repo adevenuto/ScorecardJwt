@@ -8,7 +8,14 @@
 		    <a href="#" @click="toggleSideNav">Contact</a>
 		    <hr>
 		    <div class="auth" @click="toggleSideNav">
-		        <router-link to="/login">login</router-link>
+		    	<template v-if="!currentUser">
+		    		<router-link to="/login">Login</router-link>
+		    	</template>
+		    	<template v-else>
+		    		<router-link to="/dashboard">Dashboard</router-link>
+		    		<a id="logout" href="#" @click.prevent="logout">Logout</a>
+		    	</template>
+		        
 		    </div>
 		</div>
 	</div>
@@ -20,11 +27,18 @@
 		computed: {
 			sideNavStatus() {
 				return this.$store.getters.sideNavStatus;
+			},
+			currentUser() {
+				return this.$store.getters.currentUser;
 			}
 		},
 		methods: {
 			toggleSideNav() {
-				this.$store.commit('toggleSideNav');
+				return this.$store.commit('toggleSideNav');
+			},
+			logout() {
+				let router = this.$router;
+				return this.$store.commit('logOut', router);
 			}
 		}
 	}
@@ -37,7 +51,7 @@
 	    position: fixed;
 	    z-index: 8888;
 	    top: 0;
-	    right: 0;
+	    right: -1px;
 	    background-color: rgba(17, 17, 17, 0.86);
 	    overflow-x: hidden;
 	    padding-top: 60px;
@@ -65,8 +79,7 @@
 	/*Triggered by jQuery*/
 	#sidebar-container .sidenav.navIn {
 	    width: 240px;
-	    box-shadow: 0px 0px 0px 1px #0f0, 
-	    0px 0px 0px 3px #000;
+	    border-left: 2px solid #0f0;
 	}
 </style>
 

@@ -2,7 +2,7 @@
 	<div id="header-main">
 		<router-link to="/">
 			<div id="header-logo">
-				<img src="/img/logo.svg" class="logo" width="29px" alt="logo">
+				<img src="/img/scorecardlogo.svg" class="logo" width="45px" alt="logo">
 				<span class="title">SCOR</span>
 			</div>
 		</router-link>
@@ -49,7 +49,9 @@
 	}
 	#header-main #header-logo .title {
 		font-size: 24px;
-		margin-left: 5px;
+	    position: relative;
+    	top: 7px;
+    	left: 7px;
 	}
 	#hamburger {
 	    position: relative;
@@ -63,7 +65,7 @@
 	#hamburger span {
         display: block;
         position: absolute;
-        height: 4px;
+        height: 2px;
         width: 100%;
         background: #fff;
         border-radius: 9px;
@@ -103,6 +105,7 @@
 	    opacity: 0;
 	    background: #0f0;
 	    left: -80px;
+	    height: 4px;
 	    width: 0;
 	}
 	#hamburger.open span:nth-child(3) {

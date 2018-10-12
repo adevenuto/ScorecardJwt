@@ -1,10 +1,10 @@
 <template>
 	<div id="footer-main">
-	    <div class="container">
+	    <div class="container-fluid">
 	        <div class="row">
 	            <div class="col-sm-3 text-center">
 	                <a href="/"> 
-	                    <img src="/img/logo.svg" class="logo" width="70px" alt="logo">
+	                    <img src="/img/scorecardlogo.svg" class="logo" width="130px" alt="logo">
 	                </a>
 	            </div>
 	            <div class="col-sm-3">
@@ -108,7 +108,6 @@
     }
 	#footer-main .logo {
         margin-top: 41px;
-        margin-left: 20px;
     }
    	#footer-main .social-networks {
         text-align: center;
