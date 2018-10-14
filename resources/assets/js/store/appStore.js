@@ -11,7 +11,8 @@ export default {
 		currentUser: user,
 		isLoggedIn: !!user,
 		loading: false,
-		auth_error: null
+		auth_error: null,
+		courses: null
 	},
 	getters: {
 		sideNavStatus(state) {
@@ -28,6 +29,9 @@ export default {
 		},
 		authError(state) {
 			return state.auth_error;
+		},
+		getCourses(state) {
+			return state.courses;
 		}
 	},
 	mutations: {
@@ -50,6 +54,9 @@ export default {
 			state.currentUser = null;
 			state.auth_error = null;
 			router.push('/');
+		},
+		setCourses(state, courses) {
+			state.courses = courses;
 		}
 	},
 	actions: {}

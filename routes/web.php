@@ -17,16 +17,6 @@ Route::get('{any}', function () {
     return view('main');
 })->where('any', '.*');
 
-// Courses
-Route::get('course/create', 'CoursesController@create');
-Route::post('course/create', 'CoursesController@store');
-Route::get('/courses', 'CoursesController@index');
 
-// Holes
-Route::get('course/{id}/create/holes', 'HolesController@create');
-// Route::post('hole/create', 'HolesController@store');
 
-// Courses.create form countries/state/city
-Route::post("/getcountries", "CountriesController@getCountries");
-Route::post("/getstates/{id}", "StatesController@getStates");
-Route::post("/getcities/{id}", "CitiesController@getCities");
+

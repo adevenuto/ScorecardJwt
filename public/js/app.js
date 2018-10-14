@@ -1367,6 +1367,8 @@ router.beforeEach(function (to, from, next) {
     console.log(to.path);
     if (to.path === '/dashboard' && !currentUser) {
         next({ path: '/login' });
+    } else if (to.path === '/login' && currentUser) {
+        next('/');
     } else {
         next();
     }
@@ -2258,6 +2260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -2629,7 +2632,8 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a"
 		currentUser: user,
 		isLoggedIn: !!user,
 		loading: false,
-		auth_error: null
+		auth_error: null,
+		courses: null
 	},
 	getters: {
 		sideNavStatus: function sideNavStatus(state) {
@@ -2646,6 +2650,9 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a"
 		},
 		authError: function authError(state) {
 			return state.auth_error;
+		},
+		getCourses: function getCourses(state) {
+			return state.courses;
 		}
 	},
 	mutations: {
@@ -2668,6 +2675,9 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a"
 			state.currentUser = null;
 			state.auth_error = null;
 			router.push('/');
+		},
+		setCourses: function setCourses(state, courses) {
+			state.courses = courses;
 		}
 	},
 	actions: {}
@@ -5061,7 +5071,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n#sidebar-container .sidenav[data-v-30535f99] {\n\t    height: 100%; \n\t    width: 0;\n\t    position: fixed;\n\t    z-index: 8888;\n\t    top: 0;\n\t    right: -1px;\n\t    background-color: rgba(17, 17, 17, 0.86);\n\t    overflow-x: hidden;\n\t    padding-top: 60px;\n\t    transition: 0.3s;\n}\n#sidebar-container .sidenav a[data-v-30535f99] {\n        padding: 8px 8px 8px 32px;\n        text-decoration: none;\n        font-size: 25px;\n        color: #fff;\n        display: block;\n        transition: 0.3s\n}\n#sidebar-container .sidenav hr[data-v-30535f99] {\n        margin: 5px 32px 5px 32px;\n        border-color: #4c4c4c;\n}\n#sidebar-container .sidenav .auth a[data-v-30535f99] {\n\t    font-size: 16px;\n\t    color: #fff;\n}\n#sidebar-container .sidenav #logout[data-v-30535f99] {\n\t    color: #f00;\n}\n\t/*Triggered by jQuery*/\n#sidebar-container .sidenav.navIn[data-v-30535f99] {\n\t    width: 240px;\n\t    border-left: 2px solid #0f0;\n}\n", ""]);
+exports.push([module.i, "\n#sidebar-container .sidenav[data-v-30535f99] {\n\t    height: 100%; \n\t    width: 0;\n\t    position: fixed;\n\t    z-index: 8888;\n\t    top: 0;\n\t    right: -1px;\n\t    background-color: rgba(17, 17, 17, 0.86);\n\t    overflow-x: hidden;\n\t    padding-top: 60px;\n\t    transition: 0.3s;\n}\n#sidebar-container .sidenav a[data-v-30535f99] {\n        padding: 8px 8px 8px 32px;\n        text-decoration: none;\n        font-size: 25px;\n        color: #fff;\n        display: block;\n        transition: 0.3s\n}\n#sidebar-container .sidenav hr[data-v-30535f99] {\n        margin: 5px 32px 5px 32px;\n        border-color: #4c4c4c;\n}\n#sidebar-container .sidenav .auth a[data-v-30535f99] {\n\t    font-size: 16px;\n\t    color: #fff;\n\t    cursor: pointer;\n}\n#sidebar-container .sidenav #logout[data-v-30535f99] {\n\t    color: #f00;\n}\n\t/*Triggered by jQuery*/\n#sidebar-container .sidenav.navIn[data-v-30535f99] {\n\t    width: 240px;\n\t    border-left: 2px solid #0f0;\n}\n", ""]);
 
 /***/ }),
 /* 46 */
@@ -48185,11 +48195,38 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Dashboard',
-	data: function data() {
-		return {};
+	computed: {
+		currentUser: function currentUser() {
+			return this.$store.getters.currentUser;
+		},
+		allCourses: function allCourses() {
+			console.log(this.$store.getters.getCourses);
+			return this.$store.getters.getCourses;
+		}
+	},
+	mounted: function mounted() {
+		this.fetchCourses();
+	},
+	methods: {
+		fetchCourses: function fetchCourses() {
+			var _this = this;
+
+			return axios.get('/api/auth/courses').then(function (res) {
+				var courses = res.data.courses;
+				_this.$store.commit('setCourses', courses);
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}
 	}
 });
 
@@ -48198,7 +48235,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 80 */
@@ -48243,7 +48280,15 @@ module.exports = Component.exports
 /***/ (function(module, exports, __webpack_require__) {
 
 module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('h1', [_vm._v("Dashboard")])
+  return _c('div', [_c('h1', {
+    staticStyle: {
+      "text-transform": "capitalize"
+    }
+  }, [_vm._v(_vm._s(_vm.currentUser.name) + " Dashboard")]), _vm._v(" "), _vm._l((_vm.allCourses), function(course) {
+    return _c('div', {
+      key: course.id
+    }, [_vm._v("\n\t\t" + _vm._s(course.course_name) + "\n\t\t" + _vm._s(course.course_holes) + "\n\t")])
+  })], 2)
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

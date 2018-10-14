@@ -29,7 +29,7 @@ class AuthController extends Controller
     /**
      * Get the authenticated User.
      */
-    public function me()
+    public function authUser()
     {
         return response()->json(auth('api')->user());
     }

@@ -2,7 +2,8 @@
 	<div id="app-main">
     	<div id="overlay"
     		 @click="toggleSideNav" 
-    	     :class="{ 'overlay': sideNavStatus}"></div>
+    	     :class="{ 'overlay': sideNavStatus}">
+    	</div>
     	<Header/>
 		<SideBarNav/>
     	<div class="container">

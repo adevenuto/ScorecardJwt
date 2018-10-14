@@ -13,19 +13,14 @@ class CoursesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index']]);
+        $this->middleware('auth', ['except' => ['allCourses']]);
     }
 
-    public function index()
+    public function allCourses()
     {   
-        $uuid = Uuid::generate(4);
         $courses = Course::all();
-        return view('courses.index')->with(['courses' => $courses, 'uuid' => $uuid]);
-    }
-
-    public function create()
-    {   
-        return view('courses.create');
+        \Log::info('hello');
+        return response()->json(['courses' => $courses]);
     }
 
     public function store(Request $request)

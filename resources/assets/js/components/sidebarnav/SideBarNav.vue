@@ -72,6 +72,7 @@
 	#sidebar-container .sidenav .auth a {
 	    font-size: 16px;
 	    color: #fff;
+	    cursor: pointer;
 	}
 	#sidebar-container .sidenav #logout {
 	    color: #f00;

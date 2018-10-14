@@ -25,8 +25,10 @@ router.beforeEach((to, from, next) => {
 	console.log(to.path)
     if (to.path === '/dashboard' && !currentUser) {
         next({path: '/login'});
+    } else if (to.path === '/login' && currentUser) {
+    	next('/');
     } else {
-    	next();
+        next();
     }
 });
 const app = new Vue({
