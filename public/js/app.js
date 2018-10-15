@@ -48231,7 +48231,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var _this = this;
 
 			return axios.get('/api/auth/courses').then(function (res) {
-				var courses = res.data.courses;
+				var courses = res.data;
 				_this.$store.commit('setCourses', courses);
 			}).catch(function (err) {
 				console.log(err);
@@ -48342,6 +48342,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Dashboard',
@@ -48350,8 +48351,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return this.$store.getters.currentUser;
 		}
 	},
-	mounted: function mounted() {},
-	methods: {}
+	mounted: function mounted() {
+		var currentUser = this.$store.getters.currentUser;
+		this.fetchUserCourses(currentUser);
+	},
+	methods: {
+		fetchUserCourses: function fetchUserCourses(currentUser) {
+			return axios.get('/api/auth/user/courses', {
+				params: {
+					userId: currentUser.id
+				}
+			}).then(function (res) {
+				console.log(res);
+				// let courses = res.data.courses;
+				// this.$store.commit('setCourses', courses);
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -48359,7 +48377,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 100 */
@@ -48408,7 +48426,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "text-transform": "capitalize"
     }
-  }, [_vm._v(_vm._s(_vm.currentUser.name) + " Dashboard")])])
+  }, [_vm._v(_vm._s(_vm.currentUser.name) + "'s Dashboard")])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {

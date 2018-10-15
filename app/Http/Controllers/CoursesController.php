@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Webpatser\Uuid\Uuid;
-use Log;
 use App\Course;
 use App\User;
 
@@ -13,13 +12,21 @@ class CoursesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['allCourses']]);
+        $this->middleware('auth', ['except' => ['allCourses', 'userCourses']]);
     }
 
     public function allCourses()
     {   
+        \Log::info("helloooo");
         $courses = Course::all();
-        return response()->json(['courses' => $courses]);
+        return response()->json($courses);
+    }
+    public function userCourses(Request $request)
+    {   
+        $user = User::find($request->userId);
+        $userCourses = $user->courses;
+        return response()->json($userCourses);
+        
     }
 
     public function store(Request $request)

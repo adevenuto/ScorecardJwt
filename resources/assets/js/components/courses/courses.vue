@@ -22,7 +22,7 @@
 			fetchCourses: function() {
 				return axios.get('/api/auth/courses')
 				.then( res => {
-					let courses = res.data.courses;
+					let courses = res.data;
 					this.$store.commit('setCourses', courses);
 				})
 				.catch( err => {
