@@ -19,7 +19,6 @@ class CoursesController extends Controller
     public function allCourses()
     {   
         $courses = Course::all();
-        \Log::info('hello');
         return response()->json(['courses' => $courses]);
     }
 
@@ -77,36 +76,3 @@ class CoursesController extends Controller
         //
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// 'tournament_tee_length' => 'nullable|max:4', 
-// 'back_tee_length' => 'nullable|max:4',
-// 'middle_tee_length' => 'nullable|max:4',
-// 'front_tee_length' => 'nullable|max:4',
-// 'tournament_tee_slope_rating' => 'nullable|max:6',
-// 'back_tee_slope_rating' => 'nullable|max:6',
-// 'middle_tee_slope_rating' => 'nullable|max:6',
-// 'front_tee_slope_rating' => 'nullable|max:6',
-
-
-// $course->tournament_tee_length = $request->tournament_tee_length;
-// $course->back_tee_length = $request->back_tee_length;
-// $course->middle_tee_length = $request->middle_tee_length;
-// $course->front_tee_length = $request->front_tee_length;
-// $course->tournament_tee_slope_rating = $request->tournament_tee_slope_rating;
-// $course->back_tee_slope_rating = $request->back_tee_slope_rating;
-// $course->middle_tee_slope_rating = $request->middle_tee_slope_rating;
-// $course->front_tee_slope_rating = $request->front_tee_slope_rating;

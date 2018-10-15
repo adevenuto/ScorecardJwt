@@ -2,10 +2,12 @@
 	<div id="sidebar-container">
 		<div id="mySidenav" 
 			 :class="[{'navIn': sideNavStatus}, 'sidenav']">
-		    <a href="/test" @click="toggleSideNav">About</a>
-		    <a href="#" @click="toggleSideNav">Services</a>
-		    <a href="#" @click="toggleSideNav">Clients</a>
-		    <a href="#" @click="toggleSideNav">Contact</a>
+			<div @click="toggleSideNav">
+				<router-link to="/courses">Find A Course</router-link>
+				<router-link to="#">Services</router-link>
+				<router-link to="#">Clients</router-link>
+				<router-link to="#">Contact</router-link>
+			</div>
 		    <hr>
 		    <div class="auth" @click="toggleSideNav">
 		    	<template v-if="!currentUser">
@@ -47,26 +49,26 @@
 <style scoped>
 	#sidebar-container .sidenav {
 	    height: 100%; 
-	    width: 0;
+	    width: 240px;
 	    position: fixed;
 	    z-index: 8888;
 	    top: 0;
-	    right: -1px;
+	    right: -240px;
 	    background-color: rgba(17, 17, 17, 0.86);
 	    overflow-x: hidden;
-	    padding-top: 60px;
+		padding: 60px 25px 0px 25px;
 	    transition: 0.3s;
 	}
   	#sidebar-container .sidenav a {
-        padding: 8px 8px 8px 32px;
+        padding: 0;
         text-decoration: none;
-        font-size: 25px;
+        font-size: 22px;
         color: #fff;
         display: block;
         transition: 0.3s
     }
    	#sidebar-container .sidenav hr {
-        margin: 5px 32px 5px 32px;
+        margin: 5px 0;
         border-color: #4c4c4c;
     }
 	#sidebar-container .sidenav .auth a {
@@ -77,11 +79,14 @@
 	#sidebar-container .sidenav #logout {
 	    color: #f00;
 	}
-	/*Triggered by jQuery*/
+
 	#sidebar-container .sidenav.navIn {
-	    width: 240px;
+	    right: 0;
 	    border-left: 2px solid #0f0;
 	}
+	#sidebar-container .sidenav.navIn a {
+        padding: 6px 0;
+    }
 </style>
 
 

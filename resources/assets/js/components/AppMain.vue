@@ -58,9 +58,6 @@
 	    -o-transition: .25s ease-in-out;
 	    transition: .25s ease-in-out;nsition: .25s ease-in-out;
 	}
-	
-
-	/*Triggered by jQuery*/
 	#app-main #overlay.overlay {
 	    display: block;
 	    opacity: 1;
@@ -68,13 +65,11 @@
 
 	.fade-enter-active, .fade-leave-active {
 	  transition-property: opacity;
-	  transition-duration: .15s;
+	  transition-duration: .20s;
 	}
-
 	.fade-enter-active {
-	  transition-delay: .15s;
+	  transition-delay: .20s;
 	}
-
 	.fade-enter, .fade-leave-active {
 	  opacity: 0
 	}

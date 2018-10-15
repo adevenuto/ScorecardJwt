@@ -1,6 +1,7 @@
 import Landing from './components/Landing.vue';
 import Login from './components/auth/Login.vue';
-import Dashboard from './components/dashboard/Dashboard.vue';
+import Dashboard from './components/pages/dashboard/Dashboard.vue';
+import Courses from './components/pages/courses/CoursesAll.vue';
 
 export const routes = [
 	{
@@ -16,5 +17,9 @@ export const routes = [
 		path: '/dashboard',
 		component: Dashboard,
 		meta: {requiresAuth: true}
+	},
+	{
+		path: '/courses',
+		component: Courses
 	}
 ]

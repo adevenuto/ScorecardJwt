@@ -1,22 +1,17 @@
 <template>
-	<div>
-		<h1 style="text-transform: capitalize;">{{currentUser.name}} Dashboard</h1>
-		<div v-for="course in allCourses" :key="course.id">
-			{{course.course_name}}
-			{{course.course_holes}}
-		</div>
+<div>
+	<div v-for="course in courses" :key="course.id">
+		{{course.course_name}}
+		{{course.course_holes}}
 	</div>
+</div>
 </template>
 
 <script>
-	export default {
-		name: 'Dashboard',
+  export default {
+    name: 'courses',
 		computed: {
-			currentUser() {
-				return this.$store.getters.currentUser;
-			},
-			allCourses() {
-				console.log(this.$store.getters.getCourses)
+			courses() {
 				return this.$store.getters.getCourses;
 			}
 		},
@@ -35,9 +30,9 @@
 				})
 			}		
 		}
-	}
+  }
 </script>
 
 <style scoped>
-	
+
 </style>

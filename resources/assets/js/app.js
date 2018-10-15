@@ -10,7 +10,6 @@ import StoreData from './store/appStore.js';
 import AppMain from './components/AppMain.vue';
 
 
-
 Vue.use(VueRouter);
 Vue.use(Vuex);
 
