@@ -13,21 +13,15 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('courses', 'CoursesController@allCourses');
+
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    
-		Route::get('user/courses', 'CoursesController@userCourses');
-		Route::get('courses', 'CoursesController@allCourses');
-	
-
-	
+		Route::post('refresh', 'AuthController@refresh');
 });
 
-	// Route::get('course/{id}/create/holes', 'HolesController@create');
-	// Route::post('hole/create', 'HolesController@store');
-
-	// Route::post("/getcountries", "CountriesController@getCountries");
-	// Route::post("/getstates/{id}", "StatesController@getStates");
-	// Route::post("/getcities/{id}", "CitiesController@getCities");
+Route::group(['middleware' => 'jwt.auth'], function($router){
+	Route::get('user/courses', 'CoursesController@userCourses');
+});
+	

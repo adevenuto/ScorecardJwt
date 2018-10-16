@@ -12,7 +12,10 @@ export default {
 		isLoggedIn: !!user,
 		loading: false,
 		auth_error: null,
-		courses: null
+		courses: null,
+		user: {
+			courses: null
+		}
 	},
 	getters: {
 		sideNavStatus(state) {
@@ -32,6 +35,9 @@ export default {
 		},
 		getCourses(state) {
 			return state.courses;
+		},
+		currentUserCourses(state) {
+			return state.user.courses;
 		}
 	},
 	mutations: {
@@ -57,7 +63,26 @@ export default {
 		},
 		setCourses(state, courses) {
 			state.courses = courses;
+		}, 
+		setUserCourses(state, courses) {
+			state.user.courses = courses;
 		}
 	},
-	actions: {}
+	actions: {
+		fetchUserCourses: function(context) {
+			axios.get('/api/user/courses', {
+				headers: {
+					'Authorization': `Bearer ${context.state.currentUser.token}`
+				},
+				params: {
+					userId: context.getters.currentUser.id
+				}
+			}).then( res => {
+				let courses = res.data;
+				context.commit('setUserCourses', courses);
+			}).catch( err => {
+				console.log(err)
+			})
+		}
+	}
 }

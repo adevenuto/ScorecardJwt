@@ -12,12 +12,10 @@ class CoursesController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['allCourses', 'userCourses']]);
+        // $this->middleware('auth', ['except' => ['allCourses']]);
     }
-
     public function allCourses()
     {   
-        \Log::info("helloooo");
         $courses = Course::all();
         return response()->json($courses);
     }
@@ -25,8 +23,7 @@ class CoursesController extends Controller
     {   
         $user = User::find($request->userId);
         $userCourses = $user->courses;
-        return response()->json($userCourses);
-        
+        return response()->json($userCourses);   
     }
 
     public function store(Request $request)

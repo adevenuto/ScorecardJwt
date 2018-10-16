@@ -20,7 +20,7 @@
 		}, 
 		methods: {
 			fetchCourses: function() {
-				return axios.get('/api/auth/courses')
+				return axios.get('/api/courses')
 				.then( res => {
 					let courses = res.data;
 					this.$store.commit('setCourses', courses);

@@ -2642,7 +2642,10 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a"
 		isLoggedIn: !!user,
 		loading: false,
 		auth_error: null,
-		courses: null
+		courses: null,
+		user: {
+			courses: null
+		}
 	},
 	getters: {
 		sideNavStatus: function sideNavStatus(state) {
@@ -2662,6 +2665,9 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a"
 		},
 		getCourses: function getCourses(state) {
 			return state.courses;
+		},
+		currentUserCourses: function currentUserCourses(state) {
+			return state.user.courses;
 		}
 	},
 	mutations: {
@@ -2687,9 +2693,28 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["a"
 		},
 		setCourses: function setCourses(state, courses) {
 			state.courses = courses;
+		},
+		setUserCourses: function setUserCourses(state, courses) {
+			state.user.courses = courses;
 		}
 	},
-	actions: {}
+	actions: {
+		fetchUserCourses: function fetchUserCourses(context) {
+			axios.get('/api/user/courses', {
+				headers: {
+					'Authorization': 'Bearer ' + context.state.currentUser.token
+				},
+				params: {
+					userId: context.getters.currentUser.id
+				}
+			}).then(function (res) {
+				var courses = res.data;
+				context.commit('setUserCourses', courses);
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -48230,7 +48255,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		fetchCourses: function fetchCourses() {
 			var _this = this;
 
-			return axios.get('/api/auth/courses').then(function (res) {
+			return axios.get('/api/courses').then(function (res) {
 				var courses = res.data;
 				_this.$store.commit('setCourses', courses);
 			}).catch(function (err) {
@@ -48343,33 +48368,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Dashboard',
 	computed: {
 		currentUser: function currentUser() {
 			return this.$store.getters.currentUser;
+		},
+		currentUserCourses: function currentUserCourses() {
+			return this.$store.getters.currentUserCourses;
 		}
 	},
 	mounted: function mounted() {
 		var currentUser = this.$store.getters.currentUser;
-		this.fetchUserCourses(currentUser);
+		this.$store.dispatch('fetchUserCourses', currentUser);
 	},
-	methods: {
-		fetchUserCourses: function fetchUserCourses(currentUser) {
-			return axios.get('/api/auth/user/courses', {
-				params: {
-					userId: currentUser.id
-				}
-			}).then(function (res) {
-				console.log(res);
-				// let courses = res.data.courses;
-				// this.$store.commit('setCourses', courses);
-			}).catch(function (err) {
-				console.log(err);
-			});
-		}
-	}
+	methods: {}
 });
 
 /***/ }),
@@ -48377,7 +48397,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 100 */
@@ -48426,7 +48446,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "text-transform": "capitalize"
     }
-  }, [_vm._v(_vm._s(_vm.currentUser.name) + "'s Dashboard")])])
+  }, [_vm._v(_vm._s(_vm.currentUser.name) + "'s Dashboard")]), _vm._v(" "), _c('div', _vm._l((_vm.currentUserCourses), function(course) {
+    return _c('div', {
+      key: course.id
+    }, [_vm._v("\n\t\t\t" + _vm._s(course.course_name) + "\n\t\t\t" + _vm._s(course.course_holes) + "\n\t\t\t" + _vm._s(course.course_email) + "\n\t\t")])
+  }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
