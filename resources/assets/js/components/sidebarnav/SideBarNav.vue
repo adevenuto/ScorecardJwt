@@ -12,6 +12,7 @@
 		    <div class="auth" @click="toggleSideNav">
 		    	<template v-if="!currentUser">
 		    		<router-link to="/login">Login</router-link>
+		    		<router-link to="/register">Register</router-link>
 		    	</template>
 		    	<template v-else>
 		    		<router-link to="/dashboard">Dashboard</router-link>

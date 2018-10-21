@@ -1,31 +1,27 @@
 <template>
 	<div class="col-sm-6 col-sm-offset-3 pt-3">
-		<form @submit.prevent="authenticate">
-			<div class="form-head">
-        <h3>Login</h3><div class="loader" v-if="waiting"></div>
+		<form @submit.prevent="registerUser">
+      <div class="form-head">
+        <h3>Register</h3><div class="loader" v-if="waiting"></div>
       </div>
 			<div class="form-group">
 		        <input type="text" v-model="form.name" class="form-control" id="inputName" placeholder="Name" required>
       		</div>
       		<div class="form-group">
 		        <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email Address" required>
+            <span class="errors" v-if="emailTaken">{{emailTaken}}</span>
       		</div>
       		<div class="form-group">
 		        <input type="password" v-model="form.password" class="form-control" id="inputPassword" placeholder="Password" required>
       		</div>
-      		
-	        <button class="btn btn-block">Login</button>
-
-      		<template v-if="authError">
-      			<p class="errors">{{authError}}</p>
-      		</template>
+	        <button class="btn btn-block">Register Now</button>
 		</form>
 	</div>
 </template>
 
 <script>
 	export default {
-		name: 'Login',
+		name: 'Register',
 		data() {
 			return {
 				form: {
@@ -33,35 +29,34 @@
 					email: '',
 					password: ''
 				},
-				waiting: false,
-				err: 'Username or password are incorrect'
+        emailTaken: '',
+        waiting: false
 			}
-		},
-		watch: {
+    },
+    watch: {
       'form.email': function() {
-        this.$store.commit('loginFailed', '');
+        this.$data.emailTaken = '';
       }
     },
-		computed: {
-			authError() {
-				return this.$store.getters.authError;
-			}
-		},
 		methods: {
-			authenticate() {
-				let credentials = this.$data.form; 
-				this.$data.waiting = true;
-				return axios.post('/api/auth/login', credentials)
+			registerUser() {
+        let credentials = this.$data.form;
+        this.$data.waiting = true; 
+				return axios.post('/api/auth/register', credentials)
 					.then( payload => {
-						this.$data.waiting = false;
-						this.$store.commit('loginSuccess', payload);
-		 				this.$router.push({path: '/dashboard'});
+            let emailTakenMessage = payload.data.email;
+            console.log(emailTakenMessage)
+            if (!emailTakenMessage) {
+              this.$data.waiting = false;
+              this.$router.push({path: '/login'});
+            } else {
+              this.$data.waiting = false; 
+              this.$data.emailTaken = emailTakenMessage[0];
+            }
 					})
 					.catch( err => {
-						this.$data.waiting = false;
-						this.$store.commit('loginFailed', this.$data.err);
+            console.log(err);
 					})
-
 			}
 		}
 	}

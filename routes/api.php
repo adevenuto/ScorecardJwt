@@ -18,6 +18,7 @@ Route::get('courses', 'CoursesController@allCourses');
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
+    Route::post('register', 'AuthController@register');
 		Route::post('refresh', 'AuthController@refresh');
 });
 
