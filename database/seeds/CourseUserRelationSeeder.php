@@ -12,6 +12,6 @@ class CourseUserRelationSeeder extends Seeder
      */
     public function run()
     {
-    	DB::unprepared(File::get('storage/queries/course_user_relation.sql'));
+    	DB::unprepared(File::get('storage/queries/course_user_2018-10-20.sql'));
     }
 }

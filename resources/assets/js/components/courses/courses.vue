@@ -1,8 +1,10 @@
 <template>
 <div>
 	<div v-for="course in courses" :key="course.id">
-		{{course.course_name}}
-		{{course.course_holes}}
+		<h3 style="margin: 0;">{{course.name}}</h3>
+		<i>{{course.holes}}</i><br>
+		<i>{{course.email}}</i>
+		<hr>
 	</div>
 </div>
 </template>

@@ -15,17 +15,17 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('course_name',255);
-            $table->string('course_holes',255);
-            $table->string('course_address',255);
-            $table->string('course_phone_number',50);
-            $table->string('course_postal_code',18);
-            $table->string('course_website',255)->nullable();
-            $table->string('course_email',255)->nullable();
-            $table->string('course_price')->nullable();
-            $table->string('course_country')->nullable();
-            $table->string('course_state')->nullable();
-            $table->string('course_city')->nullable();
+            $table->string('name',255);
+            $table->string('holes',255);
+            $table->string('address',255);
+            $table->string('phone_number',50);
+            $table->string('postal_code',18);
+            $table->string('website',255)->nullable();
+            $table->string('email',255)->nullable();
+            $table->string('price')->nullable();
+            $table->string('country')->nullable();
+            $table->string('state')->nullable();
+            $table->string('city')->nullable();
             $table->timestamps();
         });
         Schema::create('course_user', function(Blueprint $table) {

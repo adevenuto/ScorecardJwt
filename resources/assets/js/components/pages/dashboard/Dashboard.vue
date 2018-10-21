@@ -3,9 +3,10 @@
 		<h1 style="text-transform: capitalize;">{{currentUser.name}}'s Dashboard</h1>
 		<div>
 			<div v-for="course in currentUserCourses" :key="course.id">
-				{{course.course_name}}
-				{{course.course_holes}}
-				{{course.course_email}}
+				<h3 style="margin: 0;">{{course.name}}</h3>
+				<i>{{course.holes}}</i><br>
+				<i>{{course.email}}</i>
+				<hr>
 			</div>
 		</div>
 	</div>

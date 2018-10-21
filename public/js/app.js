@@ -48240,6 +48240,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'courses',
@@ -48270,7 +48272,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 95 */
@@ -48318,7 +48320,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   return _c('div', _vm._l((_vm.courses), function(course) {
     return _c('div', {
       key: course.id
-    }, [_vm._v("\n\t\t" + _vm._s(course.course_name) + "\n\t\t" + _vm._s(course.course_holes) + "\n\t")])
+    }, [_c('h3', {
+      staticStyle: {
+        "margin": "0"
+      }
+    }, [_vm._v(_vm._s(course.name))]), _vm._v(" "), _c('i', [_vm._v(_vm._s(course.holes))]), _c('br'), _vm._v(" "), _c('i', [_vm._v(_vm._s(course.email))]), _vm._v(" "), _c('hr')])
   }))
 },staticRenderFns: []}
 module.exports.render._withStripped = true
@@ -48374,6 +48380,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Dashboard',
@@ -48397,7 +48404,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 /***/ }),
 /* 100 */
@@ -48449,7 +48456,11 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v(_vm._s(_vm.currentUser.name) + "'s Dashboard")]), _vm._v(" "), _c('div', _vm._l((_vm.currentUserCourses), function(course) {
     return _c('div', {
       key: course.id
-    }, [_vm._v("\n\t\t\t" + _vm._s(course.course_name) + "\n\t\t\t" + _vm._s(course.course_holes) + "\n\t\t\t" + _vm._s(course.course_email) + "\n\t\t")])
+    }, [_c('h3', {
+      staticStyle: {
+        "margin": "0"
+      }
+    }, [_vm._v(_vm._s(course.name))]), _vm._v(" "), _c('i', [_vm._v(_vm._s(course.holes))]), _c('br'), _vm._v(" "), _c('i', [_vm._v(_vm._s(course.email))]), _vm._v(" "), _c('hr')])
   }))])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
