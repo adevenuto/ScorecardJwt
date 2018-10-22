@@ -5,17 +5,15 @@
         <h3>Login</h3><div class="loader" v-if="waiting"></div>
       </div>
 			<div class="form-group">
-		        <input type="text" v-model="form.name" class="form-control" id="inputName" placeholder="Name" required>
+		        <input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
       		</div>
       		<div class="form-group">
-		        <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email Address" required>
+		        <input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
       		</div>
       		<div class="form-group">
-		        <input type="password" v-model="form.password" class="form-control" id="inputPassword" placeholder="Password" required>
+		        <input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
       		</div>
-      		
 	        <button class="btn btn-block">Login</button>
-
       		<template v-if="authError">
       			<p class="errors">{{authError}}</p>
       		</template>

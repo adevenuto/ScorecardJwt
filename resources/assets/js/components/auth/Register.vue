@@ -5,14 +5,17 @@
         <h3>Register</h3><div class="loader" v-if="waiting"></div>
       </div>
 			<div class="form-group">
-		        <input type="text" v-model="form.name" class="form-control" id="inputName" placeholder="Name" required>
+		        <input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
       		</div>
       		<div class="form-group">
-		        <input type="email" v-model="form.email" class="form-control" id="inputEmail" placeholder="Email Address" required>
+		        <input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
             <span class="errors" v-if="emailTaken">{{emailTaken}}</span>
       		</div>
       		<div class="form-group">
-		        <input type="password" v-model="form.password" class="form-control" id="inputPassword" placeholder="Password" required>
+		        <input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
+      		</div>
+      		<div class="form-group">
+		        <input type="password" v-model="form.password_confirmation" class="form-control" placeholder="Confirm Password" required>
       		</div>
 	        <button class="btn btn-block">Register Now</button>
 		</form>
@@ -27,7 +30,8 @@
 				form: {
 					name: '',
 					email: '',
-					password: ''
+          password: '',
+          password_confirmation: ''
 				},
         emailTaken: '',
         waiting: false

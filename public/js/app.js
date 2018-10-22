@@ -2336,8 +2336,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Login',
@@ -2408,6 +2406,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: 'Register',
@@ -2416,7 +2417,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       form: {
         name: '',
         email: '',
-        password: ''
+        password: '',
+        password_confirmation: ''
       },
       emailTaken: '',
       waiting: false
@@ -5320,7 +5322,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n#header-main[data-v-4e7176d9] {\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-direction: row;\n\t\t    flex-direction: row;\n\t\t-ms-flex-line-pack: center;\n\t\t    align-content: center;\n\t\t-ms-flex-pack: justify;\n\t\t    justify-content: space-between;\n\t\tbackground: #3c3d41;\n\t\tpadding: 10px 20px;\n\t\tcolor: #fff;\n}\n#header-main #header-logo[data-v-4e7176d9] {\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-direction: row;\n\t\t    flex-direction: row;\n\t\t-ms-flex-align: center;\n\t\t    align-items: center;\n}\n#header-main #header-logo .title[data-v-4e7176d9] {\n\t\tfont-size: 24px;\n\t    position: relative;\n    \ttop: 7px;\n    \tleft: 7px;\n}\n#hamburger[data-v-4e7176d9] {\n\t    position: relative;\n\t    display: -ms-flexbox;\n\t    display: flex;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\t    width: 40px;\n\t    height: 40px;\n    \tz-index: 9999;\n}\n#hamburger span[data-v-4e7176d9] {\n        display: block;\n        position: absolute;\n        height: 2px;\n        width: 100%;\n        background: #fff;\n        border-radius: 9px;\n        opacity: 1;\n        left: 0;\n        transform: rotate(0deg);\n        transition: .22s ease-in-out;\n}\n    /*Hamburger starting position*/\n#hamburger span[data-v-4e7176d9]:nth-child(1) {\n\t  top: 3px;\n}\n#hamburger span[data-v-4e7176d9]:nth-child(2) {\n\t  top: 17px;\n}\n#hamburger span[data-v-4e7176d9]:nth-child(3) {\n\t  top: 31px;\n}\n\t/* Hamburger animation nav-in */\n#hamburger.open span[data-v-4e7176d9] {\n\t\tbackground: #fff;\n}\n#hamburger.open span[data-v-4e7176d9]:nth-child(1) {\n\t    top: 17px;\n\t    transform: rotate(135deg);\n}\n#hamburger.open span[data-v-4e7176d9]:nth-child(2) {\n\t    opacity: 0;\n\t    background: #0f0;\n\t    left: -80px;\n\t    height: 4px;\n\t    width: 0;\n}\n#hamburger.open span[data-v-4e7176d9]:nth-child(3) {\n\t    top: 17px;\n\t    transform: rotate(-135deg);\n}\n", ""]);
+exports.push([module.i, "\n#header-main[data-v-4e7176d9] {\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-direction: row;\n\t\t    flex-direction: row;\n\t\t-ms-flex-line-pack: center;\n\t\t    align-content: center;\n\t\t-ms-flex-pack: justify;\n\t\t    justify-content: space-between;\n\t\tbackground: #3c3d41;\n\t\tpadding: 10px 20px;\n\t\tcolor: #fff;\n}\n#header-main #header-logo[data-v-4e7176d9] {\n\t\tdisplay: -ms-flexbox;\n\t\tdisplay: flex;\n\t\t-ms-flex-direction: row;\n\t\t    flex-direction: row;\n\t\t-ms-flex-align: center;\n\t\t    align-items: center;\n}\n#header-main #header-logo .title[data-v-4e7176d9] {\n\t\tfont-size: 28px;\n\t    margin-left: 7px;\n}\n#hamburger[data-v-4e7176d9] {\n\t    position: relative;\n\t    display: -ms-flexbox;\n\t    display: flex;\n\t    -ms-flex-direction: column;\n\t        flex-direction: column;\n\t    -ms-flex-pack: distribute;\n\t        justify-content: space-around;\n\t    width: 40px;\n\t    height: 40px;\n    \tz-index: 9999;\n}\n#hamburger span[data-v-4e7176d9] {\n        display: block;\n        position: absolute;\n        height: 2px;\n        width: 100%;\n        background: #fff;\n        border-radius: 9px;\n        opacity: 1;\n        left: 0;\n        transform: rotate(0deg);\n        transition: .22s ease-in-out;\n}\n    /*Hamburger starting position*/\n#hamburger span[data-v-4e7176d9]:nth-child(1) {\n\t  top: 3px;\n}\n#hamburger span[data-v-4e7176d9]:nth-child(2) {\n\t  top: 17px;\n}\n#hamburger span[data-v-4e7176d9]:nth-child(3) {\n\t  top: 31px;\n}\n\t/* Hamburger animation nav-in */\n#hamburger.open span[data-v-4e7176d9] {\n\t\tbackground: #fff;\n}\n#hamburger.open span[data-v-4e7176d9]:nth-child(1) {\n\t    top: 17px;\n\t    transform: rotate(135deg);\n}\n#hamburger.open span[data-v-4e7176d9]:nth-child(2) {\n\t    opacity: 0;\n\t    background: #0f0;\n\t    left: -80px;\n\t    height: 4px;\n\t    width: 0;\n}\n#hamburger.open span[data-v-4e7176d9]:nth-child(3) {\n\t    top: 17px;\n\t    transform: rotate(-135deg);\n}\n", ""]);
 
 /***/ }),
 /* 54 */
@@ -33465,7 +33467,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "inputName",
       "placeholder": "Name",
       "required": ""
     },
@@ -33490,7 +33491,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "email",
-      "id": "inputEmail",
       "placeholder": "Email Address",
       "required": ""
     },
@@ -33517,7 +33517,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "password",
-      "id": "inputPassword",
       "placeholder": "Password",
       "required": ""
     },
@@ -33528,6 +33527,30 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
       "input": function($event) {
         if ($event.target.composing) { return; }
         _vm.$set(_vm.form, "password", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.password_confirmation),
+      expression: "form.password_confirmation"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "password",
+      "placeholder": "Confirm Password",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.password_confirmation)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.form, "password_confirmation", $event.target.value)
       }
     }
   })]), _vm._v(" "), _c('button', {
@@ -33591,7 +33614,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     attrs: {
       "to": "/register"
     }
-  }, [_vm._v("Register")])] : [_c('router-link', {
+  }, [_vm._v("Sign up")])] : [_c('router-link', {
     attrs: {
       "to": "/dashboard"
     }
@@ -33734,7 +33757,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "text",
-      "id": "inputName",
       "placeholder": "Name",
       "required": ""
     },
@@ -33759,7 +33781,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "email",
-      "id": "inputEmail",
       "placeholder": "Email Address",
       "required": ""
     },
@@ -33784,7 +33805,6 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticClass: "form-control",
     attrs: {
       "type": "password",
-      "id": "inputPassword",
       "placeholder": "Password",
       "required": ""
     },

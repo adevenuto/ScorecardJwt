@@ -48,10 +48,8 @@
 		align-items: center;
 	}
 	#header-main #header-logo .title {
-		font-size: 24px;
-	    position: relative;
-    	top: 7px;
-    	left: 7px;
+		font-size: 28px;
+	    margin-left: 7px;
 	}
 	#hamburger {
 	    position: relative;
