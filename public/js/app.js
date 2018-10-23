@@ -2408,49 +2408,54 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-  name: 'Register',
-  data: function data() {
-    return {
-      form: {
-        name: '',
-        email: '',
-        password: '',
-        password_confirmation: ''
-      },
-      emailTaken: '',
-      waiting: false
-    };
-  },
+	name: 'Register',
+	data: function data() {
+		return {
+			form: {
+				name: '',
+				email: '',
+				password: ''
+			},
+			emailError: '',
+			passwordError: '',
+			waiting: false
+		};
+	},
 
-  watch: {
-    'form.email': function formEmail() {
-      this.$data.emailTaken = '';
-    }
-  },
-  methods: {
-    registerUser: function registerUser() {
-      var _this = this;
+	watch: {
+		'form.email': function formEmail() {
+			this.$data.emailError = '';
+		},
+		'form.password': function formPassword() {
+			this.$data.passwordError = '';
+		}
+	},
+	methods: {
+		registerUser: function registerUser() {
+			var _this = this;
 
-      var credentials = this.$data.form;
-      this.$data.waiting = true;
-      return axios.post('/api/auth/register', credentials).then(function (payload) {
-        var emailTakenMessage = payload.data.email;
-        console.log(emailTakenMessage);
-        if (!emailTakenMessage) {
-          _this.$data.waiting = false;
-          _this.$router.push({ path: '/login' });
-        } else {
-          _this.$data.waiting = false;
-          _this.$data.emailTaken = emailTakenMessage[0];
-        }
-      }).catch(function (err) {
-        console.log(err);
-      });
-    }
-  }
+			var credentials = this.$data.form;
+			this.$data.waiting = true;
+			return axios.post('/api/auth/register', credentials).then(function (payload) {
+				var error = payload.data.error;
+				if (!error) {
+					_this.$data.waiting = false;
+					_this.$router.push({ path: '/login' });
+				} else {
+					_this.$data.waiting = false;
+					var parsedError = JSON.parse(error);
+					var emailError = parsedError.email;
+					var passwordError = parsedError.password;
+					if (emailError) _this.$data.emailError = parsedError.email[0];
+					if (passwordError) _this.$data.passwordError = parsedError.password[0];
+				}
+			}).catch(function (err) {
+				console.log(err);
+			});
+		}
+	}
 });
 
 /***/ }),
@@ -33503,9 +33508,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$set(_vm.form, "email", $event.target.value)
       }
     }
-  }), _vm._v(" "), (_vm.emailTaken) ? _c('span', {
+  }), _vm._v(" "), (_vm.emailError) ? _c('span', {
     staticClass: "errors"
-  }, [_vm._v(_vm._s(_vm.emailTaken))]) : _vm._e()]), _vm._v(" "), _c('div', {
+  }, [_vm._v(_vm._s(_vm.emailError))]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-group"
   }, [_c('input', {
     directives: [{
@@ -33529,31 +33534,9 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$set(_vm.form, "password", $event.target.value)
       }
     }
-  })]), _vm._v(" "), _c('div', {
-    staticClass: "form-group"
-  }, [_c('input', {
-    directives: [{
-      name: "model",
-      rawName: "v-model",
-      value: (_vm.form.password_confirmation),
-      expression: "form.password_confirmation"
-    }],
-    staticClass: "form-control",
-    attrs: {
-      "type": "password",
-      "placeholder": "Confirm Password",
-      "required": ""
-    },
-    domProps: {
-      "value": (_vm.form.password_confirmation)
-    },
-    on: {
-      "input": function($event) {
-        if ($event.target.composing) { return; }
-        _vm.$set(_vm.form, "password_confirmation", $event.target.value)
-      }
-    }
-  })]), _vm._v(" "), _c('button', {
+  }), _vm._v(" "), (_vm.passwordError) ? _c('span', {
+    staticClass: "errors"
+  }, [_vm._v(_vm._s(_vm.passwordError))]) : _vm._e()]), _vm._v(" "), _c('button', {
     staticClass: "btn btn-block"
   }, [_vm._v("Register Now")])])])
 },staticRenderFns: []}
@@ -33701,8 +33684,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "logo",
     attrs: {
-      "src": "/img/scorecardlogo.svg",
-      "width": "45px",
+      "src": "/img/logo.svg",
+      "width": "25px",
       "alt": "logo"
     }
   }), _vm._v(" "), _c('span', {
@@ -33855,8 +33838,8 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('img', {
     staticClass: "logo",
     attrs: {
-      "src": "/img/scorecardlogo.svg",
-      "width": "130px",
+      "src": "/img/logo.svg",
+      "width": "70px",
       "alt": "logo"
     }
   })])]), _vm._v(" "), _c('div', {

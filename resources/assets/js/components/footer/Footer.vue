@@ -4,7 +4,7 @@
 	        <div class="row">
 	            <div class="col-sm-3 text-center">
 	                <a href="/"> 
-	                    <img src="/img/scorecardlogo.svg" class="logo" width="130px" alt="logo">
+	                    <img src="/img/logo.svg" class="logo" width="70px" alt="logo">
 	                </a>
 	            </div>
 	            <div class="col-sm-3">

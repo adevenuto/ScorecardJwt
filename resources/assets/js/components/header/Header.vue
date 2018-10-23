@@ -2,7 +2,7 @@
 	<div id="header-main">
 		<router-link to="/">
 			<div id="header-logo">
-				<img src="/img/scorecardlogo.svg" class="logo" width="45px" alt="logo">
+				<img src="/img/logo.svg" class="logo" width="25px" alt="logo">
 				<span class="title">SCOR</span>
 			</div>
 		</router-link>

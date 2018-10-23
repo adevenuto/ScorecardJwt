@@ -9,14 +9,13 @@
       		</div>
       		<div class="form-group">
 		        <input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
-            <span class="errors" v-if="emailTaken">{{emailTaken}}</span>
+            <span class="errors" v-if="emailError">{{emailError}}</span>
       		</div>
       		<div class="form-group">
 		        <input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
+						<span class="errors" v-if="passwordError">{{passwordError}}</span>
       		</div>
-      		<div class="form-group">
-		        <input type="password" v-model="form.password_confirmation" class="form-control" placeholder="Confirm Password" required>
-      		</div>
+
 	        <button class="btn btn-block">Register Now</button>
 		</form>
 	</div>
@@ -30,16 +29,19 @@
 				form: {
 					name: '',
 					email: '',
-          password: '',
-          password_confirmation: ''
+          password: ''
 				},
-        emailTaken: '',
+        emailError: '',
+        passwordError: '',
         waiting: false
 			}
     },
     watch: {
       'form.email': function() {
-        this.$data.emailTaken = '';
+        this.$data.emailError = '';
+			},
+			'form.password': function() {
+        this.$data.passwordError = '';
       }
     },
 		methods: {
@@ -48,14 +50,17 @@
         this.$data.waiting = true; 
 				return axios.post('/api/auth/register', credentials)
 					.then( payload => {
-            let emailTakenMessage = payload.data.email;
-            console.log(emailTakenMessage)
-            if (!emailTakenMessage) {
+						let error = payload.data.error;
+            if (!error) {
               this.$data.waiting = false;
               this.$router.push({path: '/login'});
             } else {
-              this.$data.waiting = false; 
-              this.$data.emailTaken = emailTakenMessage[0];
+							this.$data.waiting = false;
+							let parsedError = JSON.parse(error);
+							let emailError = parsedError.email;
+							let passwordError = parsedError.password; 
+							if (emailError) this.$data.emailError = parsedError.email[0];
+              if (passwordError) this.$data.passwordError = parsedError.password[0];
             }
 					})
 					.catch( err => {
