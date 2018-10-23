@@ -2442,7 +2442,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				var error = payload.data.error;
 				if (!error) {
 					_this.$data.waiting = false;
-					_this.$router.push({ path: '/login' });
+					_this.$router.push({ path: '/register/success' });
 				} else {
 					_this.$data.waiting = false;
 					var parsedError = JSON.parse(error);
@@ -2786,11 +2786,14 @@ $(function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue__ = __webpack_require__(64);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_dashboard_Dashboard_vue__ = __webpack_require__(69);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_dashboard_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_dashboard_Dashboard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_courses_CoursesAll_vue__ = __webpack_require__(68);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_courses_CoursesAll_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_courses_CoursesAll_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue__ = __webpack_require__(100);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue__ = __webpack_require__(69);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue__ = __webpack_require__(68);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
+
 
 
 
@@ -2808,12 +2811,15 @@ var routes = [{
 	path: '/register',
 	component: __WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue___default.a
 }, {
+	path: '/register/success',
+	component: __WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue___default.a
+}, {
 	path: '/dashboard',
-	component: __WEBPACK_IMPORTED_MODULE_3__components_pages_dashboard_Dashboard_vue___default.a,
+	component: __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue___default.a,
 	meta: { requiresAuth: true }
 }, {
 	path: '/courses',
-	component: __WEBPACK_IMPORTED_MODULE_4__components_pages_courses_CoursesAll_vue___default.a
+	component: __WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue___default.a
 }];
 
 /***/ }),
@@ -48862,6 +48868,130 @@ module.exports = function(module) {
 __webpack_require__(13);
 module.exports = __webpack_require__(14);
 
+
+/***/ }),
+/* 96 */,
+/* 97 */,
+/* 98 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'RegistrationSuccess',
+	data: function data() {
+		return {
+			successMessage: 'Success'
+		};
+	}
+});
+
+/***/ }),
+/* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+exports.push([module.i, "\n.success-message[data-v-a091b3f8] {\n\tdisplay: -ms-flexbox;\n\tdisplay: flex;\n\t-ms-flex-direction: column;\n\t    flex-direction: column;\n\t-ms-flex-align: center;\n\t    align-items: center;\n\t-ms-flex-pack: center;\n\t    justify-content: center;\n\tmin-height: 500px;\n}\n.success-message h1[data-v-a091b3f8] {\n\tfont-size: 4rem;\n\tfont-weight: 600;\n}\n.success-message p[data-v-a091b3f8] {\n\tfont-size: 1.25rem;\n\tfont-weight: 600;\n\tmargin-top: 20px;\n}\n", ""]);
+
+/***/ }),
+/* 100 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(102)
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(98),
+  /* template */
+  __webpack_require__(101),
+  /* scopeId */
+  "data-v-a091b3f8",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/vagrant/Code/scorecard.tony/resources/assets/js/components/pages/registrationSuccess/RegistrationSuccess.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] RegistrationSuccess.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-a091b3f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-a091b3f8", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-sm-6 col-sm-offset-3"
+  }, [_c('div', {
+    staticClass: "success-message"
+  }, [_c('h1', [_vm._v(_vm._s(_vm.successMessage))]), _vm._v(" "), _c('img', {
+    attrs: {
+      "src": "/img/golf-sticks-in-bag.svg",
+      "width": "160",
+      "alt": "golfclubs img"
+    }
+  }), _vm._v(" "), _c('p', [_vm._v("Congratulations, all thats left is validating your email address. Please check your inbox, we've sent a link to activate your account.")])])])
+},staticRenderFns: []}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-a091b3f8", module.exports)
+  }
+}
+
+/***/ }),
+/* 102 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(99);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("3568ec79", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-a091b3f8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegistrationSuccess.vue", function() {
+     var newContent = require("!!../../../../../../node_modules/css-loader/index.js!../../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-a091b3f8\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./RegistrationSuccess.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

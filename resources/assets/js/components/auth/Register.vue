@@ -53,7 +53,7 @@
 						let error = payload.data.error;
             if (!error) {
               this.$data.waiting = false;
-              this.$router.push({path: '/login'});
+              this.$router.push({path: '/register/success'});
             } else {
 							this.$data.waiting = false;
 							let parsedError = JSON.parse(error);
