@@ -8,6 +8,7 @@
 <title>{{ config('app.name', 'Laravel') }}</title>
 <!-- Font-Awesome -->
 <link rel="stylesheet" type="text/css" href="{{asset('css/font-awesome/css/font-awesome.min.css')}}">
+<link href="https://fonts.googleapis.com/css?family=Kanit:300,400,600" rel="stylesheet">
 <!-- Styles -->
 <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <link href="{{ asset('css/bootstrap-form-helpers.min.css') }}" rel="stylesheet">
