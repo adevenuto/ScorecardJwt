@@ -1,22 +1,27 @@
 <template>
 	<div class="col-sm-6 col-sm-offset-3 pt-3">
 		<form @submit.prevent="authenticate">
+			<div class="validate-email-message">
+				We have sent an email Validation link to your inbox. Please, use that link to validate your account. Or, <a href="">resend link</a>
+				<hr>
+			</div>
 			<div class="form-head">
-        <h3>Login</h3><div class="loader" v-if="waiting"></div>
+        <h3>Login</h3>
+				<div class="loader" v-if="waiting"></div>
       </div>
+			<!-- <div class="form-group">
+				<input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
+			</div> -->
 			<div class="form-group">
-		        <input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
-      		</div>
-      		<div class="form-group">
-		        <input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
-      		</div>
-      		<div class="form-group">
-		        <input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
-      		</div>
-	        <button class="btn btn-block">Login</button>
-      		<template v-if="authError">
-      			<p class="errors">{{authError}}</p>
-      		</template>
+				<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
+			</div>
+			<div class="form-group">
+				<input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
+			</div>
+			<button class="btn btn-block">Login</button>
+			<template v-if="authError">
+				<p class="errors">{{authError}}</p>
+			</template>
 		</form>
 	</div>
 </template>
@@ -107,8 +112,20 @@
     justify-content: flex-start;
     align-content: center;
   }
+	.validate-email-message {
+		font-size: 14px;
+    margin-bottom: 15px;
+    color: #5f5f5f;
+	}
+	.validate-email-message a {
+		color: #168ee4;
+    text-decoration: underline;
+	}
+	.validate-email-message a:hover {
+		color: #0072ff;
+	}
 	.errors {
-	    color: #f00;
+		color: #f00;
 	}
 	::-webkit-input-placeholder { /* Chrome */
 	  color: #9e9e9e;

@@ -13,20 +13,40 @@ use Illuminate\Mail\Message;
 
 class AuthController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('auth:api', ['except' => ['login', 'register']]);
+    public function __construct() {
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'verifyUser']]);
     }
-    public function login()
-    {
-        $credentials = request(['name', 'email', 'password']);
-        if (! $token = auth('api')->attempt($credentials)) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+
+    public function login(Request $request) {
+        $rules = [
+            'email' => 'required|email',
+            'password' => 'required',
+        ];
+        $input = $request->only('email', 'password');
+        $validator = Validator::make($input, $rules);
+        if($validator->fails()) {
+            $error = $validator->messages()->toJson();
+            return response()->json(['success'=> false, 'error'=> $error]);
         }
+        $credentials = [
+            'email' => $request->email,
+            'password' => $request->password,
+            'is_verified' => 1
+        ];
+        try {
+            // try to verify the credentials
+            if (! $token = JWTAuth::attempt($credentials)) {
+                return response()->json(['success' => false, 'error' => 'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'], 401);
+            }
+        } catch (JWTException $e) {
+            // making the token failed
+            return response()->json(['success' => false, 'error' => 'could_not_create_token'], 500);
+        }
+        // credentials passed, create token
         return $this->respondWithToken($token);
     }
-        public function register(Request $request)
-    {
+
+    public function register(Request $request) {
         $rules = [
             'name' => 'required|max:255',
             'email' => 'required|email|max:255|unique:users',
@@ -57,24 +77,22 @@ class AuthController extends Controller
             });
         return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
     }
-    public function authUser()
-    {
+
+    public function verifyUser() {
+        \Log::info('verify bitch');
+        return redirect('/login');
+    }
+
+    public function authUser() {
         return response()->json(auth('api')->user());
     }
-    /**
-     * Log the user out (Invalidate the token).
-     */
-    public function logout()
-    {
-        auth('api')->logout();
 
+    public function logout() {
+        auth('api')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
-    /**
-     * Refresh a token.
-     */
-    public function refresh()
-    {
+
+    public function refresh() {
         return $this->respondWithToken(auth('api')->refresh());
     }
     /**
@@ -82,8 +100,8 @@ class AuthController extends Controller
      *
      * @param  string $token
      */
-    protected function respondWithToken($token)
-    {
+
+    protected function respondWithToken($token) {
         return response()->json([
             'access_token' => $token,
             'user' => $this->guard()->user(),

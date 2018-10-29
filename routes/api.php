@@ -15,10 +15,12 @@ use Illuminate\Http\Request;
 
 Route::get('courses', 'CoursesController@allCourses');
 
+
 Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('login', 'AuthController@login');
     Route::post('logout', 'AuthController@logout');
     Route::post('register', 'AuthController@register');
+    Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
 		Route::post('refresh', 'AuthController@refresh');
 });
 
