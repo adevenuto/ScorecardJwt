@@ -3,7 +3,7 @@
 		<form @submit.prevent="authenticate">
 			<transition name="fade">
 				<div v-if="emailNotVerified" class="validate-email-message">
-					We've sent you a link to activate your inbox. Please, use that link to activate your account. Or, <a href="">resend link</a>
+					We've sent an activation link to your inbox. Please, use that to activate your account. Or, <a href="#" @click="sendVerificationEmail">resend link</a>
 					<hr>
 				</div>
 			</transition>
@@ -78,6 +78,16 @@
 						console.log(err);
 						this.$data.waiting = false;
 					})
+			},
+			sendVerificationEmail() {
+				let payload = this.$data.form;
+				return axios.post('/api/auth/user/send/activation/email', payload)
+					.then( payload => {
+						
+					})
+					.catch( err => {
+						console.log(err);
+					})
 			}
 		}
 	}
@@ -128,7 +138,7 @@
 	.validate-email-message {
 		font-size: 14px;
     margin-bottom: 15px;
-    color: #5f5f5f;
+    color: #d21717;
 	}
 	.validate-email-message a {
 		color: #168ee4;
@@ -138,7 +148,7 @@
 		color: #0072ff;
 	}
 	.errors {
-		color: #f00;
+		color: #d21717;
 	}
 	::-webkit-input-placeholder { /* Chrome */
 	  color: #9e9e9e;

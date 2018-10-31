@@ -14,7 +14,7 @@ use Illuminate\Mail\Message;
 class AuthController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'verifyUser']]);
+        $this->middleware('auth:api', ['except' => ['login', 'register', 'verifyUser', 'sendActivationEmail']]);
     }
 
     public function login(Request $request) {
@@ -101,7 +101,25 @@ class AuthController extends Controller
             DB::table('user_verifications')->where('token',$verification_code)->delete();
             return redirect('/login');
         }
+        // Verification code not found
         return response()->json(['success'=> false, 'error'=> "Verification code is invalid."]);
+    }
+
+    public function sendActivationEmail(Request $request) {
+        $requestEmail = $request->email;
+        $requestName = $request->name;
+        $user = User::where('email', '=', $requestEmail)->first();
+
+        $user_verification = DB::table('user_verifications')->where('user_id',$user->id)->first();
+        $token = $user_verification->token;
+        
+        $subject = "Please verify your email address.";
+        Mail::send('email.verify_email', ['name' => $requestName, 'verification_code' => $token],
+            function($mail) use ($requestEmail, $requestName, $subject){
+                $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                $mail->to($requestEmail, $requestName);
+                $mail->subject($subject);
+        });
     }
 
     public function authUser() {

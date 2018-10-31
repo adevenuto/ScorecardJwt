@@ -7659,9 +7659,9 @@ body, html {
 
 /**  Scrollbar-Track Styles */
 ::-webkit-scrollbar {
-  width: 12px;
+  width: 5px;
   /* for vertical scrollbars */
-  height: 12px;
+  height: 5px;
   /* for horizontal scrollbars */
 }
 
