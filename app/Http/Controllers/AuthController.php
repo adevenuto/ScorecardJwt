@@ -18,6 +18,15 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) {
+        // Check is user verified there email
+        $user = User::where('email', '=', $request->email)->first();
+        if($user) {
+            $user_verified = $user->is_verified;
+            if ($user_verified == 0) {
+                return response()->json(['error' => ['emailNotVerified' => 'user email not verified']]);
+            }
+        }
+        // If user is verified attemp login 
         $rules = [
             'email' => 'required|email',
             'password' => 'required',
@@ -36,11 +45,11 @@ class AuthController extends Controller
         try {
             // try to verify the credentials
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['success' => false, 'error' => 'Invalid Credentials. Please make sure you entered the right information and you have verified your email address.'], 401);
+                return response()->json(['error' => ['authError' => 'Username or password are incorrect']]);
             }
         } catch (JWTException $e) {
             // making the token failed
-            return response()->json(['success' => false, 'error' => 'could_not_create_token'], 500);
+            return response()->json(['error' => 'could_not_create_token'], 500);
         }
         // credentials passed, create token
         return $this->respondWithToken($token);
@@ -78,9 +87,21 @@ class AuthController extends Controller
         return response()->json(['success'=> true, 'message'=> 'Thanks for signing up! Please check your email to complete your registration.']);
     }
 
-    public function verifyUser() {
-        \Log::info('verify bitch');
-        return redirect('/login');
+    public function verifyUser($verification_code) {
+        $check = DB::table('user_verifications')->where('token',$verification_code)->first();
+        if(!is_null($check)){
+            $user = User::find($check->user_id);
+            if($user->is_verified == 1){
+                return response()->json([
+                    'success'=> true,
+                    'message'=> 'Account already verified..'
+                ]);
+            }
+            $user->update(['is_verified' => 1]);
+            DB::table('user_verifications')->where('token',$verification_code)->delete();
+            return redirect('/login');
+        }
+        return response()->json(['success'=> false, 'error'=> "Verification code is invalid."]);
     }
 
     public function authUser() {

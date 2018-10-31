@@ -5,22 +5,20 @@
         <h3>Register</h3><div class="loader" v-if="waiting"></div>
       </div>
 			<div class="form-group">
-		        <input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
-      		</div>
-      		<div class="form-group">
-		        <input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
-            <span class="errors" v-if="emailError">{{emailError}}</span>
-      		</div>
-      		<div class="form-group">
-		        <input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
-						<span class="errors" v-if="passwordError">{{passwordError}}</span>
-      		</div>
-
-	        <button class="btn btn-block">Register Now</button>
+				<input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
+			</div>
+			<div class="form-group">
+				<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
+				<span class="errors" v-if="emailError">{{emailError}}</span>
+			</div>
+			<div class="form-group">
+				<input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
+				<span class="errors" v-if="passwordError">{{passwordError}}</span>
+			</div>
+			<button class="btn btn-block">Register Now</button>
 		</form>
 	</div>
 </template>
-
 <script>
 	export default {
 		name: 'Register',
@@ -70,7 +68,6 @@
 		}
 	}
 </script>
-
 <style scoped>
 	form {
 		background: #d8e4d7;
@@ -130,7 +127,6 @@
 	  color: #9e9e9e;
 	  opacity: 1;
 	}
-
 /* For Spinner */
 .loader {
     border: 3px solid #f3f3f3;
@@ -143,13 +139,11 @@
     left: 6px;
     top: -3px;
 }
-
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
   100% { -webkit-transform: rotate(360deg); }
 }
-
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }

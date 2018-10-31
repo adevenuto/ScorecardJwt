@@ -2340,7 +2340,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Login',
@@ -2352,7 +2351,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 				password: ''
 			},
 			waiting: false,
-			err: 'Username or password are incorrect'
+			emailNotVerified: false
 		};
 	},
 
@@ -2373,12 +2372,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var credentials = this.$data.form;
 			this.$data.waiting = true;
 			return axios.post('/api/auth/login', credentials).then(function (payload) {
-				_this.$data.waiting = false;
-				_this.$store.commit('loginSuccess', payload);
-				_this.$router.push({ path: '/dashboard' });
+				var error = payload.data.error;
+				if (!error) {
+					_this.$data.waiting = false;
+					_this.$data.emailNotVerified = false;
+					_this.$store.commit('loginSuccess', payload);
+					_this.$router.push({ path: '/dashboard' });
+				} else {
+					_this.$data.waiting = false;
+					var emailNotVerified = error.emailNotVerified;
+					var authError = error.authError;
+					if (emailNotVerified) {
+						_this.$data.emailNotVerified = true;
+					}
+					if (authError) {
+						_this.$data.emailNotVerified = false;
+						_this.$store.commit('loginFailed', authError);
+					}
+				}
 			}).catch(function (err) {
+				console.log(err);
 				_this.$data.waiting = false;
-				_this.$store.commit('loginFailed', _this.$data.err);
 			});
 		}
 	}
@@ -2390,8 +2404,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-//
-//
 //
 //
 //
@@ -5339,7 +5351,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\nform[data-v-0a3f4034] {\n\t\tbackground: #d8e4d7;\n\t\tborder-radius: 5px;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n\t\tbox-shadow: 0px 0px 1px 1px #999;\n}\nform h3[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-0a3f4034] {\n\t\tcolor: #ececec;\n}\nform input[data-v-0a3f4034] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-0a3f4034]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-0a3f4034] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n.errors[data-v-0a3f4034] {\n\t    color: #f00;\n}\n[data-v-0a3f4034]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-0a3f4034]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n\n/* For Spinner */\n.loader[data-v-0a3f4034] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-0a3f4034] {\n\t\tbackground: #d8e4d7;\n\t\tborder-radius: 5px;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n\t\tbox-shadow: 0px 0px 1px 1px #999;\n}\nform h3[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-0a3f4034] {\n\t\tcolor: #ececec;\n}\nform input[data-v-0a3f4034] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-0a3f4034]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-0a3f4034] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n.errors[data-v-0a3f4034] {\n\t    color: #f00;\n}\n[data-v-0a3f4034]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-0a3f4034]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n/* For Spinner */\n.loader[data-v-0a3f4034] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
 
 /***/ }),
 /* 51 */
@@ -5374,7 +5386,7 @@ exports.push([module.i, "\n#header-main[data-v-4e7176d9] {\n\t\tdisplay: -ms-fle
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\nform[data-v-604a50b0] {\n\t\tbackground: #d8e4d7;\n\t\tborder-radius: 5px;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n\t\tbox-shadow: 0px 0px 1px 1px #999;\n}\nform h3[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-604a50b0] {\n\t\tcolor: #ececec;\n}\nform input[data-v-604a50b0] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-604a50b0]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-604a50b0] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n.validate-email-message[data-v-604a50b0] {\n\t\tfont-size: 14px;\n    margin-bottom: 15px;\n    color: #5f5f5f;\n}\n.validate-email-message a[data-v-604a50b0] {\n\t\tcolor: #168ee4;\n    text-decoration: underline;\n}\n.validate-email-message a[data-v-604a50b0]:hover {\n\t\tcolor: #0072ff;\n}\n.errors[data-v-604a50b0] {\n\t\tcolor: #f00;\n}\n[data-v-604a50b0]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-604a50b0]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n\n/* For Spinner */\n.loader[data-v-604a50b0] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-604a50b0] {\n\t\tbackground: #d8e4d7;\n\t\tborder-radius: 5px;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n\t\tbox-shadow: 0px 0px 1px 1px #999;\n}\nform h3[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-604a50b0] {\n\t\tcolor: #ececec;\n}\nform input[data-v-604a50b0] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-604a50b0]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-604a50b0] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n.validate-email-message[data-v-604a50b0] {\n\t\tfont-size: 14px;\n    margin-bottom: 15px;\n    color: #5f5f5f;\n}\n.validate-email-message a[data-v-604a50b0] {\n\t\tcolor: #168ee4;\n    text-decoration: underline;\n}\n.validate-email-message a[data-v-604a50b0]:hover {\n\t\tcolor: #0072ff;\n}\n.errors[data-v-604a50b0] {\n\t\tcolor: #f00;\n}\n[data-v-604a50b0]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-604a50b0]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n\n/* For Spinner */\n.loader[data-v-604a50b0] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n.fade-enter-active[data-v-604a50b0], .fade-leave-active[data-v-604a50b0] {\n\ttransition-property: opacity;\n\ttransition-duration: .20s;\n}\n.fade-enter-active[data-v-604a50b0] {\n\ttransition-delay: .20s;\n}\n.fade-enter[data-v-604a50b0], .fade-leave-active[data-v-604a50b0] {\n\topacity: 0\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
 
 /***/ }),
 /* 56 */
@@ -33809,7 +33821,17 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         return _vm.authenticate($event)
       }
     }
-  }, [_vm._m(0), _vm._v(" "), _c('div', {
+  }, [_c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [(_vm.emailNotVerified) ? _c('div', {
+    staticClass: "validate-email-message"
+  }, [_vm._v("\n\t\t\t\t\tWe've sent you a link to activate your inbox. Please, use that link to activate your account. Or, "), _c('a', {
+    attrs: {
+      "href": ""
+    }
+  }, [_vm._v("resend link")]), _vm._v(" "), _c('hr')]) : _vm._e()]), _vm._v(" "), _c('div', {
     staticClass: "form-head"
   }, [_c('h3', [_vm._v("Login")]), _vm._v(" "), (_vm.waiting) ? _c('div', {
     staticClass: "loader"
@@ -33866,15 +33888,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_vm._v("Login")]), _vm._v(" "), (_vm.authError) ? [_c('p', {
     staticClass: "errors"
   }, [_vm._v(_vm._s(_vm.authError))])] : _vm._e()], 2)])
-},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
-  return _c('div', {
-    staticClass: "validate-email-message"
-  }, [_vm._v("\n\t\t\t\tWe have sent an email Validation link to your inbox. Please, use that link to validate your account. Or, "), _c('a', {
-    attrs: {
-      "href": ""
-    }
-  }, [_vm._v("resend link")]), _vm._v(" "), _c('hr')])
-}]}
+},staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
   module.hot.accept()

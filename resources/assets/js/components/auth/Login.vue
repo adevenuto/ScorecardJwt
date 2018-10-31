@@ -1,17 +1,16 @@
 <template>
 	<div class="col-sm-6 col-sm-offset-3 pt-3">
 		<form @submit.prevent="authenticate">
-			<div class="validate-email-message">
-				We have sent an email Validation link to your inbox. Please, use that link to validate your account. Or, <a href="">resend link</a>
-				<hr>
-			</div>
+			<transition name="fade">
+				<div v-if="emailNotVerified" class="validate-email-message">
+					We've sent you a link to activate your inbox. Please, use that link to activate your account. Or, <a href="">resend link</a>
+					<hr>
+				</div>
+			</transition>
 			<div class="form-head">
         <h3>Login</h3>
 				<div class="loader" v-if="waiting"></div>
       </div>
-			<!-- <div class="form-group">
-				<input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
-			</div> -->
 			<div class="form-group">
 				<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
 			</div>
@@ -37,7 +36,7 @@
 					password: ''
 				},
 				waiting: false,
-				err: 'Username or password are incorrect'
+				emailNotVerified: false
 			}
 		},
 		watch: {
@@ -56,15 +55,29 @@
 				this.$data.waiting = true;
 				return axios.post('/api/auth/login', credentials)
 					.then( payload => {
-						this.$data.waiting = false;
-						this.$store.commit('loginSuccess', payload);
-		 				this.$router.push({path: '/dashboard'});
+						let error = payload.data.error;
+						if(!error) {
+							this.$data.waiting = false;
+							this.$data.emailNotVerified = false;
+							this.$store.commit('loginSuccess', payload);
+							this.$router.push({path: '/dashboard'});
+						} else {
+							this.$data.waiting = false;
+							let emailNotVerified = error.emailNotVerified;
+							let authError = error.authError;
+							if(emailNotVerified) { 
+								this.$data.emailNotVerified = true;
+							}
+							if(authError) {
+								this.$data.emailNotVerified = false; 
+								this.$store.commit('loginFailed', authError);
+							}
+						}
 					})
 					.catch( err => {
+						console.log(err);
 						this.$data.waiting = false;
-						this.$store.commit('loginFailed', this.$data.err);
 					})
-
 			}
 		}
 	}
@@ -154,7 +167,16 @@
     left: 6px;
     top: -3px;
 }
-
+.fade-enter-active, .fade-leave-active {
+	transition-property: opacity;
+	transition-duration: .20s;
+}
+.fade-enter-active {
+	transition-delay: .20s;
+}
+.fade-enter, .fade-leave-active {
+	opacity: 0
+}
 /* Safari */
 @-webkit-keyframes spin {
   0% { -webkit-transform: rotate(0deg); }
