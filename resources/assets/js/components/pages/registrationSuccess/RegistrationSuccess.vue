@@ -5,7 +5,7 @@
 			<div class="message-right">
 				<h1>{{successMessage}}</h1>
 				<hr class="m0" style="border-color: #0f0;">
-				<p>Congratulations, all that's left is validating your email address. Please check your inbox, we've sent a link to activate your account.</p>
+				<p>A link to activate your account has been sent to your inbox. Use that link to activate your account and log into your dashboard.</p>
 			</div>
 		</div>
 	</div>

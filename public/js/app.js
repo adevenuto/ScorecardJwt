@@ -34069,7 +34069,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
     staticStyle: {
       "border-color": "#0f0"
     }
-  }), _vm._v(" "), _c('p', [_vm._v("Congratulations, all that's left is validating your email address. Please check your inbox, we've sent a link to activate your account.")])])])])
+  }), _vm._v(" "), _c('p', [_vm._v("A link to activate your account has been sent to your inbox. Use that link to activate your account and log into your dashboard.")])])])])
 },staticRenderFns: []}
 module.exports.render._withStripped = true
 if (false) {
