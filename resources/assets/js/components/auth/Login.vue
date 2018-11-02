@@ -3,7 +3,12 @@
 		<form @submit.prevent="authenticate">
 			<transition name="fade">
 				<div v-if="emailNotVerified" class="validate-email-message">
-					We've sent an activation link to your inbox. Please, use that to activate your account. Or, <a href="#" @click="sendVerificationEmail">resend link</a>
+					<div id="activation-email" v-if="verificationEmailSent">
+						<i class="fa fa-check"></i>
+						Activation Email Sent, Check Your Inbox
+					</div>
+					<p>We've sent an activation link to your inbox. Please, use that to activate your account. Or, <a href="#" @click="sendVerificationEmail">resend link</a>
+					</p>
 					<hr>
 				</div>
 			</transition>
@@ -36,7 +41,8 @@
 					password: ''
 				},
 				waiting: false,
-				emailNotVerified: false
+				emailNotVerified: false,
+				verificationEmailSent: false
 			}
 		},
 		watch: {
@@ -80,10 +86,12 @@
 					})
 			},
 			sendVerificationEmail() {
+				const that = this;
 				let payload = this.$data.form;
 				return axios.post('/api/auth/user/send/activation/email', payload)
 					.then( payload => {
-						
+						this.$data.verificationEmailSent = true;
+						// this.$data.emailNotVerified = false;
 					})
 					.catch( err => {
 						console.log(err);
@@ -134,7 +142,16 @@
     flex-direction: row;
     justify-content: flex-start;
     align-content: center;
-  }
+	}
+	#activation-email {
+		border: 1px solid #3b8d3a;
+    display: inline-block;
+    color: #fff;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    background: #3b8d3a;
+	}
 	.validate-email-message {
 		font-size: 14px;
     margin-bottom: 15px;
