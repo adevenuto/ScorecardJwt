@@ -7657,6 +7657,10 @@ body, html {
   font-family: 'Kanit', sans-serif;
 }
 
+#app input, #app button {
+  border-radius: 0;
+}
+
 /**  Scrollbar-Track Styles */
 ::-webkit-scrollbar {
   width: 5px;
