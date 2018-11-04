@@ -107,17 +107,19 @@ class AuthController extends Controller
 
     public function sendActivationEmail(Request $request) {
         $requestEmail = $request->email;
-        $requestName = $request->name;
+        
         $user = User::where('email', '=', $requestEmail)->first();
+        $userName = $user->name;
 
         $user_verification = DB::table('user_verifications')->where('user_id',$user->id)->first();
         $token = $user_verification->token;
         
         $subject = "Please verify your email address.";
-        Mail::send('email.verify_email', ['name' => $requestName, 'verification_code' => $token],
-            function($mail) use ($requestEmail, $requestName, $subject){
+        \Log::info(getenv('APP_NAME'));
+        Mail::send('email.verify_email', ['name' => $userName, 'verification_code' => $token],
+            function($mail) use ($requestEmail, $userName, $subject){
                 $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
-                $mail->to($requestEmail, $requestName);
+                $mail->to($requestEmail, $userName);
                 $mail->subject($subject);
         });
     }
