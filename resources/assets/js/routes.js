@@ -1,6 +1,7 @@
 import Landing from './components/Landing.vue';
 import Login from './components/auth/Login.vue';
 import Register from './components/auth/Register.vue';
+import ResetPassword from './components/auth/ResetPassword.vue';
 import RegistrationSuccess from './components/pages/registrationSuccess/RegistrationSuccess.vue';
 import Dashboard from './components/pages/dashboard/Dashboard.vue';
 import Courses from './components/pages/courses/CoursesAll.vue';
@@ -8,8 +9,7 @@ import Courses from './components/pages/courses/CoursesAll.vue';
 export const routes = [
 	{
 		path: '/',
-		component: Landing,
-		meta: {requiresAuth: true}
+		component: Landing
 	},
 	{
 		path: '/login',
@@ -18,6 +18,10 @@ export const routes = [
 	{
 		path: '/register',
 		component: Register
+	},
+	{
+		path: '/user/reset/password',
+		component: ResetPassword
 	},
 	{
 		path: '/register/success',

@@ -22,6 +22,9 @@
 			<div class="form-group">
 				<input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
 			</div>
+			<div class="reset-password-link">
+				<span>Forget your Password? </span> <router-link to="/user/reset/password">Password reset</router-link>
+			</div>
 			<button class="btn btn-block">Login</button>
 			<template v-if="authError">
 				<p class="errors">{{authError}}</p>
@@ -91,7 +94,6 @@
 				return axios.post('/api/auth/user/send/activation/email', payload)
 					.then( payload => {
 						this.$data.verificationEmailSent = true;
-						// this.$data.emailNotVerified = false;
 					})
 					.catch( err => {
 						console.log(err);
@@ -104,10 +106,8 @@
 <style scoped>
 	form {
 		background: #d8e4d7;
-		border-radius: 5px;
 		padding: 20px;
 		margin: 40px 0;
-		box-shadow: 0px 0px 1px 1px #999;
 	}
   form h3 {
 		font-weight: bold;
@@ -122,6 +122,7 @@
 		height: 40px;
 		font-size: 1.2rem;
 		border-color: #3c3d41;
+		
 		color: #3c3d41;
 		background-color: #fff;
 		transition: 100ms ease;
@@ -149,20 +150,26 @@
     color: #fff;
     padding: 0 20px;
     margin-bottom: 10px;
-    border-radius: 4px;
     background: #3b8d3a;
+	}
+	.reset-password-link {
+		margin-top: -10px;
+		margin-bottom: 25px;
+	}
+	.reset-password-link span {
+		color: #3c3d41;
 	}
 	.validate-email-message {
 		font-size: 14px;
     margin-bottom: 15px;
     color: #d21717;
 	}
-	.validate-email-message a {
+	.validate-email-message a, .reset-password-link a {
 		color: #168ee4;
     text-decoration: underline;
 	}
-	.validate-email-message a:hover {
-		color: #0072ff;
+	.validate-email-message a:hover, .reset-password-link a:hover {
+		color: #006fd4;
 	}
 	.errors {
 		color: #d21717;

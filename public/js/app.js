@@ -2345,6 +2345,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'Login',
@@ -2408,7 +2411,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			var payload = this.$data.form;
 			return axios.post('/api/auth/user/send/activation/email', payload).then(function (payload) {
 				_this2.$data.verificationEmailSent = true;
-				// this.$data.emailNotVerified = false;
 			}).catch(function (err) {
 				console.log(err);
 			});
@@ -2850,13 +2852,16 @@ $(function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue__ = __webpack_require__(72);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue__ = __webpack_require__(71);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue__ = __webpack_require__(70);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_auth_ResetPassword_vue__ = __webpack_require__(105);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_auth_ResetPassword_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_auth_ResetPassword_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_registrationSuccess_RegistrationSuccess_vue__ = __webpack_require__(72);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_pages_registrationSuccess_RegistrationSuccess_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__components_pages_registrationSuccess_RegistrationSuccess_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_dashboard_Dashboard_vue__ = __webpack_require__(71);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_pages_dashboard_Dashboard_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_pages_dashboard_Dashboard_vue__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_pages_courses_CoursesAll_vue__ = __webpack_require__(70);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__components_pages_courses_CoursesAll_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__components_pages_courses_CoursesAll_vue__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return routes; });
+
 
 
 
@@ -2866,8 +2871,7 @@ $(function () {
 
 var routes = [{
 	path: '/',
-	component: __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue___default.a,
-	meta: { requiresAuth: true }
+	component: __WEBPACK_IMPORTED_MODULE_0__components_Landing_vue___default.a
 }, {
 	path: '/login',
 	component: __WEBPACK_IMPORTED_MODULE_1__components_auth_Login_vue___default.a
@@ -2875,15 +2879,18 @@ var routes = [{
 	path: '/register',
 	component: __WEBPACK_IMPORTED_MODULE_2__components_auth_Register_vue___default.a
 }, {
+	path: '/user/reset/password',
+	component: __WEBPACK_IMPORTED_MODULE_3__components_auth_ResetPassword_vue___default.a
+}, {
 	path: '/register/success',
-	component: __WEBPACK_IMPORTED_MODULE_3__components_pages_registrationSuccess_RegistrationSuccess_vue___default.a
+	component: __WEBPACK_IMPORTED_MODULE_4__components_pages_registrationSuccess_RegistrationSuccess_vue___default.a
 }, {
 	path: '/dashboard',
-	component: __WEBPACK_IMPORTED_MODULE_4__components_pages_dashboard_Dashboard_vue___default.a,
+	component: __WEBPACK_IMPORTED_MODULE_5__components_pages_dashboard_Dashboard_vue___default.a,
 	meta: { requiresAuth: true }
 }, {
 	path: '/courses',
-	component: __WEBPACK_IMPORTED_MODULE_5__components_pages_courses_CoursesAll_vue___default.a
+	component: __WEBPACK_IMPORTED_MODULE_6__components_pages_courses_CoursesAll_vue___default.a
 }];
 
 /***/ }),
@@ -5369,7 +5376,7 @@ if (typeof jQuery === 'undefined') {
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\nform[data-v-0a3f4034] {\n\t\tbackground: #d8e4d7;\n\t\tborder-radius: 5px;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n\t\tbox-shadow: 0px 0px 1px 1px #999;\n}\nform h3[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-0a3f4034] {\n\t\tcolor: #ececec;\n}\nform input[data-v-0a3f4034] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-0a3f4034]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-0a3f4034] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n.errors[data-v-0a3f4034] {\n\t    color: #f00;\n}\n[data-v-0a3f4034]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-0a3f4034]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n/* For Spinner */\n.loader[data-v-0a3f4034] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-0a3f4034] {\n\t\tbackground: #d8e4d7;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n}\nform h3[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-0a3f4034] {\n\t\tcolor: #ececec;\n}\nform input[data-v-0a3f4034] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-0a3f4034] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-0a3f4034]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-0a3f4034] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n.errors[data-v-0a3f4034] {\n\t    color: #f00;\n}\n[data-v-0a3f4034]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-0a3f4034]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-0a3f4034]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n/* For Spinner */\n.loader[data-v-0a3f4034] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
 
 /***/ }),
 /* 51 */
@@ -5404,14 +5411,14 @@ exports.push([module.i, "\n#header-main[data-v-4e7176d9] {\n\t\tdisplay: -ms-fle
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\nform[data-v-604a50b0] {\n\t\tbackground: #d8e4d7;\n\t\tborder-radius: 5px;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n\t\tbox-shadow: 0px 0px 1px 1px #999;\n}\nform h3[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-604a50b0] {\n\t\tcolor: #ececec;\n}\nform input[data-v-604a50b0] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-604a50b0]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-604a50b0] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n#activation-email[data-v-604a50b0] {\n\t\tborder: 1px solid #3b8d3a;\n    display: inline-block;\n    color: #fff;\n    padding: 0 20px;\n    margin-bottom: 10px;\n    border-radius: 4px;\n    background: #3b8d3a;\n}\n.validate-email-message[data-v-604a50b0] {\n\t\tfont-size: 14px;\n    margin-bottom: 15px;\n    color: #d21717;\n}\n.validate-email-message a[data-v-604a50b0] {\n\t\tcolor: #168ee4;\n    text-decoration: underline;\n}\n.validate-email-message a[data-v-604a50b0]:hover {\n\t\tcolor: #0072ff;\n}\n.errors[data-v-604a50b0] {\n\t\tcolor: #d21717;\n}\n[data-v-604a50b0]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-604a50b0]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n\n/* For Spinner */\n.loader[data-v-604a50b0] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n.fade-enter-active[data-v-604a50b0], .fade-leave-active[data-v-604a50b0] {\n\ttransition-property: opacity;\n\ttransition-duration: .20s;\n}\n.fade-enter-active[data-v-604a50b0] {\n\ttransition-delay: .20s;\n}\n.fade-enter[data-v-604a50b0], .fade-leave-active[data-v-604a50b0] {\n\topacity: 0\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
+exports.push([module.i, "\nform[data-v-604a50b0] {\n\t\tbackground: #d8e4d7;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n}\nform h3[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-604a50b0] {\n\t\tcolor: #ececec;\n}\nform input[data-v-604a50b0] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\t\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-604a50b0] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-604a50b0]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-604a50b0] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n}\n#activation-email[data-v-604a50b0] {\n\t\tborder: 1px solid #3b8d3a;\n    display: inline-block;\n    color: #fff;\n    padding: 0 20px;\n    margin-bottom: 10px;\n    background: #3b8d3a;\n}\n.reset-password-link[data-v-604a50b0] {\n\t\tmargin-top: -10px;\n\t\tmargin-bottom: 25px;\n}\n.reset-password-link span[data-v-604a50b0] {\n\t\tcolor: #3c3d41;\n}\n.validate-email-message[data-v-604a50b0] {\n\t\tfont-size: 14px;\n    margin-bottom: 15px;\n    color: #d21717;\n}\n.validate-email-message a[data-v-604a50b0], .reset-password-link a[data-v-604a50b0] {\n\t\tcolor: #168ee4;\n    text-decoration: underline;\n}\n.validate-email-message a[data-v-604a50b0]:hover, .reset-password-link a[data-v-604a50b0]:hover {\n\t\tcolor: #006fd4;\n}\n.errors[data-v-604a50b0] {\n\t\tcolor: #d21717;\n}\n[data-v-604a50b0]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-604a50b0]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-604a50b0]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n\n/* For Spinner */\n.loader[data-v-604a50b0] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n.fade-enter-active[data-v-604a50b0], .fade-leave-active[data-v-604a50b0] {\n\ttransition-property: opacity;\n\ttransition-duration: .20s;\n}\n.fade-enter-active[data-v-604a50b0] {\n\ttransition-delay: .20s;\n}\n.fade-enter[data-v-604a50b0], .fade-leave-active[data-v-604a50b0] {\n\topacity: 0\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
 
 /***/ }),
 /* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(2)();
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t/*FOOTER*/\n#footer-main[data-v-637a6b19] {\n\t    background-color: #3c3d41;\n\t    color: white;\n\t    padding-top: 20px;\n}\n#footer-main .footer-copyright[data-v-637a6b19] {\n        background-color: #333333;\n        padding-top: 3px;\n        padding-bottom: 3px;\n        text-align: center;\n}\n#footer-main .fa-heart[data-v-637a6b19] {\n        color: #f00;\n}\n#footer-main .row[data-v-637a6b19] {\n        margin-bottom: 30px;\n}\n#footer-main .navbar-brand[data-v-637a6b19] {\n        margin-top: 45px;\n        height: 65px;\n}\n#footer-main .footer-copyright p[data-v-637a6b19] {\n        margin: 10px;\n        color: #ccc;\n}\n#footer-main ul[data-v-637a6b19] {\n        list-style-type: none;\n        padding-left: 0;\n        line-height: 1.7;\n}\n#footer-main h5[data-v-637a6b19] {\n        font-size: 23px;\n        color: white;\n        font-weight: bold;\n        margin-top: 30px;\n}\n#footer-main h2 a[data-v-637a6b19] {\n        font-size: 50px;\n        text-align: center;\n        color: #fff;\n}\n#footer-main a[data-v-637a6b19] {\n        color: #d2d1d1;\n        text-decoration: none;\n}\n#footer-main a[data-v-637a6b19]:hover, #footer-main a[data-v-637a6b19]:focus {\n        text-decoration: none;\n        color: white;\n}\n#footer-main .logo[data-v-637a6b19] {\n        margin-top: 41px;\n}\n#footer-main .social-networks[data-v-637a6b19] {\n        text-align: center;\n        padding-top: 30px;\n}\n#footer-main .social-networks a[data-v-637a6b19] {\n        font-size: 32px;\n        color: #f9f9f9;\n        padding: 10px;\n        transition: 0.2s;\n}\n#footer-main .social-networks a[data-v-637a6b19]:hover {     \n        text-decoration: none;\n}\n#footer-main .social-networks .facebook[data-v-637a6b19]:hover {\n        color: #0077e2;\n}\n#footer-main .social-networks .google[data-v-637a6b19]:hover {\n        color: #ef1a1a;\n}\n#footer-main .social-networks .twitter[data-v-637a6b19]:hover {\n        color: #00aced;\n}\n#footer-main .social-networks .btn[data-v-637a6b19] {\n        color: white;\n        background-color: transparent;\n        border: 1px solid #fff;\n        font-size: 16px;\n        border-radius: 20px;\n        width: 150px;\n        display: block;\n        margin: 0 auto;\n        margin-top: 10px;\n        line-height: 25px;\n        transition: 0.2s;\n}\n#footer-main .social-networks .btn[data-v-637a6b19]:hover {  \n        background-color: rgba(1, 212, 223, 0.98);\n}\n@media screen and (max-width: 767px) {\n#footer-main[data-v-637a6b19] {\n        \ttext-align: center;\n}\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\t/*FOOTER*/\n#footer-main[data-v-637a6b19] {\n\t    background-color: #3c3d41;\n\t    color: white;\n\t    padding-top: 20px;\n}\n#footer-main .footer-copyright[data-v-637a6b19] {\n        background-color: #333333;\n        padding-top: 3px;\n        padding-bottom: 3px;\n        text-align: center;\n}\n#footer-main .fa-heart[data-v-637a6b19] {\n        color: #f00;\n}\n#footer-main .row[data-v-637a6b19] {\n        margin-bottom: 30px;\n}\n#footer-main .navbar-brand[data-v-637a6b19] {\n        margin-top: 45px;\n        height: 65px;\n}\n#footer-main .footer-copyright p[data-v-637a6b19] {\n        margin: 10px;\n        color: #ccc;\n}\n#footer-main ul[data-v-637a6b19] {\n        list-style-type: none;\n        padding-left: 0;\n        line-height: 1.7;\n}\n#footer-main h5[data-v-637a6b19] {\n        font-size: 23px;\n        color: white;\n        font-weight: bold;\n        margin-top: 30px;\n}\n#footer-main h2 a[data-v-637a6b19] {\n        font-size: 50px;\n        text-align: center;\n        color: #fff;\n}\n#footer-main a[data-v-637a6b19] {\n        color: #d2d1d1;\n        text-decoration: none;\n}\n#footer-main a[data-v-637a6b19]:hover, #footer-main a[data-v-637a6b19]:focus {\n        text-decoration: none;\n        color: white;\n}\n#footer-main .logo[data-v-637a6b19] {\n        margin-top: 41px;\n}\n#footer-main .social-networks[data-v-637a6b19] {\n        text-align: center;\n        padding-top: 30px;\n}\n#footer-main .social-networks a[data-v-637a6b19] {\n        font-size: 32px;\n        color: #f9f9f9;\n        padding: 10px;\n        transition: 0.2s;\n}\n#footer-main .social-networks a[data-v-637a6b19]:hover {     \n        text-decoration: none;\n}\n#footer-main .social-networks .facebook[data-v-637a6b19]:hover {\n        color: #0077e2;\n}\n#footer-main .social-networks .google[data-v-637a6b19]:hover {\n        color: #ef1a1a;\n}\n#footer-main .social-networks .twitter[data-v-637a6b19]:hover {\n        color: #00aced;\n}\n#footer-main .social-networks .btn[data-v-637a6b19] {\n        color: white;\n        background-color: transparent;\n        border: 1px solid #fff;\n        font-size: 16px;\n        border-radius: 20px;\n        width: 150px;\n        display: block;\n        margin: 0 auto;\n        margin-top: 10px;\n        line-height: 25px;\n        transition: 0.2s;\n}\n#footer-main .social-networks .btn[data-v-637a6b19]:hover {  \n        background-color: rgba(1, 212, 223, 0.98);\n        box-shadow: 0px 0px 4px 1px #a3a3a3;\n}\n@media screen and (max-width: 767px) {\n#footer-main[data-v-637a6b19] {\n        \ttext-align: center;\n}\n}\n", ""]);
 
 /***/ }),
 /* 57 */
@@ -33910,7 +33917,13 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
         _vm.$set(_vm.form, "password", $event.target.value)
       }
     }
-  })]), _vm._v(" "), _c('button', {
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "reset-password-link"
+  }, [_c('span', [_vm._v("Forget your Password? ")]), _vm._v(" "), _c('router-link', {
+    attrs: {
+      "to": "/user/reset/password"
+    }
+  }, [_vm._v("Password reset")])], 1), _vm._v(" "), _c('button', {
     staticClass: "btn btn-block"
   }, [_vm._v("Login")]), _vm._v(" "), (_vm.authError) ? [_c('p', {
     staticClass: "errors"
@@ -34020,7 +34033,7 @@ module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c
   }, [_c('i', {
     staticClass: "fa fa-google-plus"
   })]), _vm._v(" "), _c('button', {
-    staticClass: "btn contact",
+    staticClass: "btn contact-btn",
     attrs: {
       "type": "button"
     }
@@ -49030,6 +49043,200 @@ module.exports = function(module) {
 __webpack_require__(13);
 module.exports = __webpack_require__(14);
 
+
+/***/ }),
+/* 101 */,
+/* 102 */,
+/* 103 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	name: 'ResetPassword',
+	data: function data() {
+		return {
+			form: {
+				email: ''
+			},
+			waiting: false,
+			emailNotFound: false
+		};
+	},
+
+	watch: {},
+	methods: {}
+});
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(2)();
+exports.push([module.i, "\nform[data-v-79c995c9] {\n\t\tbackground: #d8e4d7;\n\t\tpadding: 20px;\n\t\tmargin: 40px 0;\n}\nform h3[data-v-79c995c9] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tmargin: 0 0 20px 0;\n\t\tcolor: #3c3d41;\n}\nform label[data-v-79c995c9] {\n\t\tcolor: #ececec;\n}\nform input[data-v-79c995c9] {\n\t\theight: 40px;\n\t\tfont-size: 1.2rem;\n\t\tborder-color: #3c3d41;\n\t\t\n\t\tcolor: #3c3d41;\n\t\tbackground-color: #fff;\n\t\ttransition: 100ms ease;\n}\nform button[data-v-79c995c9] {\n\t\tfont-weight: bold;\n\t\tfont-size: 1.3rem;\n\t\tbackground: #3e8c41;\n\t\tborder: 1px solid #fff;\n\t\tcolor: #fff;\n}\nform button[data-v-79c995c9]:hover {\n\t\tbackground: #00ce07;\n\t\tcolor: #fff;\n}\n.form-head[data-v-79c995c9] {\n    display: -ms-flexbox;\n    display: flex;\n    -ms-flex-direction: row;\n        flex-direction: row;\n    -ms-flex-pack: start;\n        justify-content: flex-start;\n    -ms-flex-line-pack: center;\n        align-content: center;\n    margin-bottom: 15px;\n}\n.header h3[data-v-79c995c9] {\n    margin-bottom: 0;\n}\n.errors[data-v-79c995c9] {\n\t\tcolor: #d21717;\n}\n[data-v-79c995c9]::-webkit-input-placeholder { /* Chrome */\n\t  color: #9e9e9e;\n}\n[data-v-79c995c9]:-ms-input-placeholder { /* IE 10+ */\n\t  color: #9e9e9e;\n}\n[data-v-79c995c9]::-moz-placeholder { /* Firefox 19+ */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n[data-v-79c995c9]:-moz-placeholder { /* Firefox 4 - 18 */\n\t  color: #9e9e9e;\n\t  opacity: 1;\n}\n\n/* For Spinner */\n.loader[data-v-79c995c9] {\n    border: 3px solid #f3f3f3;\n    border-radius: 50%;\n    border-top: 3px solid #3b8d3a;\n    width: 20px;\n    height: 20px;\n    animation: spin .50s linear infinite;\n    position: relative;\n    left: 6px;\n    top: -3px;\n}\n.fade-enter-active[data-v-79c995c9], .fade-leave-active[data-v-79c995c9] {\n\ttransition-property: opacity;\n\ttransition-duration: .20s;\n}\n.fade-enter-active[data-v-79c995c9] {\n\ttransition-delay: .20s;\n}\n.fade-enter[data-v-79c995c9], .fade-leave-active[data-v-79c995c9] {\n\topacity: 0\n}\n/* Safari */\n@keyframes spin {\n0% { transform: rotate(0deg);\n}\n100% { transform: rotate(360deg);\n}\n}\n", ""]);
+
+/***/ }),
+/* 105 */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+/* styles */
+__webpack_require__(107)
+
+var Component = __webpack_require__(1)(
+  /* script */
+  __webpack_require__(103),
+  /* template */
+  __webpack_require__(106),
+  /* scopeId */
+  "data-v-79c995c9",
+  /* cssModules */
+  null
+)
+Component.options.__file = "/home/vagrant/Code/scorecard.tony/resources/assets/js/components/auth/ResetPassword.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {return key !== "default" && key !== "__esModule"})) {console.error("named exports are not supported in *.vue files.")}
+if (Component.options.functional) {console.error("[vue-loader] ResetPassword.vue: functional components are not supported with templates, they should use render functions.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-79c995c9", Component.options)
+  } else {
+    hotAPI.reload("data-v-79c995c9", Component.options)
+  }
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 106 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports={render:function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "col-sm-6 col-sm-offset-3 pt-3"
+  }, [_c('form', {
+    on: {
+      "submit": function($event) {
+        $event.preventDefault();
+        return _vm.authenticate($event)
+      }
+    }
+  }, [_c('transition', {
+    attrs: {
+      "name": "fade"
+    }
+  }, [_c('div', {
+    staticClass: "password-reset-message"
+  })]), _vm._v(" "), _c('div', {
+    staticClass: "form-head"
+  }, [_vm._m(0), _vm._v(" "), (_vm.waiting) ? _c('div', {
+    staticClass: "loader"
+  }) : _vm._e()]), _vm._v(" "), _c('div', {
+    staticClass: "form-group"
+  }, [_c('input', {
+    directives: [{
+      name: "model",
+      rawName: "v-model",
+      value: (_vm.form.email),
+      expression: "form.email"
+    }],
+    staticClass: "form-control",
+    attrs: {
+      "type": "email",
+      "placeholder": "Email Address",
+      "required": ""
+    },
+    domProps: {
+      "value": (_vm.form.email)
+    },
+    on: {
+      "input": function($event) {
+        if ($event.target.composing) { return; }
+        _vm.$set(_vm.form, "email", $event.target.value)
+      }
+    }
+  })]), _vm._v(" "), _c('button', {
+    staticClass: "btn btn-block"
+  }, [_vm._v("Send Password Reset Link")]), _vm._v(" "), (_vm.emailNotFound) ? [_c('p', {
+    staticClass: "errors"
+  }, [_vm._v(_vm._s(_vm.authError))])] : _vm._e()], 2)])
+},staticRenderFns: [function (){var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;
+  return _c('div', {
+    staticClass: "header"
+  }, [_c('h3', [_vm._v("Reset Your Password")]), _vm._v(" "), _c('small', [_vm._v("Send an password reset link to your inbox")])])
+}]}
+module.exports.render._withStripped = true
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+     require("vue-hot-reload-api").rerender("data-v-79c995c9", module.exports)
+  }
+}
+
+/***/ }),
+/* 107 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(104);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(3)("04d01118", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-79c995c9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ResetPassword.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"id\":\"data-v-79c995c9\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./ResetPassword.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
 
 /***/ })
 /******/ ]);

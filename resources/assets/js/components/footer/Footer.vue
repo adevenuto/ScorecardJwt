@@ -36,7 +36,7 @@
 	                    <a href="#" class="twitter"><i class="fa fa-twitter"></i></a>
 	                    <a href="#" class="facebook"><i class="fa fa-facebook"></i></a>
 	                    <a href="#" class="google"><i class="fa fa-google-plus"></i></a>
-	                    <button type="button" class="btn contact">Contact us</button>
+	                    <button type="button" class="btn contact-btn">Contact us</button>
 	                </div>
 	            </div>
 	        </div>
@@ -142,10 +142,11 @@
         margin: 0 auto;
         margin-top: 10px;
         line-height: 25px;
-        transition: 0.2s;     
+        transition: 0.2s;    
 	}
 	#footer-main .social-networks .btn:hover {  
         background-color: rgba(1, 212, 223, 0.98);
+        box-shadow: 0px 0px 4px 1px #a3a3a3; 
 	}
 	@media screen and (max-width: 767px) {
     	#footer-main {
