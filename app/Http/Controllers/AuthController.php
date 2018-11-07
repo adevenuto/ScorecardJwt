@@ -13,10 +13,6 @@ use Illuminate\Mail\Message;
 
 class AuthController extends Controller
 {
-    public function __construct() {
-        $this->middleware('auth:api', ['except' => ['login', 'register', 'verifyUser', 'sendActivationEmail']]);
-    }
-
     public function login(Request $request) {
         // Check is user verified there email
         $user = User::where('email', '=', $request->email)->first();
@@ -115,7 +111,6 @@ class AuthController extends Controller
         $token = $user_verification->token;
         
         $subject = "Please verify your email address.";
-        \Log::info(getenv('APP_NAME'));
         Mail::send('email.verify_email', ['name' => $userName, 'verification_code' => $token],
             function($mail) use ($requestEmail, $userName, $subject){
                 $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
@@ -124,15 +119,25 @@ class AuthController extends Controller
         });
     }
 
-    public function authUser() {
-        return response()->json(auth('api')->user());
+    public function checkTokenExp(Request $request) {
+        $token = $request->only('token');
+        try {
+            JWTAuth::parseToken($token)->authenticate();
+        } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+            return response()->json(['error'=> "Token has expired."], 200);
+        } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+            return response()->json(['error'=> "Token is invalid."], 200);
+        } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
+            return response()->json(['error'=> "Something went wrong processing your request."], 200);
+        }
+        return response()->json(['success'=> "Token not expired"], 200);
     }
 
     public function logout() {
         auth('api')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
-
+    
     public function refresh() {
         return $this->respondWithToken(auth('api')->refresh());
     }

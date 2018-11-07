@@ -21,22 +21,26 @@
 	import Footer from './footer/Footer.vue';
 	import SideBarNav from './sidebarnav/SideBarNav.vue';
 	import Login from './auth/Login.vue';
+	import {checkTokenExp} from '../helpers/auth';
     export default {
-        name: 'app-main',
-        components: {Header, Footer, SideBarNav, Login},
-        computed: {
-        	sideNavStatus() {
-				return this.$store.getters.sideNavStatus;
+			name: 'app-main',
+			components: {Header, Footer, SideBarNav, Login},
+			created() {
+				const user = localStorage.getItem('user');
+				const router = this.$router;
+				const state = this.$store.state;
+				if (user) checkTokenExp(user, router, state);
 			},
-        	welcome() {
-        		return this.$store.getters.welcome;
-        	}
-        },
-        methods: {
-        	toggleSideNav() {
-				this.$store.commit('toggleSideNav');
+			computed: {
+				sideNavStatus() {
+					return this.$store.getters.sideNavStatus;
+				}
+			},
+			methods: {
+				toggleSideNav() {
+					this.$store.commit('toggleSideNav');
+				}
 			}
-        }
     }
 </script>
 

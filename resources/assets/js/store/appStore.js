@@ -1,5 +1,6 @@
 
 import {getLocalUser} from '../helpers/auth';
+import {invalidateToken} from '../helpers/auth';
 
 const user = getLocalUser();
 
@@ -55,11 +56,12 @@ export default {
 			state.auth_error = err;
 		},
 		logOut(state, router) {
-			localStorage.removeItem('user');
-			state.isLoggedIn = false;
-			state.currentUser = null;
-			state.auth_error = null;
-			router.push('/');
+			// localStorage.removeItem('user');
+			// state.isLoggedIn = false;
+			// state.currentUser = null;
+			// state.auth_error = null;
+			// router.push('/');
+			invalidateToken(state, router);
 		},
 		setCourses(state, courses) {
 			state.courses = courses;
