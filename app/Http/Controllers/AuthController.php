@@ -118,7 +118,7 @@ class AuthController extends Controller
                 $mail->subject($subject);
         });
     }
-
+    
     public function checkTokenExp(Request $request) {
         $token = $request->only('token');
         try {

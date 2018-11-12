@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use Webpatser\Uuid\Uuid;
 class UsersTableSeeder extends Seeder
 {
     /**
@@ -10,8 +10,10 @@ class UsersTableSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+        \Log::info(Uuid::generate());
     	DB::table('users')->insert([
+            'uuid' => Uuid::generate(),
             'name' => 'consumer',
             'email' => 'consumer@consumer.com',
             'password' => Hash::make('consumer123'),
@@ -19,6 +21,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
     	DB::table('users')->insert([
+            'uuid' => Uuid::generate(),
             'name' => 'deliman',
             'email' => 'deliman@deliman.com',
             'password' => Hash::make('deliman123'),
@@ -26,6 +29,7 @@ class UsersTableSeeder extends Seeder
         ]);
 
         DB::table('users')->insert([
+            'uuid' => Uuid::generate(),
             'name' => 'admin',
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin123'),

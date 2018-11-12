@@ -5,13 +5,12 @@
     	     :class="{ 'overlay': sideNavStatus}">
     	</div>
     	<Header/>
-		<SideBarNav/>
-    	<div class="container">
-    		<transition name="fade">
-	    		<router-view></router-view>
-	    	</transition>
-    	</div>
-    	
+			<SideBarNav/>
+				<div class="container">
+					<transition name="fade">
+						<router-view></router-view>
+					</transition>
+				</div>
     	<Footer/>
     </div>
 </template>
@@ -21,27 +20,28 @@
 	import Footer from './footer/Footer.vue';
 	import SideBarNav from './sidebarnav/SideBarNav.vue';
 	import Login from './auth/Login.vue';
-	import {checkTokenExp} from '../helpers/auth';
+	import {checkTokenOnRefresh} from '../helpers/auth';
     export default {
-			name: 'app-main',
-			components: {Header, Footer, SideBarNav, Login},
-			created() {
-				const user = localStorage.getItem('user');
-				const router = this.$router;
-				const state = this.$store.state;
-				if (user) checkTokenExp(user, router, state);
-			},
-			computed: {
-				sideNavStatus() {
-					return this.$store.getters.sideNavStatus;
-				}
-			},
-			methods: {
-				toggleSideNav() {
-					this.$store.commit('toggleSideNav');
-				}
+		name: 'app-main',
+		components: {Header, Footer, SideBarNav, Login},
+		created: function() {
+			const user = localStorage.getItem('user');
+			if (user) {
+				let user = this.$store.getters.currentUser;
+				checkTokenOnRefresh(user);
 			}
-    }
+		},
+		computed: {
+			sideNavStatus() {
+				return this.$store.getters.sideNavStatus;
+			}
+		},
+		methods: {
+			toggleSideNav() {
+				this.$store.commit('toggleSideNav');
+			}
+		}
+	}
 </script>
 
 <style scoped>

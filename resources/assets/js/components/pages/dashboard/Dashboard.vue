@@ -23,9 +23,9 @@
 				return this.$store.getters.currentUserCourses;
 			}
 		},
-		mounted: function() {
-			let currentUser = this.$store.getters.currentUser;
-			this.$store.dispatch('fetchUserCourses', currentUser);
+		created: function() {
+			let currentUser = this.currentUser;
+			if(currentUser) this.$store.dispatch('fetchUserCourses', currentUser);
 		}, 
 		methods: {
 			

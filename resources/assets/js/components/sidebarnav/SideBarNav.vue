@@ -25,6 +25,7 @@
 </template>
 
 <script>
+	import {invalidateAndLogout} from '../../helpers/auth';
 	export default {
 		name: 'app-sidebar-nav',
 		computed: {
@@ -40,8 +41,8 @@
 				return this.$store.commit('toggleSideNav');
 			},
 			logout() {
-				let router = this.$router;
-				return this.$store.commit('logOut', router);
+				let user = this.$store.getters.currentUser;
+				return invalidateAndLogout(user);
 			}
 		}
 	}

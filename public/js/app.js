@@ -73,7 +73,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(11);
 
 /*global toString:true*/
 
@@ -758,10 +758,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(7);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(6);
+    adapter = __webpack_require__(7);
   }
   return adapter;
 }
@@ -836,6 +836,44 @@ module.exports = defaults;
 
 /***/ }),
 /* 6 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__app__ = __webpack_require__(14);
+/* harmony export (immutable) */ __webpack_exports__["c"] = getLocalUser;
+/* harmony export (immutable) */ __webpack_exports__["b"] = invalidateAndLogout;
+/* harmony export (immutable) */ __webpack_exports__["a"] = checkTokenOnRefresh;
+
+
+function getLocalUser() {
+	var user = localStorage.getItem('user');
+	if (!user) {
+		return null;
+	}
+	return JSON.parse(user);
+}
+function invalidateAndLogout(user) {
+	var token = user.token;
+	axios.post('/api/auth/logout?token=' + token).then(function (res) {
+		__WEBPACK_IMPORTED_MODULE_0__app__["store"].commit('logOut');
+	}).catch(function (err) {
+		console.log(err);
+	});
+}
+function checkTokenOnRefresh(user) {
+	var token = user.token;
+	axios.get('/api/auth/user/token/exp?token=' + token).then(function (res) {
+		// user token expired/invalid -> logout
+		if (res.data.error) {
+			__WEBPACK_IMPORTED_MODULE_0__app__["store"].commit('logOut');
+		}
+	}).catch(function (err) {
+		console.log(err);
+	});
+}
+
+/***/ }),
+/* 7 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -846,7 +884,7 @@ var settle = __webpack_require__(23);
 var buildURL = __webpack_require__(26);
 var parseHeaders = __webpack_require__(32);
 var isURLSameOrigin = __webpack_require__(30);
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(25);
 
 module.exports = function xhrAdapter(config) {
@@ -1019,7 +1057,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1045,7 +1083,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1057,7 +1095,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1081,7 +1119,7 @@ module.exports = function createError(message, config, code, response) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1097,52 +1135,6 @@ module.exports = function bind(fn, thisArg) {
   };
 };
 
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (immutable) */ __webpack_exports__["b"] = getLocalUser;
-/* harmony export (immutable) */ __webpack_exports__["c"] = invalidateToken;
-/* harmony export (immutable) */ __webpack_exports__["a"] = checkTokenExp;
-/* unused harmony export destroyUser */
-function getLocalUser() {
-	var user = localStorage.getItem('user');
-	if (!user) {
-		return null;
-	}
-	return JSON.parse(user);
-}
-function invalidateToken(state, router) {
-	var token = state.currentUser.token;
-	axios.post('/api/auth/logout?token=' + token).then(function (res) {
-		localStorage.removeItem('user');
-		state.isLoggedIn = false;
-		state.currentUser = null;
-		state.auth_error = null;
-		router.push('/');
-	}).catch(function (err) {
-		console.log('hello');
-	});
-}
-function checkTokenExp(user, router, state) {
-	var userParsed = JSON.parse(user);
-	var token = userParsed.token;
-	axios.get('/api/auth/user/token/exp?token=' + token).then(function (res) {
-		// user token invalid
-		if (res.data.error) destroyUser(router, state);
-	}).catch(function (err) {
-		console.log(err);
-	});
-}
-function destroyUser(router, state) {
-	localStorage.removeItem('user');
-	state.isLoggedIn = false;
-	state.currentUser = null;
-	state.auth_error = null;
-	router.push('/');
-}
 
 /***/ }),
 /* 12 */
@@ -1386,6 +1378,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__store_appStore_js__ = __webpack_require__(49);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue__ = __webpack_require__(66);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__components_AppMain_vue__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "store", function() { return store; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "router", function() { return router; });
 __webpack_require__(46);
 __webpack_require__(47);
 
@@ -1428,6 +1422,8 @@ var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
     }
 });
 
+
+
 /***/ }),
 /* 15 */
 /***/ (function(module, exports) {
@@ -1448,7 +1444,7 @@ module.exports = __webpack_require__(17);
 
 
 var utils = __webpack_require__(0);
-var bind = __webpack_require__(10);
+var bind = __webpack_require__(11);
 var Axios = __webpack_require__(19);
 var defaults = __webpack_require__(5);
 
@@ -1483,9 +1479,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(7);
+axios.Cancel = __webpack_require__(8);
 axios.CancelToken = __webpack_require__(18);
-axios.isCancel = __webpack_require__(8);
+axios.isCancel = __webpack_require__(9);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -1506,7 +1502,7 @@ module.exports.default = axios;
 "use strict";
 
 
-var Cancel = __webpack_require__(7);
+var Cancel = __webpack_require__(8);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -1723,7 +1719,7 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(0);
 var transformData = __webpack_require__(24);
-var isCancel = __webpack_require__(8);
+var isCancel = __webpack_require__(9);
 var defaults = __webpack_require__(5);
 
 /**
@@ -1833,7 +1829,7 @@ module.exports = function enhanceError(error, config, code, response) {
 "use strict";
 
 
-var createError = __webpack_require__(9);
+var createError = __webpack_require__(10);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -2289,8 +2285,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_Login_vue__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__auth_Login_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__auth_Login_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_auth__ = __webpack_require__(11);
-//
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_auth__ = __webpack_require__(6);
 //
 //
 //
@@ -2319,11 +2314,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	components: { Header: __WEBPACK_IMPORTED_MODULE_0__header_Header_vue___default.a, Footer: __WEBPACK_IMPORTED_MODULE_1__footer_Footer_vue___default.a, SideBarNav: __WEBPACK_IMPORTED_MODULE_2__sidebarnav_SideBarNav_vue___default.a, Login: __WEBPACK_IMPORTED_MODULE_3__auth_Login_vue___default.a },
 	created: function created() {
 		var user = localStorage.getItem('user');
-		var router = this.$router;
-		var state = this.$store.state;
-		if (user) __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_auth__["a" /* checkTokenExp */])(user, router, state);
+		if (user) {
+			var _user = this.$store.getters.currentUser;
+			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_4__helpers_auth__["a" /* checkTokenOnRefresh */])(_user);
+		}
 	},
-
 	computed: {
 		sideNavStatus: function sideNavStatus() {
 			return this.$store.getters.sideNavStatus;
@@ -2797,9 +2792,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return this.$store.getters.currentUserCourses;
 		}
 	},
-	mounted: function mounted() {
-		var currentUser = this.$store.getters.currentUser;
-		this.$store.dispatch('fetchUserCourses', currentUser);
+	created: function created() {
+		var currentUser = this.currentUser;
+		if (currentUser) this.$store.dispatch('fetchUserCourses', currentUser);
 	},
 	methods: {}
 });
@@ -2839,6 +2834,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_auth__ = __webpack_require__(6);
 //
 //
 //
@@ -2866,6 +2862,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
 	name: 'app-sidebar-nav',
 	computed: {
@@ -2881,8 +2878,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 			return this.$store.commit('toggleSideNav');
 		},
 		logout: function logout() {
-			var router = this.$router;
-			return this.$store.commit('logOut', router);
+			var user = this.$store.getters.currentUser;
+			return __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["b" /* invalidateAndLogout */])(user);
 		}
 	}
 });
@@ -2991,12 +2988,13 @@ var routes = [{
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_auth__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helpers_auth__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app__ = __webpack_require__(14);
 
 
 
 
-var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["b" /* getLocalUser */])();
+var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["c" /* getLocalUser */])();
 
 /* harmony default export */ __webpack_exports__["a"] = ({
 	state: {
@@ -3049,13 +3047,12 @@ var user = __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["b"
 		loginFailed: function loginFailed(state, err) {
 			state.auth_error = err;
 		},
-		logOut: function logOut(state, router) {
-			// localStorage.removeItem('user');
-			// state.isLoggedIn = false;
-			// state.currentUser = null;
-			// state.auth_error = null;
-			// router.push('/');
-			__webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__helpers_auth__["c" /* invalidateToken */])(state, router);
+		logOut: function logOut(state) {
+			localStorage.removeItem('user');
+			state.isLoggedIn = false;
+			state.currentUser = null;
+			state.auth_error = null;
+			__WEBPACK_IMPORTED_MODULE_1__app__["router"].push('/');
 		},
 		setCourses: function setCourses(state, courses) {
 			state.courses = courses;
