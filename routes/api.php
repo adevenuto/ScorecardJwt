@@ -22,6 +22,7 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('register', 'AuthController@register');
     Route::get('user/verify/{verification_code}', 'AuthController@verifyUser');
     Route::post('user/send/activation/email', 'AuthController@sendActivationEmail');
+    Route::post('user/password/reset', 'AuthController@sendPasswordResetEmail');
     Route::get('user/token/exp', 'AuthController@checkTokenExp');
 		Route::post('refresh', 'AuthController@refresh');
 });

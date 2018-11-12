@@ -1,6 +1,6 @@
 <template>
 	<div class="col-sm-6 col-sm-offset-3 pt-3">
-		<form @submit.prevent="authenticate">
+		<form @submit.prevent="sendResetPasswordLink">
 			<transition name="fade">
 				<div class="password-reset-message">
 					<!-- <div id="activation-email" v-if="verificationEmailSent">
@@ -13,11 +13,11 @@
 				</div>
 			</transition>
 			<div class="form-head">
-        <div class="header">
-          <h3>Reset Your Password</h3>
+					<div class="header">
+						<h3>Reset Your Password</h3>
+						<div class="loader" v-if="waiting"></div>
+					</div>
           <small>Send an password reset link to your inbox</small>
-        </div>
-				<div class="loader" v-if="waiting"></div>
       </div>
 			<div class="form-group">
 				<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
@@ -46,7 +46,18 @@
       
     },
 		methods: {
-			
+			sendResetPasswordLink: function() {
+				let credentials = {
+					'email': this.$data.form.email
+				};
+				axios.post(`/api/auth/user/password/reset`, credentials)
+				.then( res => {
+					
+				})
+				.catch( err => {
+					console.log(err);
+				})
+			}
 		}
 	}
 </script>
@@ -87,11 +98,12 @@
 		color: #fff;
 	}
   .form-head {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-content: center;
     margin-bottom: 15px;
+	}
+  .form-head .header {
+		display: flex;
+		flex-direction: row;
+		justify-content: flex-start;
 	}
   .header h3 {
     margin-bottom: 0;

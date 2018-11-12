@@ -118,6 +118,23 @@ class AuthController extends Controller
                 $mail->subject($subject);
         });
     }
+    public function sendPasswordResetEmail(Request $request) {
+        $requestEmail = $request->email;
+        \Log::info($requestEmail);
+
+        // $user = User::where('email', '=', $requestEmail)->first();
+        // $userName = $user->name;
+
+       
+        
+        // $subject = "Please verify your email address.";
+        // Mail::send('email.verify_email', ['name' => $userName, 'verification_code' => $token],
+        //     function($mail) use ($requestEmail, $userName, $subject){
+        //         $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+        //         $mail->to($requestEmail, $userName);
+        //         $mail->subject($subject);
+        // });
+    }
     
     public function checkTokenExp(Request $request) {
         $token = $request->only('token');
