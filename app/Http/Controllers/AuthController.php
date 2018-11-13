@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Webpatser\Uuid\Uuid;
 use Validator;
 use DB, Hash, Mail;
 use Illuminate\Support\Facades\Password;
@@ -70,7 +71,12 @@ class AuthController extends Controller
         $name = $request->name;
         $email = $request->email;
         $password = $request->password;
-        $user = User::create(['name' => $name, 'email' => $email, 'password' => Hash::make($password)]);
+        $user = User::create([
+            'name' => $name, 
+            'email' => $email, 
+            'password' => Hash::make($password), 
+            'uuid' => Uuid::generate()
+        ]);
         $verification_code = str_random(30); //Generate verification code
         DB::table('user_verifications')->insert(['user_id'=>$user->id,'token'=>$verification_code]);
         $subject = "Please verify your email address.";
@@ -118,22 +124,27 @@ class AuthController extends Controller
                 $mail->subject($subject);
         });
     }
+
     public function sendPasswordResetEmail(Request $request) {
         $requestEmail = $request->email;
-        \Log::info($requestEmail);
+        $user = User::where('email', '=', $requestEmail)->first();
+        if (isset($user)) {
+            // Send password reset email
+            $userName = $user->name;
+            $userUuid = $user->uuid;
+            $resetUrl = env('APP_URL').'api/auth/user/password/reset?='.$userUuid;
+            $subject = "Reset your password request";
+            Mail::send('email.password_reset_email', ['name' => $userName, 'resetUrl' => $resetUrl],
+                function($mail) use ($requestEmail, $userName, $subject){
+                    $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
+                    $mail->to($requestEmail, $userName);
+                    $mail->subject($subject);
+            });
+        } 
+    }
 
-        // $user = User::where('email', '=', $requestEmail)->first();
-        // $userName = $user->name;
-
+    public function resetUserPassword(Request $request) {
        
-        
-        // $subject = "Please verify your email address.";
-        // Mail::send('email.verify_email', ['name' => $userName, 'verification_code' => $token],
-        //     function($mail) use ($requestEmail, $userName, $subject){
-        //         $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
-        //         $mail->to($requestEmail, $userName);
-        //         $mail->subject($subject);
-        // });
     }
     
     public function checkTokenExp(Request $request) {

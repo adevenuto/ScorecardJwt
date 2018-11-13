@@ -3,13 +3,11 @@
 		<form @submit.prevent="sendResetPasswordLink">
 			<transition name="fade">
 				<div class="password-reset-message">
-					<!-- <div id="activation-email" v-if="verificationEmailSent">
+					<div v-if="resetPasswordEmailSent">
 						<i class="fa fa-check"></i>
-						Activation Email Sent, Check Your Inbox
-					</div>
-					<p>We've sent an activation link to your inbox. Please, use that to activate your account. Or, <a href="#" @click="sendVerificationEmail">resend link</a>
-					</p>
-					<hr> -->
+						A link to reset your password was sent to your inbox.
+						<hr>
+					</div>		
 				</div>
 			</transition>
 			<div class="form-head">
@@ -23,9 +21,6 @@
 				<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
 			</div>
 			<button class="btn btn-block">Send Password Reset Link</button>
-			<template v-if="emailNotFound">
-				<p class="errors">{{authError}}</p>
-			</template>
 		</form>
 	</div>
 </template>
@@ -39,7 +34,7 @@
 					email: ''
         },
         waiting: false,
-        emailNotFound: false
+        resetPasswordEmailSent: false
 			}
 		},
 		watch: {
@@ -50,9 +45,9 @@
 				let credentials = {
 					'email': this.$data.form.email
 				};
-				axios.post(`/api/auth/user/password/reset`, credentials)
+				axios.post(`/api/auth/user/password/reset/request`, credentials)
 				.then( res => {
-					
+					this.resetPasswordEmailSent = true;
 				})
 				.catch( err => {
 					console.log(err);
