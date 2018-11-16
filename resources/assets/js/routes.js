@@ -1,7 +1,7 @@
 import Landing from './components/Landing.vue';
 import Login from './components/auth/Login.vue';
 import Register from './components/auth/Register.vue';
-import ResetPassword from './components/auth/ResetPassword.vue';
+import ResetPasswordRequest from './components/auth/ResetPasswordRequest.vue';
 import RegistrationSuccess from './components/pages/registrationSuccess/RegistrationSuccess.vue';
 import Dashboard from './components/pages/dashboard/Dashboard.vue';
 import Courses from './components/pages/courses/CoursesAll.vue';
@@ -20,8 +20,8 @@ export const routes = [
 		component: Register
 	},
 	{
-		path: '/user/reset/password',
-		component: ResetPassword
+		path: '/user/password/reset/request',
+		component: ResetPasswordRequest
 	},
 	{
 		path: '/register/success',

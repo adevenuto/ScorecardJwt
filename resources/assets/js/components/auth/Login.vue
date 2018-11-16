@@ -23,7 +23,7 @@
 				<input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
 			</div>
 			<div class="reset-password-link">
-				<span>Forget your Password? </span> <router-link to="/user/reset/password">Password reset</router-link>
+				<span>Forget your Password? </span> <router-link to="/user/password/reset/request">Password reset</router-link>
 			</div>
 			<button class="btn btn-block">Login</button>
 			<template v-if="authError">

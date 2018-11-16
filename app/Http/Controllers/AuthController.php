@@ -161,7 +161,7 @@ class AuthController extends Controller
         return response()->json(['success'=> "Token not expired"], 200);
     }
 
-    public function logout() {
+    public function logout(Request $request) {
         auth('api')->logout();
         return response()->json(['message' => 'Successfully logged out']);
     }
