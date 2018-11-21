@@ -7,6 +7,17 @@ export function getLocalUser() {
 	}
 	return JSON.parse(user);
 }
+export function updateJwtToken(res) {
+	// Set new token in LocalStorage
+	const resToken = res.headers.authorization;
+	const newToken = resToken.replace('Bearer ','');
+	const user = JSON.parse(localStorage.getItem('user'));
+	user.token = newToken;
+	localStorage.setItem('user', JSON.stringify(user));
+
+	// console.log('Old: ' + oldToken)
+	console.log('New: ' + newToken)
+}
 export function invalidateAndLogout(user) {
 	const token = user.token;
 	axios.get(`/api/auth/user/token/exp?token=${token}`)
@@ -31,6 +42,7 @@ export function invalidateAndLogout(user) {
 }
 export function checkTokenOnRefresh(user) {
 	const token = user.token;
+	console.log(token);
 	axios.get(`/api/auth/user/token/exp?token=${token}`)
 	.then( res => {
 		// if token has expired -> logout

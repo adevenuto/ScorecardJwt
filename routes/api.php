@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('courses', 'CoursesController@allCourses');
+Route::get('courses', 'CoursesController@index');
 
 
 Route::group(['prefix' => 'auth'], function ($router) {
@@ -25,10 +25,9 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('user/password/reset/request', 'AuthController@sendPasswordResetEmail');
     Route::post('user/password/reset', 'AuthController@resetUserPassword');
     Route::get('user/token/exp', 'AuthController@checkTokenExp');
-		Route::post('refresh', 'AuthController@refresh');
 });
 
-Route::group(['middleware' => 'jwt.auth'], function($router){
+Route::group(['middleware' => ['jwtRequestIntercept', 'jwt.auth']], function($router){
 	Route::get('user/courses', 'CoursesController@userCourses');
 });
 	

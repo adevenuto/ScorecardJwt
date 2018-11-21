@@ -1,5 +1,5 @@
 
-import {getLocalUser} from '../helpers/auth';
+import {getLocalUser, updateJwtToken} from '../helpers/auth';
 import {router} from '../app';
 
 const user = getLocalUser();
@@ -79,6 +79,7 @@ export default {
 					userId: context.getters.currentUser.id
 				}
 			}).then( res => {
+				updateJwtToken(res);
 				let courses = res.data;
 				context.commit('setUserCourses', courses);
 			}).catch( err => {
