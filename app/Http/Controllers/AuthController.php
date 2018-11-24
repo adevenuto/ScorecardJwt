@@ -115,7 +115,6 @@ class AuthController extends Controller
 
         $user_verification = DB::table('user_verifications')->where('user_id',$user->id)->first();
         $token = $user_verification->token;
-        
         $subject = "Please verify your email address.";
         Mail::send('email.verify_email', ['name' => $userName, 'verification_code' => $token],
             function($mail) use ($requestEmail, $userName, $subject){
@@ -132,8 +131,9 @@ class AuthController extends Controller
             // Send password reset email
             $userName = $user->name;
             $userUuid = $user->uuid;
-            $resetUrl = env('APP_URL').'api/auth/user/password/reset?='.$userUuid;
+            $resetUrl = getenv('APP_URL').'/user/password/reset?uuid='.$userUuid;
             $subject = "Reset your password request";
+            \Log::info($requestEmail);
             Mail::send('email.password_reset_email', ['name' => $userName, 'resetUrl' => $resetUrl],
                 function($mail) use ($requestEmail, $userName, $subject){
                     $mail->from(getenv('FROM_EMAIL_ADDRESS'), "From User/Company Name Goes Here");
@@ -144,7 +144,28 @@ class AuthController extends Controller
     }
 
     public function resetUserPassword(Request $request) {
-       
+        $requestEmail = $request->email;
+        $user = User::where('email', '=', $requestEmail)->first();
+        $rules = [
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6|confirmed'
+        ];
+        $input = $request->only(
+            'email',
+            'password',
+            'password_confirmation'
+        );
+        \Log::info($request);
+        $validator = Validator::make($input, $rules);
+        if($validator->fails()) {
+            $error = $validator->messages()->toJson();
+            return response()->json(['error' => $error]);
+        }
+        \Log::info($request);
+        // $password = $request->password;
+        // $user = User::create([
+        //     'password' => Hash::make($password)
+        // ]);
     }
     
     public function checkTokenExp(Request $request) {

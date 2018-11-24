@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="col-sm-12">
+        <div class="wrapper">
 
             <img src="http://res.publicdomainfiles.com/pdf_view/56/13528810214208.png" 
                  alt=""
@@ -15,3 +15,12 @@
         name: 'landing'
     }
 </script>
+<style>
+    .wrapper {
+        display: flex;
+        flex-direction: column;
+        min-height: 600px;
+        align-items: center;
+        justify-content: center;
+    }
+</style>

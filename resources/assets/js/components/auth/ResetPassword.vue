@@ -1,13 +1,13 @@
 <template>
 	<div class="col-sm-6 col-sm-offset-3 pt-3">
-		<form @submit.prevent="sendResetPasswordLink">
+		<form @submit.prevent="resetUserPassword">
 			<transition name="fade">
 				<div class="password-reset-message">
-					<div v-if="resetPasswordEmailSent">
+					<!-- <div v-if="resetPasswordEmailSent">
 						<i class="fa fa-check"></i>
 						A link to reset your password was sent to your inbox.
 						<hr>
-					</div>		
+					</div>		 -->
 				</div>
 			</transition>
 			<div class="form-head">
@@ -15,12 +15,21 @@
 						<h3>Reset Your Password</h3>
 						<div class="loader" v-if="waiting"></div>
 					</div>
-          <small>Send an password reset link to your inbox</small>
       </div>
+			<hr>
 			<div class="form-group">
+				<label for="">Email address</label>
 				<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
 			</div>
-			<button class="btn btn-block">Send Password Reset Link</button>
+			<div class="form-group">
+				<label for="">New password <span>*</span></label>
+				<input type="password" v-model="form.password" class="form-control" placeholder="Enter new password" required>
+			</div>
+			<div class="form-group">
+				<label for="">Confirm new password <span>*</span></label>
+				<input type="password" v-model="form.password_confirmation" class="form-control" placeholder="Confirm new password" required>
+			</div>
+			<button class="btn btn-block">Reset Password</button>
 		</form>
 	</div>
 </template>
@@ -31,23 +40,33 @@
 		data() {
 			return {
 				form: {
-					email: ''
+					email: '',
+					password: '',
+					password_confirmation: ''
         },
-        waiting: false,
-        resetPasswordEmailSent: false
+        waiting: false
+			}
+		},
+		created: function() {
+			// Protect
+			let userUuid = window.location.search;
+			if (userUuid && userUuid.indexOf('?uuid=') !== -1) {
+				console.log(userUuid.split('=')[1])
 			}
 		},
 		watch: {
       
     },
 		methods: {
-			sendResetPasswordLink: function() {
+			resetUserPassword: function() {
 				let credentials = {
-					'email': this.$data.form.email
+					'email': this.$data.form.email,
+					'password': this.$data.form.password,
+					'password_confirmation': this.$data.form.password_confirmation
 				};
-				axios.post(`/api/auth/user/password/reset/request`, credentials)
+				axios.post(`/api/auth/user/password/reset`, credentials)
 				.then( res => {
-					this.resetPasswordEmailSent = true;
+					
 				})
 				.catch( err => {
 					console.log(err);
@@ -70,7 +89,12 @@
 		color: #3c3d41;
 	}
 	form label {
-		color: #ececec;
+		color: #7d7d7d;
+    font-size: 14px;
+    margin: 0;
+	}
+	form label span {
+		color: #f00;
 	}
 	form input {
 		height: 40px;

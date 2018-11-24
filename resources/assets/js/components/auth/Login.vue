@@ -3,7 +3,7 @@
 		<form @submit.prevent="authenticate">
 			<transition name="fade">
 				<div v-if="emailNotVerified" class="validate-email-message">
-					<div id="activation-email" v-if="verificationEmailSent">
+					<div id="email-message" v-if="verificationEmailSent">
 						<i class="fa fa-check"></i>
 						Activation Email Sent, Check Your Inbox
 					</div>
@@ -144,7 +144,7 @@
     justify-content: flex-start;
     align-content: center;
 	}
-	#activation-email {
+	#email-message {
 		border: 1px solid #3b8d3a;
     display: inline-block;
     color: #fff;

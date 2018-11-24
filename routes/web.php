@@ -1,9 +1,8 @@
 <?php
 
 Auth::routes();
-Route::get('{any}', function () {
-    return view('main');
-})->where('any', '.*');
+Route::get('{any}', 'VueMainRedirect@redirect')
+->where('any', '.*');
 
 
 
