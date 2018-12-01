@@ -1,12 +1,14 @@
 <template>
-	<div>
-		<h1 style="text-transform: capitalize;">{{currentUser.name}}'s Dashboard</h1>
-		<div>
-			<div v-for="course in currentUserCourses" :key="course.id">
-				<h3 style="margin: 0;">{{course.name}}</h3>
-				<i>{{course.holes}}</i><br>
-				<i>{{course.email}}</i>
-				<hr>
+	<div class="container">
+		<div class="col-md-12">
+			<h1 style="text-transform: capitalize;">{{currentUser.name}}'s Dashboard</h1>
+			<div>
+				<div v-for="course in currentUserCourses" :key="course.id">
+					<h3 style="margin: 0;">{{course.name}}</h3>
+					<i>{{course.holes}}</i><br>
+					<i>{{course.email}}</i>
+					<hr>
+				</div>
 			</div>
 		</div>
 	</div>

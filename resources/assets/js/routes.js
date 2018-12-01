@@ -29,7 +29,7 @@ export const routes = [
 		component: ResetPassword
 	},
 	{
-		path: '/register/success',
+		path: '/registration/success',
 		component: RegistrationSuccess
 	},
 	{

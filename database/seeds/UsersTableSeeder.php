@@ -18,6 +18,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'consumer@consumer.com',
             'password' => Hash::make('consumer123'),
             'type' => 2,
+            'is_verified' => 1
         ]);
 
     	DB::table('users')->insert([
@@ -26,6 +27,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'deliman@deliman.com',
             'password' => Hash::make('deliman123'),
             'type' => 2,
+            'is_verified' => 1
         ]);
 
         DB::table('users')->insert([
@@ -34,6 +36,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@admin.com',
             'password' => Hash::make('admin123'),
             'type' => 1,
+            'is_verified' => 1
         ]);
     }
 }

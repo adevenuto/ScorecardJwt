@@ -1,7 +1,9 @@
 <template>
-  <div>
-    <h1>All Courses</h1>
-    <Courses/>
+  <div class="container">
+    <div class="col-md-12">
+      <h1>All Courses</h1>
+      <Courses/>
+    </div>
   </div>
 </template>
 

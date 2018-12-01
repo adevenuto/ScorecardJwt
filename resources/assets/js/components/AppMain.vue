@@ -4,14 +4,14 @@
     		 @click="toggleSideNav" 
     	     :class="{ 'overlay': sideNavStatus}">
     	</div>
+
     	<Header/>
-			<SideBarNav/>
-				<div class="container">
-					<transition name="fade">
-						<router-view></router-view>
-					</transition>
-				</div>
+		<SideBarNav/>
+		<transition name="fade">
+			<router-view></router-view>
+		</transition>
     	<Footer/>
+		
     </div>
 </template>
 
@@ -65,17 +65,6 @@
 	#app-main #overlay.overlay {
 	    display: block;
 	    opacity: 1;
-	}
-
-	.fade-enter-active, .fade-leave-active {
-	  transition-property: opacity;
-	  transition-duration: .20s;
-	}
-	.fade-enter-active {
-	  transition-delay: .20s;
-	}
-	.fade-enter, .fade-leave-active {
-	  opacity: 0
 	}
 </style>
 

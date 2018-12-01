@@ -145,6 +145,7 @@ class AuthController extends Controller
 
     public function resetUserPassword(Request $request) {
         $requestEmail = $request->email;
+        $password = $request->password;
         $user = User::where('email', '=', $requestEmail)->first();
         $rules = [
             'email' => 'required|email|max:255',
@@ -155,17 +156,15 @@ class AuthController extends Controller
             'password',
             'password_confirmation'
         );
-        \Log::info($request);
         $validator = Validator::make($input, $rules);
         if($validator->fails()) {
             $error = $validator->messages()->toJson();
             return response()->json(['error' => $error]);
+        } else {
+            $user->password = Hash::make($password);
+            $user->save();
+            return response()->json(['success'=> "Password has been reset"], 200);
         }
-        \Log::info($request);
-        // $password = $request->password;
-        // $user = User::create([
-        //     'password' => Hash::make($password)
-        // ]);
     }
     
     public function checkTokenExp(Request $request) {

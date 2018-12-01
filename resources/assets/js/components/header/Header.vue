@@ -49,7 +49,8 @@
 	}
 	#header-main #header-logo .title {
 		font-size: 28px;
-	    margin-left: 7px;
+		margin-left: 7px;
+		color: #fff;
 	}
 	#hamburger {
 	    position: relative;

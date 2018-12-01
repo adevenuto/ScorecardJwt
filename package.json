@@ -12,18 +12,19 @@
   "devDependencies": {
     "axios": "^0.15.3",
     "bootstrap-sass": "^3.3.7",
+    "browser-sync": "^2.23.6",
+    "browser-sync-webpack-plugin": "^1.2.0",
     "cross-env": "^3.2.3",
     "jquery": "^3.1.1",
-    "laravel-mix": "0.*",
-    "browser-sync": "^2.18.13",
-    "browser-sync-webpack-plugin": "^1.2.0",
+    "laravel-mix": "^3.0.0",
     "lodash": "^4.17.4"
   },
   "dependencies": {
+    "bootstrap": "^4.0.0-beta",
     "validate.js": "^0.12.0",
     "vue": "^2.0.8",
-    "vue-template-compiler": "^2.1.8",
     "vue-router": "^3.0.1",
+    "vue-template-compiler": "^2.1.8",
     "vuex": "^3.0.1"
   }
 }

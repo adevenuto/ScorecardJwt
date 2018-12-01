@@ -1,4 +1,5 @@
 <template>
+<div class="container">
 	<div class="col-sm-8 col-sm-offset-2">
 		<div class="success-message">
 			<img src="/img/golf-sticks-in-bag.svg" width="200" alt="golfclubs img">
@@ -9,6 +10,7 @@
 			</div>
 		</div>
 	</div>
+</div>
 </template>
 
 <script>
@@ -18,7 +20,7 @@
 			return {
 				successMessage: 'Success'
 			}
-    }
+    	}
 	}
 </script>
 
@@ -35,7 +37,7 @@
 		position: relative;
 		opacity: 0;
 		top: -145px;
-		animation-name: stretch;
+		animation-name: dropIn;
 		animation-duration: .75s; 
 		animation-timing-function: ease-in-out; 
 		animation-fill-mode: forwards;
@@ -53,7 +55,7 @@
 	}
 
 
-@keyframes stretch {
+@keyframes dropIn {
   0% {
 		opacity: 0;
 		top: -145px;
