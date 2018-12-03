@@ -3,19 +3,30 @@
 		<div class="col-sm-12 col-lg-6 mx-auto pt-3">
 			<form class="form-global" @submit.prevent="registerUser">
 				<div class="form-head">
-					<h3>Register</h3><div class="loader" v-if="waiting"></div>
+					<div class="header-main">
+						Register
+						<div class="loader" v-if="waiting"></div>
+					</div>
 				</div>
 				<div class="form-group">
-					<input type="text" v-model="form.name" class="form-control" placeholder="Name" required>
+					<label>Name</label>
+					<input type="text" v-model="form.name" class="form-control">
 				</div>
 				<div class="form-group">
-					<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
-					<span class="errors" v-if="emailError">{{emailError}}</span>
+					<label>Email address<span>*</span></label>
+					<input type="email" v-model="form.email" class="form-control" required>
+					<transition name="fade">
+						<div v-if="emailError" class="errors">{{emailError}}</div>
+					</transition>
 				</div>
 				<div class="form-group">
-					<input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
-					<span class="errors" v-if="passwordError">{{passwordError}}</span>
+					<label>Password<span>*</span></label>
+					<input type="password" v-model="form.password" class="form-control" required>
+					<transition name="fade">
+						<div v-if="passwordError" class="errors">{{passwordError}}</div>
+					</transition>
 				</div>
+				<hr>
 				<button class="btn btn-block">Register Now</button>
 			</form>
 		</div>
@@ -31,17 +42,17 @@
 					email: '',
           password: ''
 				},
-        emailError: '',
-        passwordError: '',
+        emailError: null,
+        passwordError: null,
         waiting: false
 			}
     },
     watch: {
       'form.email': function() {
-        this.$data.emailError = '';
+        this.$data.emailError = null;
 			},
 			'form.password': function() {
-        this.$data.passwordError = '';
+        this.$data.passwordError = null;
       }
     },
 		methods: {

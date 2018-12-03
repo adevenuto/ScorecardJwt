@@ -52,7 +52,7 @@
 	    position: absolute;
 	    width: 100%;
 	    height: 100%;
-	    background-color: rgba(0,0,0,.30);
+	    background-color: rgba(0,0,0,.10);
 	    z-index: 8888;
 	    display: none;
 	    opacity: 0;
@@ -60,7 +60,7 @@
 	    -webkit-transition: .25s ease-in-out;
 	    -moz-transition: .25s ease-in-out;
 	    -o-transition: .25s ease-in-out;
-	    transition: .25s ease-in-out;nsition: .25s ease-in-out;
+	    transition: .25s ease-in-out;;
 	}
 	#app-main #overlay.overlay {
 	    display: block;

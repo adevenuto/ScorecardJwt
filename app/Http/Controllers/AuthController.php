@@ -26,13 +26,13 @@ class AuthController extends Controller
         // If user is verified attemp login 
         $rules = [
             'email' => 'required|email',
-            'password' => 'required',
+            'password' => 'required|min:6',
         ];
         $input = $request->only('email', 'password');
         $validator = Validator::make($input, $rules);
         if($validator->fails()) {
-            $error = $validator->messages()->toJson();
-            return response()->json(['success'=> false, 'error'=> $error]);
+            $error = $validator->messages();
+            return response()->json(['error' => $error]);
         }
         $credentials = [
             'email' => $request->email,
@@ -125,6 +125,17 @@ class AuthController extends Controller
     }
 
     public function sendPasswordResetEmail(Request $request) {
+        $rules = [
+            'email' => 'required|email|max:255'
+        ];
+        $input = $request->only(
+            'email'
+        );
+        $validator = Validator::make($input, $rules);
+        if($validator->fails()) {
+            $error = $validator->messages();
+            return response()->json(['error' => $error]);
+        }
         $requestEmail = $request->email;
         $user = User::where('email', '=', $requestEmail)->first();
         if (isset($user)) {
@@ -158,13 +169,16 @@ class AuthController extends Controller
         );
         $validator = Validator::make($input, $rules);
         if($validator->fails()) {
-            $error = $validator->messages()->toJson();
+            $error = $validator->messages();
             return response()->json(['error' => $error]);
-        } else {
-            $user->password = Hash::make($password);
-            $user->save();
-            return response()->json(['success'=> "Password has been reset"], 200);
         }
+        if (!$user) {
+            return response()->json(['error' => ['email' => ['email not found']]]);
+        } 
+        $user->password = Hash::make($password);
+        $user->save();
+        return response()->json(['success'=> "Password has been reset"], 200);
+        
     }
     
     public function checkTokenExp(Request $request) {
@@ -189,12 +203,7 @@ class AuthController extends Controller
     public function refresh() {
         return $this->respondWithToken(auth('api')->refresh());
     }
-    /**
-     * Get the token array structure.
-     *
-     * @param  string $token
-     */
-
+    
     protected function respondWithToken($token) {
         return response()->json([
             'access_token' => $token,

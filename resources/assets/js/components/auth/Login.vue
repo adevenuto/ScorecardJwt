@@ -14,22 +14,33 @@
 					</div>
 				</transition>
 				<div class="form-head">
-					<h3>Login</h3>
-					<div class="loader" v-if="waiting"></div>
+          <div class="header-main">
+            Login
+					  <div class="loader" v-if="waiting"></div>
+          </div>
 				</div>
 				<div class="form-group">
-					<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
+          <label>Email address<span>*</span></label>
+					<input type="email" v-model="form.email" class="form-control" required>
+          <transition name="fade">
+            <div v-if="emailError" class="errors">{{emailError}}</div>
+          </transition>
 				</div>
 				<div class="form-group">
-					<input type="password" v-model="form.password" class="form-control" placeholder="Password" required>
+          <label>Password<span>*</span></label>
+					<input type="password" v-model="form.password" class="form-control" required>
+          <transition name="fade">
+            <div v-if="passwordError" class="errors">{{passwordError}}</div>
+          </transition>
 				</div>
 				<div class="reset-password-link">
-					<span>Forget your Password? </span> <router-link to="/user/password/reset/request">Password reset</router-link>
+					<span>Forget your Password? </span> <router-link to="/user/password/reset/request">password reset</router-link>
 				</div>
+        <transition name="fade">
+          <div v-if="authError" class="errors">{{authError}}</div>
+        </transition>
+        <hr>
 				<button class="btn btn-block">Login</button>
-				<template v-if="authError">
-					<p class="errors">{{authError}}</p>
-				</template>
 			</form>
 		</div>
 	</div>
@@ -46,18 +57,21 @@
           password: ""
         },
         waiting: false,
+        emailError: null,
+        passwordError: null,
         emailNotVerified: false,
+        authError: null,
         verificationEmailSent: false
       };
     },
     watch: {
       "form.email": function() {
-        this.$store.commit("loginFailed", "");
-      }
-    },
-    computed: {
-      authError() {
-        return this.$store.getters.authError;
+        if (this.emailError) this.emailError = null;
+        if (this.authError) this.authError = null;
+      },
+      "form.password": function() {
+        if (this.passwordError) this.passwordError = null;
+        if (this.authError) this.authError = null;
       }
     },
     methods: {
@@ -67,24 +81,22 @@
         return axios
           .post("/api/auth/login", credentials)
           .then(payload => {
-            let error = payload.data.error;
-            if (!error) {
+            this.$data.waiting = false;
+            let errors = payload.data.error;
+            if (!errors) {
               this.$data.waiting = false;
-              this.$data.emailNotVerified = false;
               this.$store.commit("loginSuccess", payload);
               this.$router.push({ path: "/dashboard" });
             } else {
-              this.$data.waiting = false;
-              let emailNotVerified = error.emailNotVerified;
-              let authError = error.authError;
-              if (emailNotVerified) {
-                this.$data.emailNotVerified = true;
-              }
-              if (authError) {
-                this.$data.emailNotVerified = false;
-                this.$store.commit("loginFailed", authError);
-              }
-            }
+              let emailError = errors.email;
+              let passwordError = errors.password;
+              let emailNotVerified = errors.emailNotVerified;
+              let authError = errors.authError;
+              if (emailError) this.emailError = emailError[0];
+              if (passwordError) this.passwordError = passwordError[0];
+              if (emailNotVerified) this.emailNotVerified = emailNotVerified;
+              if (authError) this.authError = authError; 
+            } 
           })
           .catch(err => {
             console.log(err);
@@ -121,8 +133,8 @@
     }
   }
   .reset-password-link {
-    margin-top: -10px;
-    margin-bottom: 25px;
+      margin-top: -8px;
+      font-size: 0.9rem;
     a {
       color: #2fa5ff;
       text-decoration: underline;

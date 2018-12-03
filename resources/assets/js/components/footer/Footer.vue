@@ -63,6 +63,7 @@
 	}
 	#footer-main .footer-copyright {
         background-color: #333333;
+        border-top: 1px solid #486149;
         padding-top: 3px;
         padding-bottom: 3px;
         text-align: center;

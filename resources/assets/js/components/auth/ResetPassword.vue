@@ -9,27 +9,30 @@
 					</div>
 				</transition>
 				<div class="form-head">
-						<h3>Reset Your Password</h3>
+					<div class="header-main">
+						Reset Your Password
 						<div class="loader" v-if="waiting"></div>
+					</div>
 				</div>
 				<div class="form-group">
-					<label for="">Email address <span>*</span></label>
-					<input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
+					<label for="">Email address<span>*</span></label>
+					<input type="email" v-model="form.email" class="form-control" required>
 					<template v-if="emailErrors">
 							<div class="errors" v-for="error in emailErrors" :key="error">{{error}}</div>
 					</template>
 				</div>
 				<div class="form-group">
-					<label for="">New password <span>*</span></label>
-					<input type="password" v-model="form.password" class="form-control" placeholder="Enter new password" required>
+					<label for="">New password<span>*</span></label>
+					<input type="password" v-model="form.password" class="form-control" required>
 				</div>
 				<div class="form-group">
-					<label for="">Confirm new password <span>*</span></label>
-					<input type="password" v-model="form.password_confirmation" class="form-control" placeholder="Confirm new password" required>
+					<label for="">Confirm new password<span>*</span></label>
+					<input type="password" v-model="form.password_confirmation" class="form-control" required>
 					<template v-if="passwordErrors">
 						<div class="errors" v-for="error in passwordErrors" :key="error">{{error}}</div>
 					</template>
 				</div>
+				<hr>
 				<button class="btn btn-block">Reset Password</button>
 			</form>
 		</div>
@@ -60,7 +63,7 @@
 			// }
 		},
 		watch: {
-      'form.email': function() {
+      		'form.email': function() {
 				this.emailErrors = null;
 			},
 			'form.password': function() {
@@ -81,12 +84,15 @@
 				axios.post(`/api/auth/user/password/reset`, credentials)
 				.then( payload => {
 					this.waiting = false;
-					this.passwordResetSuccess = true;
-					let error = JSON.parse(payload.data.error);
-					let emailErrors = error.email;
-					let passwordErrors = error.password;
-					if (emailErrors) this.emailErrors = emailErrors;
-					if (passwordErrors) this.passwordErrors = passwordErrors;
+					let error = payload.data.error;
+					if (!error) {
+						this.passwordResetSuccess = true;
+					} else {
+						let emailErrors = error.email;
+						let passwordErrors = error.password;
+						if (emailErrors) this.emailErrors = emailErrors;
+						if (passwordErrors) this.passwordErrors = passwordErrors;
+					}
 				})
 				.catch( err => {
 					console.log(err);
@@ -97,5 +103,9 @@
 </script>
 
 <style scoped>
-	
+	@media only screen and (max-width: 340px) {
+      form.form-global .header-main {
+        font-size: 1.3rem;
+      }
+    }
 </style>

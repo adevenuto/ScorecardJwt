@@ -9,12 +9,22 @@
           </div>
         </transition>
         <div class="form-head">
-					<h3>Reset your password</h3>
-					<div class="loader" v-if="waiting"></div>
+          <div class="header-main">
+            Reset your password
+					  <div class="loader" v-if="waiting"></div>
+          </div>
+          <div class="header-sub">
+            Enter your email address and an email will be sent to your inbox.
+          </div>
 				</div>
         <div class="form-group">
-          <input type="email" v-model="form.email" class="form-control" placeholder="Email Address" required>
+          <label>Email address<span>*</span></label>
+          <input type="email" v-model="form.email" class="form-control" required>
+          <transition name="fade">
+            <div v-if="emailError" class="errors">{{emailError}}</div>
+          </transition>
         </div>
+        <hr>
         <button class="btn btn-block">Send Reset Link</button>
       </form>
     </div>
@@ -30,8 +40,14 @@ export default {
         email: ""
       },
       waiting: false,
+      emailError: null,
       resetPasswordEmailSent: false
     };
+  },
+  watch: {
+    "form.email": function() {
+      if (this.emailError) this.emailError = null;
+    }
   },
   methods: {
     sendPasswordResetEmail: function() {
@@ -40,9 +56,16 @@ export default {
       };
       this.waiting = true;
       axios.post(`/api/auth/user/password/reset/request`, credentials)
-        .then(res => {
-          this.resetPasswordEmailSent = true;
-          this.waiting = false;
+        .then(payload => {
+          this.$data.waiting = false;
+          let errors = payload.data.error;
+          if (!errors) {
+            this.resetPasswordEmailSent = true;
+            this.waiting = false;
+          } else {
+            let emailError = errors.email;
+            if (emailError) this.emailError = emailError[0];
+          }
         })
         .catch(err => {
           console.log(err);
@@ -53,6 +76,9 @@ export default {
 </script>
 
 <style scoped>
-
-
+    @media only screen and (max-width: 340px) {
+      form.form-global .header-main {
+        font-size: 1.3rem;
+      }
+    }
 </style>

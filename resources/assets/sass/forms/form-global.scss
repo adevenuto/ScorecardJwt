@@ -2,20 +2,20 @@
 /* Global Form Style */
 /*********************/
 form.form-global {
-        background: #d8e4d7;
-        padding: 20px;
-        margin: 40px 0;
-    h3 {
-        font-weight: bold;
-        font-size: 1.3rem;
-        margin: 0 0 20px 0;
-        color: #3c3d41;
-    }
+    background: #d8e4d7;
+    border-radius: 2px;
+    padding: 15px;
+    margin: 40px 0;
     label {
         color: #3c3d41;
+        margin-bottom: 0;
         span {
             color: #f00;
+            margin-left: .1rem;
         }
+    }
+    .form-group {
+        margin-bottom: .5rem;
     }
     input {
         height: 40px;
@@ -28,6 +28,7 @@ form.form-global {
     button {
         font-weight: bold;
         font-size: 1.3rem;
+        margin-top: 1.2rem;
         background: #00ce07;
         box-shadow: 0px 2px 4px -2px #444;
         color: #fff;
@@ -39,9 +40,24 @@ form.form-global {
     }
     .form-head {
         display: flex;
-        flex-direction: row;
-        justify-content: flex-start;
-        align-content: center;
+        flex-direction: column;
+        margin-bottom: 10px;
+        .header-main, .header-sub {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            align-content: flex-start;
+        }
+        .header-main {
+            font-weight: bold;
+            font-size: 1.5rem;
+            color: #3c3d41; 
+        }
+        .header-sub {
+            font-size: .8rem;
+            color: #6b6b6b;
+            margin-top: -4px;
+        }
     }
     .status-message {
         border: 1px solid #3b8d3a;

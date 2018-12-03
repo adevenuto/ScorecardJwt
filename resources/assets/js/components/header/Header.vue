@@ -59,7 +59,8 @@
 	    justify-content: space-around;
 	    width: 40px;
 	    height: 40px;
-			margin-top: 3px;
+		margin-top: 3px;
+		cursor: pointer;
     	z-index: 9999;    
 	}
 	#hamburger span {
