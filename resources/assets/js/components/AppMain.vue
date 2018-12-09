@@ -6,6 +6,7 @@
     	</div>
 
     	<Header/>
+		<Messages/>
 		<SideBarNav/>
 		<transition name="fade">
 			<router-view></router-view>
@@ -17,13 +18,19 @@
 
 <script>
 	import Header from './header/Header.vue';
+	import Messages from './messages/Messages.vue';
 	import Footer from './footer/Footer.vue';
 	import SideBarNav from './sidebarnav/SideBarNav.vue';
 	import Login from './auth/Login.vue';
 	import {checkTokenOnRefresh} from '../helpers/auth';
     export default {
 		name: 'app-main',
-		components: {Header, Footer, SideBarNav, Login},
+		components: {Messages, Header, Footer, SideBarNav, Login},
+		data() {
+			return {
+				
+			}
+		},
 		created: function() {
 			// const user = localStorage.getItem('user');
 			// if (user) {
@@ -52,8 +59,8 @@
 	    position: absolute;
 	    width: 100%;
 	    height: 100%;
-	    background-color: rgba(0,0,0,.10);
-	    z-index: 8888;
+	    background-color: rgba(0,0,0,.30);
+	    z-index: 500;
 	    display: none;
 	    opacity: 0;
 	    -webkit-transition: .25s ease-in-out;

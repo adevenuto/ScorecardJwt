@@ -10,7 +10,7 @@
 				</transition>
 				<div class="form-head">
 					<div class="header-main">
-						Reset Your Password
+						Reset your password
 						<div class="loader" v-if="waiting"></div>
 					</div>
 				</div>

@@ -61,7 +61,7 @@
 	    height: 40px;
 		margin-top: 3px;
 		cursor: pointer;
-    	z-index: 9999;    
+    	z-index: 650;    
 	}
 	#hamburger span {
         display: block;

@@ -16,7 +16,14 @@ export default {
 		courses: null,
 		user: {
 			courses: null
+		},
+		notificationMessage: {
+			status: false,
+			title: null,
+			subtitle: null,
+			linkto: null
 		}
+
 	},
 	getters: {
 		sideNavStatus(state) {
@@ -39,11 +46,20 @@ export default {
 		},
 		currentUserCourses(state) {
 			return state.user.courses;
+		},
+		notificationMessage(state) {
+			return state.notificationMessage;
 		}
 	},
 	mutations: {
 		toggleSideNav(state) {
 			state.navigation.sideNavIn = !state.navigation.sideNavIn;
+		},
+		notificationMessage(state, payload) {
+			state.notificationMessage.title = payload.title;
+			state.notificationMessage.subtitle = payload.subtitle;
+			state.notificationMessage.linkto = payload.linkto;
+			state.notificationMessage.status = !state.notificationMessage.status;
 		},
 		loginSuccess(state, payload) {
 			state.currentUser = Object.assign({}, payload.data.user, {token: payload.data.access_token});

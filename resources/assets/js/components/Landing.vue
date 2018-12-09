@@ -1,16 +1,27 @@
 <template>
-    <div>
-        <div class="wrapper">
-            <img src="http://res.publicdomainfiles.com/pdf_view/56/13528810214208.png" 
-                 alt=""
-                 class="img-responsive" style="margin: 0 auto"
-                 width="500px"> 
-        </div>
+    <div class="wrapper">
+        <img src="http://res.publicdomainfiles.com/pdf_view/56/13528810214208.png" 
+                alt=""
+                class="img-fluid" 
+                style="margin: 0 auto;"
+                width="700px"
+                > 
+        <button @click="notificationMessage">NotificationMessage</button>
     </div>
 </template>
 <script>
     export default {
-        name: 'landing'
+        name: 'landing',
+        methods: {
+            notificationMessage() {
+                let payload = {
+                    title: 'This is the title whore',
+                    subtitle: 'This is the sub title whore',
+                    linkto: "<a href='/login'>Login</a>"
+                }
+                this.$store.commit('notificationMessage', payload);
+            }
+        }
     }
 </script>
 <style>

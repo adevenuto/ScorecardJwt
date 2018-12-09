@@ -53,7 +53,7 @@
 	    height: 100%; 
 	    width: 240px;
 	    position: fixed;
-	    z-index: 8888;
+	    z-index: 600;
 	    top: 0;
 	    right: -240px;
 	    background-color: rgba(17, 17, 17, 0.86);
