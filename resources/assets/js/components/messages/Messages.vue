@@ -11,7 +11,6 @@
         <div @click="notificationClose" class="message-close">
             <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M12.435 8.9l4.596 4.596a2.5 2.5 0 0 1-3.535 3.535l-4.597-4.596-4.596 4.596a2.5 2.5 0 0 1-3.535-3.535l4.596-4.597L.768 4.303A2.5 2.5 0 0 1 4.303.768L8.9 5.364 13.496.768a2.5 2.5 0 1 1 3.535 3.535L12.435 8.9z" fill="#000" fill-rule="evenodd"/></svg>
         </div>
-        
     </div>
 </template>
 
