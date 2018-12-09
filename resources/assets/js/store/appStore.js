@@ -61,6 +61,12 @@ export default {
 			state.notificationMessage.linkto = payload.linkto;
 			state.notificationMessage.status = !state.notificationMessage.status;
 		},
+		notificationMessageClear(state) {
+			state.notificationMessage.title = null;
+			state.notificationMessage.subtitle = null;
+			state.notificationMessage.linkto = null;
+			state.notificationMessage.status = !state.notificationMessage.status;
+		},
 		loginSuccess(state, payload) {
 			state.currentUser = Object.assign({}, payload.data.user, {token: payload.data.access_token});
 			localStorage.setItem('user', JSON.stringify(state.currentUser));

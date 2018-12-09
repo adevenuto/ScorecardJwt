@@ -87,6 +87,14 @@
               this.$data.waiting = false;
               this.$store.commit("loginSuccess", payload);
               this.$router.push({ path: "/dashboard" });
+              
+              let msg = {
+                  title: 'Welcome back! Lets play some golf.',
+                  subtitle: null,
+                  linkto: "<a href='/dashboard'>Dashboard</a>"
+              }
+              this.$store.commit('notificationMessage', msg);
+            
             } else {
               let emailError = errors.email;
               let passwordError = errors.password;

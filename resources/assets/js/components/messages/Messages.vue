@@ -11,10 +11,8 @@
         <div @click="notificationClose" class="message-close">
             <svg width="18" height="18" xmlns="http://www.w3.org/2000/svg"><path d="M12.435 8.9l4.596 4.596a2.5 2.5 0 0 1-3.535 3.535l-4.597-4.596-4.596 4.596a2.5 2.5 0 0 1-3.535-3.535l4.596-4.597L.768 4.303A2.5 2.5 0 0 1 4.303.768L8.9 5.364 13.496.768a2.5 2.5 0 1 1 3.535 3.535L12.435 8.9z" fill="#000" fill-rule="evenodd"/></svg>
         </div>
-        
     </div>
 </template>
-
 <script>
     export default {
         name: 'Messages',
@@ -34,12 +32,11 @@
 		},
         methods: {
             notificationClose() {
-                this.$store.commit('notificationMessage');
+                this.$store.commit('notificationMessageClear');
             }
         }
     }
 </script>
-
 <style lang="scss" scoped>
     .message-wrapper {
         position: absolute;
@@ -51,7 +48,7 @@
         flex-direction: row;
         align-items: center;
         justify-content: space-between;
-        padding: 10px 20px;
+        padding: 0 20px;
         background: #00da05;
         box-shadow: 0px 0px 3px 0px #000;
         z-index: 9000;

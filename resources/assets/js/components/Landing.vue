@@ -15,8 +15,8 @@
         methods: {
             notificationMessage() {
                 let payload = {
-                    title: 'This is the title whore',
-                    subtitle: 'This is the sub title whore',
+                    title: 'This is the title',
+                    subtitle: 'This is the sub title',
                     linkto: "<a href='/login'>Login</a>"
                 }
                 this.$store.commit('notificationMessage', payload);
