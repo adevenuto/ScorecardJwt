@@ -1,5 +1,11 @@
 <template>
-    <div :class="{'slide-in': notificationMessage.status}"  class="message-wrapper">
+    <div :class="[{
+        'slide-in': notificationMessage.status,
+        'success': (notificationMessage.type == 'success'),
+        'danger': (notificationMessage.type == 'danger'),
+        'warning': (notificationMessage.type == 'warning'),
+        },
+        'message-wrapper']">
         <div class="message">
             <div class="title">
                 {{notificationMessage.title}}
@@ -18,7 +24,8 @@
         name: 'Messages',
         data() {
             return {
-                message: {
+                message: { 
+                    type: this.$store.state.notificationMessage.type,
                     title: this.$store.state.notificationMessage.title,
                     subtitle: this.$store.state.notificationMessage.subtitle,
                     linkto: this.$store.state.notificationMessage.linkto
@@ -49,7 +56,7 @@
         align-items: center;
         justify-content: space-between;
         padding: 0 20px;
-        background: #00da05;
+        background: #10c3f9;
         box-shadow: 0px 0px 3px 0px #000;
         z-index: 9000;
         .message {
@@ -76,6 +83,15 @@
     }
     .message-wrapper.slide-in {
         top: 0;
+    }
+    .message-wrapper.success {
+        background: #00da05;
+    }
+    .message-wrapper.danger {
+        background: #e03e00;
+    }
+    .message-wrapper.warning {
+        background: #f18500;
     }
     @media only screen and (max-width: 374px) {
         .message-wrapper .message .title {

@@ -34,6 +34,7 @@
 
 <style scoped>
 	#header-main {
+		position: relative;
 		display: flex;
 		flex-direction: row;
 		align-content: center;
@@ -57,8 +58,8 @@
 	    display: flex;
 	    flex-direction: column;
 	    justify-content: space-around;
-	    width: 40px;
-	    height: 40px;
+	    width: 35px;
+	    height: 35px;
 		margin-top: 3px;
 		cursor: pointer;
     	z-index: 650;    
