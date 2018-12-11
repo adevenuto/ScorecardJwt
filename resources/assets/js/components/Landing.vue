@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <img src="http://res.publicdomainfiles.com/pdf_view/56/13528810214208.png" 
+        <img src="http://www.onthegreenmagazine.com/wp-content/uploads/2012/01/love3-1400x1050.jpg" 
                 alt=""
                 class="img-fluid" 
                 style="margin: 0 auto;"
