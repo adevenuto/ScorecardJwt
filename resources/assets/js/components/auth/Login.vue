@@ -87,15 +87,14 @@
               this.$data.waiting = false;
               this.$store.commit("loginSuccess", payload);
               this.$router.push({ path: "/dashboard" });
-              
-              let msg = {
+            
+              this.$store.commit('notificationMessage', {
                   type: 'success',
                   title: 'Welcome back!',
                   subtitle: null,
                   linkto: null,
                   timeout: 4000
-              }
-              this.$store.commit('notificationMessage', msg);
+              });
             
             } else {
               let emailError = errors.email;

@@ -64,13 +64,12 @@
 						let error = payload.data.error;
             if (!error) {
 							this.$data.waiting = false;
-							let msg = {
+							this.$router.push({path: '/registration/success'});
+							this.$store.commit('notificationMessage', {
                   title: 'Registration success!',
                   subtitle: 'Please check your inbox',
                   linkto: null
-              }
-              this.$store.commit('notificationMessage', msg);
-              this.$router.push({path: '/registration/success'});
+              });
             } else {
 							this.$data.waiting = false;
 							let parsedError = JSON.parse(error);

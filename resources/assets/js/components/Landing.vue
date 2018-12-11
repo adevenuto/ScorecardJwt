@@ -15,14 +15,13 @@
         name: 'landing',
         methods: {
             notificationMessage() {
-                let payload = {
+                this.$store.commit('notificationMessage', {
                     type: 'warning',
                     title: 'Delete this game?',
                     subtitle: 'This cannot be undone, ',
                     linkto: "<a href=''>Delete game</a>",
                     timeout: null
-                }
-                this.$store.commit('notificationMessage', payload);
+                });
             }
         }
     }
