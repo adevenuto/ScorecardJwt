@@ -63,7 +63,13 @@
 					.then( payload => {
 						let error = payload.data.error;
             if (!error) {
-              this.$data.waiting = false;
+							this.$data.waiting = false;
+							let msg = {
+                  title: 'Registration success!',
+                  subtitle: 'Please check your inbox',
+                  linkto: null
+              }
+              this.$store.commit('notificationMessage', msg);
               this.$router.push({path: '/registration/success'});
             } else {
 							this.$data.waiting = false;

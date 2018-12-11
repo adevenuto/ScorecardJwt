@@ -89,9 +89,11 @@
               this.$router.push({ path: "/dashboard" });
               
               let msg = {
-                  title: 'Welcome back! Lets play some golf.',
+                  type: 'success',
+                  title: 'Welcome back!',
                   subtitle: null,
-                  linkto: "<a href='/dashboard'>Dashboard</a>"
+                  linkto: null,
+                  timeout: 4000
               }
               this.$store.commit('notificationMessage', msg);
             

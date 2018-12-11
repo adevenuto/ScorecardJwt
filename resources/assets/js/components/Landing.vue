@@ -7,6 +7,7 @@
                 width="700px"
                 > 
         <button @click="notificationMessage">NotificationMessage</button>
+       
     </div>
 </template>
 <script>
@@ -15,9 +16,11 @@
         methods: {
             notificationMessage() {
                 let payload = {
-                    title: 'This is the title',
-                    subtitle: 'This is the sub title',
-                    linkto: "<a href='/login'>Login</a>"
+                    type: 'warning',
+                    title: 'Delete this game?',
+                    subtitle: 'This cannot be undone, ',
+                    linkto: "<a href=''>Delete game</a>",
+                    timeout: null
                 }
                 this.$store.commit('notificationMessage', payload);
             }

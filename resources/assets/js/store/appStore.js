@@ -19,6 +19,7 @@ export default {
 		},
 		notificationMessage: {
 			status: false,
+			type: null,
 			title: null,
 			subtitle: null,
 			linkto: null
@@ -56,16 +57,25 @@ export default {
 			state.navigation.sideNavIn = !state.navigation.sideNavIn;
 		},
 		notificationMessage(state, payload) {
+			state.notificationMessage.type = payload.type;
 			state.notificationMessage.title = payload.title;
 			state.notificationMessage.subtitle = payload.subtitle;
 			state.notificationMessage.linkto = payload.linkto;
-			state.notificationMessage.status = !state.notificationMessage.status;
+			state.notificationMessage.status = true;
+			if (payload.timeout) {
+				setTimeout(() => {
+					this.commit('notificationMessageClear');
+				}, payload.timeout);
+			}
 		},
 		notificationMessageClear(state) {
-			state.notificationMessage.title = null;
-			state.notificationMessage.subtitle = null;
-			state.notificationMessage.linkto = null;
-			state.notificationMessage.status = !state.notificationMessage.status;
+			state.notificationMessage.status = false;
+			setTimeout(() => {
+				state.notificationMessage.type = null;
+				state.notificationMessage.title = null;
+				state.notificationMessage.subtitle = null;
+				state.notificationMessage.linkto = null;
+			},300);
 		},
 		loginSuccess(state, payload) {
 			state.currentUser = Object.assign({}, payload.data.user, {token: payload.data.access_token});
