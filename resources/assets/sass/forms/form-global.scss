@@ -2,10 +2,16 @@
 /* Global Form Style */
 /*********************/
 form.form-global {
-    background: #d8e4d7;
+    background: #eee;
     border-radius: 2px;
     padding: 15px;
     margin: 40px 0;
+    box-shadow: 0px 0px 2px 0px #000;
+    .divider {
+        height: 3px;
+        width: 100%;
+        background: #d8d8d8;
+    }
     label {
         color: #3c3d41;
         margin-bottom: 0;
@@ -15,11 +21,11 @@ form.form-global {
         }
     }
     .form-group {
-        margin-bottom: .5rem;
+        margin-bottom: .6rem;
     }
     input {
-        height: 40px;
-        font-size: 1.2rem;
+        height: 50px;
+        font-size: 1.5rem;
         border-color: none;
         color: #3c3d41;
         background-color: #fff;
@@ -28,13 +34,14 @@ form.form-global {
     button {
         font-weight: bold;
         font-size: 1.3rem;
-        margin-top: 1.2rem;
-        background: #00ce07;
+        margin-top: 1.7rem;
+        background: #66D510;
         box-shadow: 0px 2px 4px -2px #444;
         color: #fff;
         transition: 250ms;
+        padding: 15px 0;
         &:hover {
-            background: #00c307;
+            background: #59cc00;
             color: #fff;
         }
     }
@@ -46,11 +53,11 @@ form.form-global {
             display: flex;
             flex-direction: row;
             align-items: center;
-            align-content: flex-start;
+            justify-content: flex-start;
         }
         .header-main {
             font-weight: bold;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             color: #3c3d41; 
         }
         .header-sub {

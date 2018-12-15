@@ -7,6 +7,7 @@
 						Register
 						<div class="loader" v-if="waiting"></div>
 					</div>
+					<div class="divider"></div>
 				</div>
 				<div class="form-group">
 					<label>Name</label>
@@ -26,7 +27,6 @@
 						<div v-if="passwordError" class="errors">{{passwordError}}</div>
 					</transition>
 				</div>
-				<hr>
 				<button class="btn btn-block">Register Now</button>
 			</form>
 		</div>

@@ -30,6 +30,12 @@ export function invalidateAndLogout(user) {
 			axios.post(`/api/auth/logout?token=${token}`)
 			.then( res => {
 				store.commit('logOut');
+				store.commit('notificationMessage', {
+					title: 'Come back soon!',
+					subtitle: null,
+					linkto: null,
+					timeout: 4000
+				});
 			})
 			.catch( err => {
 				console.log(err);

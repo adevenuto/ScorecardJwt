@@ -13,6 +13,7 @@
 						Reset your password
 						<div class="loader" v-if="waiting"></div>
 					</div>
+					<div class="divider"></div>
 				</div>
 				<div class="form-group">
 					<label for="">Email address<span>*</span></label>
@@ -32,7 +33,6 @@
 						<div class="errors" v-for="error in passwordErrors" :key="error">{{error}}</div>
 					</template>
 				</div>
-				<hr>
 				<button class="btn btn-block">Reset Password</button>
 			</form>
 		</div>
@@ -86,7 +86,14 @@
 					this.waiting = false;
 					let error = payload.data.error;
 					if (!error) {
-						this.passwordResetSuccess = true;
+						this.$router.push({path: '/login'});
+						this.$store.commit('notificationMessage', {
+							type: 'success',
+							title: 'Password successfully reset!',
+							subtitle: null,
+							linkto: null,
+							timeout: 4000
+						});
 					} else {
 						let emailErrors = error.email;
 						let passwordErrors = error.password;

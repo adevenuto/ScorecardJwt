@@ -16,6 +16,7 @@
           <div class="header-sub">
             Enter your email address and an email will be sent to your inbox.
           </div>
+          <div class="divider"></div>
 				</div>
         <div class="form-group">
           <label>Email address<span>*</span></label>
@@ -24,7 +25,6 @@
             <div v-if="emailError" class="errors">{{emailError}}</div>
           </transition>
         </div>
-        <hr>
         <button class="btn btn-block">Send Reset Link</button>
       </form>
     </div>
@@ -60,8 +60,13 @@ export default {
           this.$data.waiting = false;
           let errors = payload.data.error;
           if (!errors) {
-            this.resetPasswordEmailSent = true;
             this.waiting = false;
+            this.$store.commit('notificationMessage', {
+                type: 'success',
+                title: 'Password reset link sent to mailbox',
+                subtitle: null,
+                linkto: null
+            });
           } else {
             let emailError = errors.email;
             if (emailError) this.emailError = emailError[0];
