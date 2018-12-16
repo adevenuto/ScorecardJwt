@@ -12,7 +12,6 @@
 	</div>
 </div>
 </template>
-
 <script>
 	export default {
 		name: 'RegistrationSuccess',
@@ -20,46 +19,51 @@
 			return {
 				successMessage: 'Success'
 			}
-    	}
+		},
+		created: function() {
+			this.$store.commit('notificationMessage', {
+				type: 'success',
+				title: 'Registration success!',
+				subtitle: 'Please check your inbox',
+				timeout: 4000
+			});
+		}
 	}
 </script>
-
-<style scoped>
+<style lang="scss" scoped>
 	.success-message {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
 		min-height: 500px;
-	}
-	.success-message .golf-bag-svg {
-		position: relative;
-		opacity: 0;
-		top: -145px;
-		animation-name: dropIn;
-		animation-duration: .75s; 
-		animation-timing-function: ease-in-out; 
-		animation-fill-mode: forwards;
-		animation-delay: .4s;
-	}
-	.message-right h1 {
+		.golf-bag-svg {
+			position: relative;
+			opacity: 0;
+			top: -145px;
+			animation-name: dropIn;
+			animation-duration: .75s; 
+			animation-timing-function: ease-in-out; 
+			animation-fill-mode: forwards;
+			animation-delay: .4s;
+		}
+		.message-right h1 {
 		font-size: 4rem;
 		font-weight: 600;
 	}
-	.message-right p {
-		font-size: 1.25rem;
-		line-height: 1.4rem;
-		font-weight: 600;
-		margin-top: 20px;
-		text-align: left;
+		.message-right p {
+			font-size: 1.25rem;
+			line-height: 1.4rem;
+			font-weight: 600;
+			margin-top: 20px;
+			text-align: left;
+		}
 	}
-
 	@media only screen and (max-width: 767px) {
       .success-message .golf-bag-svg {
         display: none;
       }
 	}
-	
 	@keyframes dropIn {
 	0% {
 		opacity: 0;

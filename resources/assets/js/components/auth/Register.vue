@@ -65,12 +65,6 @@
             if (!error) {
 							this.$data.waiting = false;
 							this.$router.push({path: '/registration/success'});
-							this.$store.commit('notificationMessage', {
-									type: 'success',
-                  title: 'Registration success!',
-                  subtitle: 'Please check your inbox',
-                  timeout: 4000
-              });
             } else {
 							this.$data.waiting = false;
 							let parsedError = JSON.parse(error);
