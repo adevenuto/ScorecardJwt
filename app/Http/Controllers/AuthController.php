@@ -183,7 +183,12 @@ class AuthController extends Controller
     
     public function verifyUuid(Request $request) {
         $userUuid = $request->only('uuid');
-        \Log::info($request);
+        $user = User::where('uuid', '=', $userUuid)->first();
+        if($user) {
+            return response()->json(['success' => ['uuid' => ['uuid was verified']]]);
+        } else {
+            return response()->json(['error' => ['uuid' => ['uuid not verified']]],404);
+        }
     }
 
     public function checkTokenExp(Request $request) {
