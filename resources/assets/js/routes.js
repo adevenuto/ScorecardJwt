@@ -6,6 +6,7 @@ import ResetPassword from './components/auth/ResetPassword.vue';
 import RegistrationSuccess from './components/pages/registrationSuccess/RegistrationSuccess.vue';
 import Dashboard from './components/pages/dashboard/Dashboard.vue';
 import Courses from './components/pages/courses/CoursesAll.vue';
+import NotFound from './components/pages/notFound/NotFound.vue';
 
 export const routes = [
 	{
@@ -40,5 +41,9 @@ export const routes = [
 	{
 		path: '/courses',
 		component: Courses
+	},
+	{
+		path: '*',
+		component: NotFound
 	}
 ]

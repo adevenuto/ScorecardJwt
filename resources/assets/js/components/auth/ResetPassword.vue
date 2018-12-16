@@ -56,11 +56,19 @@
 			}
 		},
 		created: function() {
-			// // Protect
-			// let userUuid = window.location.search;
-			// if (userUuid && userUuid.indexOf('?uuid=') !== -1) {
-			// 	console.log(userUuid.split('=')[1])
-			// }
+			// Protect
+			// this.$router.push({path: '/404'});
+			let userUuid = window.location.search;
+			if (userUuid && userUuid.indexOf('?uuid=') !== -1) {
+				userUuid = userUuid.split('=')[1];
+				axios.get(`/api/auth/user/verify-uuid?uuid=${userUuid}`)
+				.then( payload => {
+					console.log(payload);
+				})
+				.catch( err => {
+					console.log(err);
+				})
+			}
 		},
 		watch: {
       		'form.email': function() {

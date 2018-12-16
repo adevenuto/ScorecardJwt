@@ -4,14 +4,14 @@
     		 @click="toggleSideNav" 
     	     :class="{ 'overlay': sideNavStatus}">
     	</div>
-
-    	<Header/>
+		
+		<Header/>
 		<Messages/>
 		<SideBarNav/>
 		<transition name="fade">
 			<router-view></router-view>
 		</transition>
-    	<Footer/>
+		<Footer/>
 		
     </div>
 </template>
@@ -54,6 +54,10 @@
 <style scoped>
 	#app-main {
 		position: relative;
+	}
+	#content-main {
+		display: flex;
+		flex-direction: column;
 	}
 	#app-main #overlay {
 	    position: absolute;

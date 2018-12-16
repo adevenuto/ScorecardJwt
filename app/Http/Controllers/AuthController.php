@@ -181,6 +181,11 @@ class AuthController extends Controller
         
     }
     
+    public function verifyUuid(Request $request) {
+        $userUuid = $request->only('uuid');
+        \Log::info($request);
+    }
+
     public function checkTokenExp(Request $request) {
         $token = $request->only('token');
         try {

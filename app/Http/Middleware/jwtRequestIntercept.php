@@ -49,10 +49,10 @@ class jwtRequestIntercept
             }
         }
         $tokenExp = JWTAuth::setToken($token)->getPayload()['exp'];
-        \Log::info($tokenExp);
-        $tokenExpHuman = Carbon::createFromTimestamp($tokenExp)->addHours(6)->toDayDateTimeString();
-        \Log::info(Carbon::now()->addHours(6)->toDayDateTimeString());
-        \Log::info($tokenExpHuman);
+        // \Log::info($tokenExp);
+        // $tokenExpHuman = Carbon::createFromTimestamp($tokenExp)->addHours(6)->toDayDateTimeString();
+        // \Log::info(Carbon::now()->addHours(6)->toDayDateTimeString());
+        // \Log::info($tokenExpHuman);
         return $next($request);
     }
 }
