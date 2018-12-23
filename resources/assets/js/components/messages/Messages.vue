@@ -74,8 +74,11 @@
                 position: relative;
                 top: 3px;
                 cursor: pointer;
+                path {
+                    fill: #fff;
+                }
                 &:hover path {
-                    fill: #999;
+                    fill: #d8d8d8;
                     transition: 100ms;
                 }
             }

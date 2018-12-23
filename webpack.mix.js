@@ -18,7 +18,12 @@ mix.js('resources/assets/js/app.js', 'public/js')
          aggregateTimeout: 2000,
          poll: 2000,
          ignored: /node_modules/
-       }
+       },
+       resolve: {
+          alias: {
+            '@': path.resolve('resources/assets/sass')
+          }
+        } 
    	})
 	.options({
 		processCssUrls: false

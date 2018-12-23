@@ -1,17 +1,13 @@
 /*********************/
 /* Global Form Style */
 /*********************/
+@import '~@/_global_variables.scss';
 form.form-global {
     background: #eee;
-    border-radius: 2px;
+    border-radius: $g-container-radius;
     padding: 15px;
     margin: 40px 0;
     box-shadow: 0px 0px 2px 0px #000;
-    .divider {
-        height: 3px;
-        width: 100%;
-        background: #d8d8d8;
-    }
     label {
         color: #3c3d41;
         margin-bottom: 0;
