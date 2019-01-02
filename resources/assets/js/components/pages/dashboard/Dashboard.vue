@@ -2,86 +2,99 @@
 	<div class="container-fluid my-3">
 		<div class="row">
 			<div class="col-md col-12">
-				<div class="my-courses-section">
+				<div class="my-courses">
 					<div class="my-courses-text">
 						My Courses
 					</div>
 					
-					<svg class="plus-btn" width="39" height="39" viewBox="0 0 39 39" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M21.327 17.673h7.846a1.827 1.827 0 0 1 0 3.654h-7.846v7.846a1.827 1.827 0 0 1-3.654 0v-7.846H9.827a1.827 1.827 0 0 1 0-3.654h7.846V9.827a1.827 1.827 0 0 1 3.654 0v7.846z" fill="#43454a"/><circle stroke="#43454a" stroke-width="3" cx="19.5" cy="19.5" r="18"/></g></svg>
+					<svg @click="courseFormToggle" class="plus-btn" width="39" height="39" viewBox="0 0 39 39" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path d="M21.327 17.673h7.846a1.827 1.827 0 0 1 0 3.654h-7.846v7.846a1.827 1.827 0 0 1-3.654 0v-7.846H9.827a1.827 1.827 0 0 1 0-3.654h7.846V9.827a1.827 1.827 0 0 1 3.654 0v7.846z" fill="#43454a"/><circle stroke="#43454a" stroke-width="3" cx="19.5" cy="19.5" r="18"/></g></svg>
 				</div>
-				<div class="divider"></div>
+				<div class="divider mb-2"></div>
 
-
-				<div class="slide-form">
+				<transition name="fade">
+				<div v-if="courseForm" class="slide-form">
 					<form action="">
-						<header>Create A New Course</header>
-						<div class="step-1">
-							<div class="form-left"> 
-								<div class="form-group">
-									<label>Name:</label>
-									<input type="text" class="form-control" required>
+						<header v-if="step1">Create A New Course</header>
+						<header v-if="step2">Create Holes for {{formData.name}}</header>
+						<transition name="fade">
+							<div v-if="step1" class="step step-1">
+								<div class="form-left"> 
+									<div class="form-group">
+										<label>Name:</label>
+										<input v-model="formData.name" type="text" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label>Address:</label>
+										<input v-model="formData.address" type="text" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label>Email:</label>
+										<input v-model="formData.email" type="email" class="form-control" required>
+									</div>
+									<div class="form-group">
+										<label>Phone:</label>
+										<input v-model="formData.phone" type="text" class="form-control" required>
+									</div>
 								</div>
-								<div class="form-group">
-									<label>Address:</label>
-									<input type="text" class="form-control" required>
+								<div class="form-divider"></div>
+								<div class="form-right">
+									<div class="slider-switch">
+										<label for="driving-range"> 
+											<div class="text">Driving Range</div>
+											<input v-model="formData.drivingRange" type="checkbox" id="driving-range">
+											<span class="slider-switch-container">
+											<span class="slider-switch-toggle"></span>
+											</span>
+										</label>
+									</div>
+									<div class="slider-switch">
+										<label for="putting-green"> 
+											<div class="text">Putting Green</div>
+											<input v-model="formData.puttingGreen" type="checkbox" id="putting-green">
+											<span class="slider-switch-container">
+											<span class="slider-switch-toggle"></span>
+											</span>
+										</label>
+									</div>
+									<div class="slider-switch">
+										<label for="caddie"> 
+											<div class="text">Caddie</div>
+											<input v-model="formData.caddie" type="checkbox" id="caddie">
+											<span class="slider-switch-container">
+											<span class="slider-switch-toggle"></span>
+											</span>
+										</label>
+									</div>
+									<div class="slider-switch">
+										<label for="ProShop"> 
+											<div class="text">Pro Shop</div>
+											<input v-model="formData.proShop" type="checkbox" id="ProShop">
+											<span class="slider-switch-container">
+											<span class="slider-switch-toggle"></span>
+											</span>
+										</label>
+									</div>
 								</div>
-								<div class="form-group">
-									<label>Email:</label>
-									<input type="email" class="form-control" required>
-								</div>
-								<div class="form-group">
-									<label>Phone:</label>
-									<input type="text" class="form-control" required>
-								</div>
-							</div>
-							<div class="form-divider"></div>
-							<div class="form-right">
-								<div class="slider-switch">
-									<label for="driving-range"> 
-										<div class="text">Driving Range</div>
-										<input type="checkbox" id="driving-range">
-										<span class="slider-switch-container">
-										<span class="slider-switch-toggle"></span>
-										</span>
-									</label>
-								</div>
-								<div class="slider-switch">
-									<label for="putting-green"> 
-										<div class="text">Putting Green</div>
-										<input type="checkbox" id="putting-green">
-										<span class="slider-switch-container">
-										<span class="slider-switch-toggle"></span>
-										</span>
-									</label>
-								</div>
-								<div class="slider-switch">
-									<label for="caddie"> 
-										<div class="text">Caddie</div>
-										<input type="checkbox" id="caddie">
-										<span class="slider-switch-container">
-										<span class="slider-switch-toggle"></span>
-										</span>
-									</label>
-								</div>
-								<div class="slider-switch">
-									<label for="ProShop"> 
-										<div class="text">Pro Shop</div>
-										<input type="checkbox" id="ProShop">
-										<span class="slider-switch-container">
-										<span class="slider-switch-toggle"></span>
-										</span>
-									</label>
-								</div>
-							</div>
-						</div> <!-- step-1 end -->
-
-
+							</div> <!-- step1 end -->
+						</transition>
+						<transition name="fade">
+						<div v-if="step2" class="step step2">
+							<h1>Hello</h1>
+						</div> <!-- step1 end -->
+						</transition>
 						<div class="form-nav">
-							<div class="nav-btn btn btn-outline-secondary mr-4">Cancel</div>
-							<div class="nav-btn btn btn-outline-success">Next</div>
+							<template v-if="step1">
+								<div @click="courseFormToggle" class="nav-btn btn btn-outline-warning mr-4">Cancel</div>
+								<div @click="stepForward" class="nav-btn btn btn-outline-success">Next</div>
+							</template>
+							<template v-if="step2">
+								<div @click="stepBack" class="nav-btn btn btn-outline-secondary mr-4">Back</div>
+								<div class="nav-btn btn btn-outline-success">Create Course</div>
+							</template>
 						</div>
 					</form>
 				</div>
+				</transition>
 
 
 
@@ -111,6 +124,26 @@
 <script>
 	export default {
 		name: 'Dashboard',
+		data() {
+			return {
+				formData: {
+					name: null,
+					address: null,
+					email: null,
+					phone: null,
+					drivingRange: false,
+					puttingGreen: false,
+					caddie: false,
+					proShop: false,
+					holes: [
+
+					]
+				},
+				courseForm: false, 
+				step1: true,
+				step2: false
+			}
+		},
 		computed: {
 			currentUser() {
 				return this.$store.getters.currentUser;
@@ -124,14 +157,24 @@
 			if(currentUser) this.$store.dispatch('fetchUserCourses', currentUser);
 		}, 
 		methods: {
-			
+			courseFormToggle() {
+				this.courseForm = !this.courseForm;
+			},
+			stepForward() {
+				this.step1 = false;
+				this.step2 = true;
+			},
+			stepBack() {
+				this.step1 = true;
+				this.step2 = false;
+			}
 		}
 	}
 </script>
 
 <style lang="scss" scoped>
 	@import '~@/_global_variables.scss';
-	.my-courses-section {
+	.my-courses {
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
@@ -176,7 +219,7 @@
 
 	.slide-form {
 		border: 1px solid #000;
-		margin: 10px 0;
+		margin-bottom: 10px;
 		border-radius: $g-container-radius;
 		header {
 			font-size: 1.6rem;
@@ -195,11 +238,13 @@
 		.form-group {
 			margin-bottom: .3rem;
 		}
-		.step-1 {
+		.step {
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
 			padding: 15px;
+		}
+		.step.step-1 {
 			.form-left {
 				min-width: 250px;
 			}
@@ -212,7 +257,9 @@
 				min-width: 250px;
 			}
 		}
-
+		.step.step-2 {
+			
+		}
 		.form-nav {
 			display: flex;
 			align-items: center;
@@ -303,14 +350,14 @@
 	}
 	@media (max-width: 1100px) {
 		.slide-form { 
-			.step-1 {
+			.step {
 				flex-direction: column;
 				align-items: normal;
-				.form-divider {
-					margin: 15px 0;
-					height: 2px;
-					width: 100%;
-				}
+			}
+			.step.step-1 .form-divider {
+				margin: 15px 0;
+				height: 2px;
+				width: 100%;
 			}
 		}
 	}
