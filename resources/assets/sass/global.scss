@@ -2,12 +2,13 @@ body, html {
 	background-color: #fff;
 	font-size: 1rem;
 	font-family: 'Kanit', sans-serif;
-	// a1c45a, fff9e0, f1c550, ea4c4c
+	// #738292, #a1c45a, #fff9e0, #f1c550, #ea4c4c
 }
 #app input, #app button, #app textarea {
 	border-radius: 0;
 	border: 0;
 	outline: none;
+	box-sizing:border-box
 }
 a, a:hover, a:visited, a:focus {
 	text-decoration: none;

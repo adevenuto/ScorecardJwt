@@ -32,11 +32,11 @@
 			}
 		},
 		created: function() {
-			// const user = localStorage.getItem('user');
-			// if (user) {
-			// 	let user = this.$store.getters.currentUser;
-			// 	checkTokenOnRefresh(user);
-			// }
+			const user = localStorage.getItem('user');
+			if (user) {
+				let user = this.$store.getters.currentUser;
+				checkTokenOnRefresh(user);
+			}
 		},
 		computed: {
 			sideNavStatus() {
