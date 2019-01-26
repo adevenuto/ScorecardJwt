@@ -4,11 +4,17 @@ body, html {
 	font-family: 'Kanit', sans-serif;
 	// #738292, #a1c45a, #fff9e0, #f1c550, #ea4c4c
 }
-#app input, #app button, #app textarea {
+#app input, #app button, #app textarea, #app select {
 	border-radius: 0;
 	border: 0;
 	outline: none;
 	box-sizing:border-box
+}
+#app select, button {
+	cursor: pointer;
+}
+#app input.hide {
+	display: none;
 }
 a, a:hover, a:visited, a:focus {
 	text-decoration: none;
@@ -58,10 +64,10 @@ a, a:hover, a:visited, a:focus {
 /***********************/
 .fade-enter-active, .fade-leave-active {
 	transition-property: opacity;
-	transition-duration: .20s;
+	transition-duration: .15s;
 }
 .fade-enter-active {
-	transition-delay: .20s;
+	transition-delay: .15s;
 }
 .fade-enter, .fade-leave-active {
 	opacity: 0
