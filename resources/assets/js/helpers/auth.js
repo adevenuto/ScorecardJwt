@@ -15,7 +15,6 @@ export function updateJwtToken(res) {
 	user.token = newToken;
 	localStorage.setItem('user', JSON.stringify(user));
 
-	// console.log('Old: ' + oldToken)
 	console.log('New: ' + newToken)
 }
 export function invalidateAndLogout(user) {
@@ -23,13 +22,19 @@ export function invalidateAndLogout(user) {
 	axios.get(`/api/auth/user/token/exp?token=${token}`)
 	.then( res => {
 		if (res.data.error) {
-			// if token has expired -> logout
+			// if token has expired -> logout                           
 			store.commit('logOut');
 		} else if (res.data.success) {
 			// if token has not expired, invalidate -> logout
 			axios.post(`/api/auth/logout?token=${token}`)
 			.then( res => {
 				store.commit('logOut');
+				store.commit('notificationMessage', {
+					title: 'Come back soon!',
+					subtitle: null,
+					linkto: null,
+					timeout: 4000
+				});
 			})
 			.catch( err => {
 				console.log(err);

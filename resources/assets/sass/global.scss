@@ -1,18 +1,33 @@
-
 body, html {
 	background-color: #fff;
 	font-size: 1rem;
 	font-family: 'Kanit', sans-serif;
-	// a1c45a, fff9e0, f1c550, ea4c4c
+	// #738292, #a1c45a, #fff9e0, #f1c550, #ea4c4c
 }
-#app input, #app button, #app textarea {
-	border-radius: 0;
+#app input, #app button, #app textarea, #app select {
+	border-radius: 3px;
 	border: 0;
 	outline: none;
+	box-sizing:border-box
+}
+#app select {
+	cursor: pointer;
+}
+#app input.hide {
+	display: none;
 }
 a, a:hover, a:visited, a:focus {
 	text-decoration: none;
 	cursor: pointer;
+}
+.errors {
+	color: #d21717;
+	font-size: .85rem;
+}
+.divider {
+	height: 3px;
+	width: 100%;
+	background: #d8d8d8;
 }
 /**************************/
 /* Scrollbar-Track Styles */
@@ -27,10 +42,9 @@ a, a:hover, a:visited, a:focus {
 ::-webkit-scrollbar-thumb {
   background: rgba(0, 0, 0, 0.5);
 }
-.errors {
-	color: #d21717;
-	font-size: .85rem;
-}
+/****************************/
+/* Global Placehlder Styles */
+/****************************/
 ::-webkit-input-placeholder { /* Chrome */
 	color: #9e9e9e;
 }
@@ -50,10 +64,10 @@ a, a:hover, a:visited, a:focus {
 /***********************/
 .fade-enter-active, .fade-leave-active {
 	transition-property: opacity;
-	transition-duration: .20s;
+	transition-duration: .15s;
 }
 .fade-enter-active {
-	transition-delay: .20s;
+	transition-delay: .15s;
 }
 .fade-enter, .fade-leave-active {
 	opacity: 0

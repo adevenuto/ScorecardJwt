@@ -1,6 +1,6 @@
 <template>
     <div class="wrapper">
-        <img src="http://res.publicdomainfiles.com/pdf_view/56/13528810214208.png" 
+        <img src="https://i.etsystatic.com/13221305/r/il/19bb57/1456736458/il_fullxfull.1456736458_m4fi.jpg" 
                 alt=""
                 class="img-fluid" 
                 style="margin: 0 auto;"

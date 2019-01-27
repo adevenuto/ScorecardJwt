@@ -18,6 +18,7 @@
             Login
 					  <div class="loader" v-if="waiting"></div>
           </div>
+          <div class="divider"></div>
 				</div>
 				<div class="form-group">
           <label>Email address<span>*</span></label>
@@ -39,7 +40,6 @@
         <transition name="fade">
           <div v-if="authError" class="errors">{{authError}}</div>
         </transition>
-        <hr>
 				<button class="btn btn-block">Login</button>
 			</form>
 		</div>

@@ -71,6 +71,7 @@
 	    
     #footer-main .fa-heart {
         color: #f00;
+        font-size: .8rem;
     }
     #footer-main .row {
         margin-bottom: 30px;

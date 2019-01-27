@@ -13,6 +13,7 @@
 						Reset your password
 						<div class="loader" v-if="waiting"></div>
 					</div>
+					<div class="divider"></div>
 				</div>
 				<div class="form-group">
 					<label for="">Email address<span>*</span></label>
@@ -32,7 +33,6 @@
 						<div class="errors" v-for="error in passwordErrors" :key="error">{{error}}</div>
 					</template>
 				</div>
-				<hr>
 				<button class="btn btn-block">Reset Password</button>
 			</form>
 		</div>
@@ -56,11 +56,19 @@
 			}
 		},
 		created: function() {
-			// // Protect
-			// let userUuid = window.location.search;
-			// if (userUuid && userUuid.indexOf('?uuid=') !== -1) {
-			// 	console.log(userUuid.split('=')[1])
-			// }
+			// Protect
+			
+			let userUuid = window.location.search;
+			if (userUuid && userUuid.indexOf('?uuid=') !== -1) {
+				userUuid = userUuid.split('=')[1];
+				axios.get(`/api/auth/user/verify-uuid?uuid=${userUuid}`)
+				.then( res => {
+					
+				})
+				.catch( err => {
+					this.$router.push({path: '/404'});
+				})
+			}
 		},
 		watch: {
       		'form.email': function() {
@@ -86,7 +94,14 @@
 					this.waiting = false;
 					let error = payload.data.error;
 					if (!error) {
-						this.passwordResetSuccess = true;
+						this.$router.push({path: '/login'});
+						this.$store.commit('notificationMessage', {
+							type: 'success',
+							title: 'Password successfully reset!',
+							subtitle: null,
+							linkto: null,
+							timeout: 4000
+						});
 					} else {
 						let emailErrors = error.email;
 						let passwordErrors = error.password;
