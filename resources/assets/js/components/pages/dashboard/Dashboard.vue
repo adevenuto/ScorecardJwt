@@ -12,7 +12,7 @@
 
 				<transition name="fade">
 					<div v-if="courseForm">
-						<CourseCreationForm/>
+						<CourseCreationForm @cancel="courseFormToggle"/>
 					</div>
 				</transition>
 

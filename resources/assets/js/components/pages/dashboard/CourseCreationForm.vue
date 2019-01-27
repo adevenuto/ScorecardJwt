@@ -154,7 +154,7 @@
 		},
 		methods: {
 			courseFormToggle() {
-				this.courseForm = !this.courseForm;
+				this.$emit('cancel');
 			},
 			stepForward() {
 				this.step1 = false;
