@@ -5,12 +5,12 @@ body, html {
 	// #738292, #a1c45a, #fff9e0, #f1c550, #ea4c4c
 }
 #app input, #app button, #app textarea, #app select {
-	border-radius: 0;
+	border-radius: 3px;
 	border: 0;
 	outline: none;
 	box-sizing:border-box
 }
-#app select, button {
+#app select {
 	cursor: pointer;
 }
 #app input.hide {
