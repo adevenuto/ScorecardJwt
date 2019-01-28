@@ -7,19 +7,55 @@
                 <div class="form-left"> 
                     <div class="form-group">
                         <label>Name:</label>
-                        <input v-model="formData.golfClub.name" type="text" class="form-control" required>
+                        <input v-model="formData.golfClub.name" 
+								v-validate="'required'"
+								data-vv-as="name"
+								data-vv-scope="coursecreate-s1"
+								name="course_name"
+								type="text" 
+								:class="[{error: errors.has('coursecreate-s1.course_name')},'letter_space-only', 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_name')">
+							{{errors.first('coursecreate-s1.course_name')}}
+						</div> -->
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
-                        <input v-model="formData.golfClub.address" type="text" class="form-control" required>
+                        <input v-model="formData.golfClub.address" 
+								v-validate="'required'"
+								data-vv-as="address"
+								data-vv-scope="coursecreate-s1"
+								name="course_address"
+								type="text" 
+								:class="[{error: errors.has('coursecreate-s1.course_address')}, 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_address')">
+							{{errors.first('coursecreate-s1.course_address')}}
+						</div> -->
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
-                        <input v-model="formData.golfClub.email" type="email" class="form-control" required>
+                        <input v-model="formData.golfClub.email" 
+								v-validate="'required|email'"
+								data-vv-as="email"
+								data-vv-scope="coursecreate-s1"
+								name="course_email"
+								type="email" 
+								:class="[{error: errors.has('coursecreate-s1.course_email')}, 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_email')">
+							{{errors.first('coursecreate-s1.course_email')}}
+						</div> -->
                     </div>
                     <div class="form-group">
                         <label>Phone:</label>
-                        <input v-model="formData.golfClub.phone" type="text" class="form-control" required>
+                        <input v-model="formData.golfClub.phone" 
+								type="text" 
+								v-validate="'required|min:10'"
+								data-vv-as="phone"
+								data-vv-scope="coursecreate-s1"
+								name="course_phone"
+								:class="[{error: errors.has('coursecreate-s1.course_phone')}, 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_phone')">
+							{{errors.first('coursecreate-s1.course_phone')}}
+						</div> -->
                     </div>
                 </div>
                 <div class="form-divider"></div>
@@ -72,7 +108,10 @@
                         </div>
                         <div class="form-group">
                             <label>Hole Group Name:</label>
-                            <input v-model="formData.holeGroupName" type="text" class="form-control" required>
+                            <input v-model="formData.holeGroupName" 
+									name="name"
+									type="text" 
+									class="form-control">
                         </div>
                     </div>
                     <div class="hole-count-teebox">
@@ -157,8 +196,12 @@
 				this.$emit('cancel');
 			},
 			stepForward() {
-				this.step1 = false;
-				this.step2 = true;
+				this.$validator.validateAll('coursecreate-s1').then((result) => {
+					if (result) {
+						this.step1 = false;
+						this.step2 = true;
+					}
+				});
 			},
 			stepBack() {
 				this.step1 = true;
@@ -188,6 +231,9 @@
 		}
 		input, select {
 			border: 1px solid #000 !important;
+		}
+		input.error, select.error {
+			border: 1px solid #fb0000 !important;
 		}
 		.form-group {
 			margin-bottom: .3rem;
