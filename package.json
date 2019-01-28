@@ -22,6 +22,7 @@
   "dependencies": {
     "bootstrap": "^4.0.0-beta",
     "validate.js": "^0.12.0",
+    "vee-validate": "^2.1.6",
     "vue": "^2.0.8",
     "vue-router": "^3.0.1",
     "vue-template-compiler": "^2.1.8",

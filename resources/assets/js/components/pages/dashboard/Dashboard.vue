@@ -11,8 +11,8 @@
 				<div class="divider mb-2"></div>
 
 				<transition name="fade">
-					<div v-if="courseForm">
-						<CourseCreationForm/>
+					<div v-show="courseForm">
+						<CourseCreationForm @cancel="courseFormToggle"/>
 					</div>
 				</transition>
 
