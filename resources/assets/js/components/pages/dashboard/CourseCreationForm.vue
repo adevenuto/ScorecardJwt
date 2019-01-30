@@ -10,12 +10,12 @@
                         <input v-model="formData.golfClub.name" 
 								v-validate="'required'"
 								data-vv-as="name"
-								data-vv-scope="coursecreate-s1"
+								data-vv-scope="coursecreate_s1"
 								name="course_name"
 								type="text" 
-								:class="[{error: errors.has('coursecreate-s1.course_name')},'letter_space-only', 'form-control']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_name')">
-							{{errors.first('coursecreate-s1.course_name')}}
+								:class="[{error: errors.has('coursecreate_s1.course_name')},'letter_space-only', 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate_s1.course_name')">
+							{{errors.first('coursecreate_s1.course_name')}}
 						</div> -->
                     </div>
                     <div class="form-group">
@@ -23,12 +23,12 @@
                         <input v-model="formData.golfClub.address" 
 								v-validate="'required'"
 								data-vv-as="address"
-								data-vv-scope="coursecreate-s1"
+								data-vv-scope="coursecreate_s1"
 								name="course_address"
 								type="text" 
-								:class="[{error: errors.has('coursecreate-s1.course_address')}, 'form-control']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_address')">
-							{{errors.first('coursecreate-s1.course_address')}}
+								:class="[{error: errors.has('coursecreate_s1.course_address')}, 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate_s1.course_address')">
+							{{errors.first('coursecreate_s1.course_address')}}
 						</div> -->
                     </div>
                     <div class="form-group">
@@ -36,12 +36,12 @@
                         <input v-model="formData.golfClub.email" 
 								v-validate="'required|email'"
 								data-vv-as="email"
-								data-vv-scope="coursecreate-s1"
+								data-vv-scope="coursecreate_s1"
 								name="course_email"
 								type="email" 
-								:class="[{error: errors.has('coursecreate-s1.course_email')}, 'form-control']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_email')">
-							{{errors.first('coursecreate-s1.course_email')}}
+								:class="[{error: errors.has('coursecreate_s1.course_email')}, 'form-control']">
+						<!-- <div class="errors" v-show="errors.has('coursecreate_s1.course_email')">
+							{{errors.first('coursecreate_s1.course_email')}}
 						</div> -->
                     </div>
                     <div class="form-group">
@@ -50,9 +50,9 @@
 								type="text" 
 								v-validate="'required|min:10'"
 								data-vv-as="phone"
-								data-vv-scope="coursecreate-s1"
+								data-vv-scope="coursecreate_s1"
 								name="course_phone"
-								:class="[{error: errors.has('coursecreate-s1.course_phone')}, 'form-control']">
+								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control']">
 						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_phone')">
 							{{errors.first('coursecreate-s1.course_phone')}}
 						</div> -->
@@ -117,19 +117,41 @@
                     <div class="hole-count-teebox">
                         <div class="hole-count">
                             <div>Number of holes</div>
-                            <label :class="[{'selected': formData.holeCount == '9'},'select-btn']" 
+                            <label :class="[
+									{'selected': formData.holeCount == '9'},
+									{'error': errors.has('coursecreate_s2.hole-count')},'select-btn']" 
                                     for="hole-count-9">9
                             </label>
-                            <input type="radio" class="hide" v-model="formData.holeCount" :value="9" name="hole-count" id="hole-count-9">
-                            <label :class="[{'selected': formData.holeCount == '18'},'select-btn']" 
+                            <input type="radio" 
+									class="hide" 
+									v-model="formData.holeCount" 
+									:value="9" 
+									name="hole-count"
+									v-validate="'required'"
+									data-vv-scope="coursecreate_s2" 
+									id="hole-count-9">
+                            <label :class="[
+									{'selected': formData.holeCount == '18'},
+									{'error': errors.has('coursecreate_s2.hole-count')},'select-btn']" 
                                     for="hole-count-18">18
                             </label>
-                            <input type="radio" class="hide" v-model="formData.holeCount" :value="18" name="hole-count" id="hole-count-18">
+                            <input type="radio" 
+									class="hide" 
+									v-model="formData.holeCount" 
+									:value="18" 
+									name="hole-count"
+									v-validate="'required'"
+									data-vv-scope="coursecreate_s2" 
+									id="hole-count-18">
                         </div>
                         <div class="teebox">
                             <div>Teebox</div>
-                            <select class="custom-select" v-model="formData.teeBox">
-                                <option :value="null">Select a teebox</option>
+                            <select :class="[{'error': errors.has('coursecreate_s2.tee-box')}, 'custom-select']" 
+									name="tee-box"
+									v-model="formData.teeBox"
+									v-validate="'required'"
+									data-vv-scope="coursecreate_s2">
+                                <option disabled :value="null">Select a teebox</option>
                                 <option value="tournament">Tournament</option>
                                 <option value="back">Back</option>
                                 <option value="middle">Middle</option>
@@ -142,7 +164,10 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon" id="sizing-addon1">{{index}}</span>
                                 <input type="text" 
-                                    class="form-control num-only" 
+                                    :class="[{'error': errors.has('coursecreate_s2.'+currentHole(index))},'form-control', 'num-only']"
+									v-validate="'required'"
+									data-vv-scope="coursecreate_s2" 
+									:name="currentHole(index)"
                                     placeholder="Length" 
                                     maxlength="3"
                                     aria-describedby="sizing-addon1">
@@ -160,7 +185,7 @@
             </template>
             <template v-if="step2">
                 <div @click="stepBack" class="nav-btn btn btn-outline-secondary mr-4">Back</div>
-                <div class="nav-btn btn btn-outline-success">Create Course</div>
+                <div @click="createCourse" class="nav-btn btn btn-outline-success">Create Course</div>
             </template>
         </div>
     </form>
@@ -196,16 +221,26 @@
 				this.$emit('cancel');
 			},
 			stepForward() {
-				this.$validator.validateAll('coursecreate-s1').then((result) => {
-					if (result) {
+				// this.$validator.validateAll('coursecreate_s1').then((result) => {
+				// 	if (result) {
 						this.step1 = false;
 						this.step2 = true;
-					}
-				});
+				// 	}
+				// });
 			},
 			stepBack() {
 				this.step1 = true;
 				this.step2 = false;
+			},
+			createCourse() {
+				this.$validator.validateAll('coursecreate_s2').then((result) => {
+					if (result) {
+						
+					}
+				});
+			},
+			currentHole(index) {
+				return 'hole-'+index;
 			}
 		}
 	}
@@ -232,7 +267,7 @@
 		input, select {
 			border: 1px solid #000 !important;
 		}
-		input.error, select.error {
+		input.error, select.error, label.error {
 			border: 1px solid #fb0000 !important;
 		}
 		.form-group {
@@ -280,6 +315,7 @@
 				border: 1px solid #000;
 				border-radius: $g-btn-radius;
 				margin-bottom: 10px;
+				cursor: pointer;
 				&:hover {
 					transition: 250ms;
 					background: #f9f9f9;
