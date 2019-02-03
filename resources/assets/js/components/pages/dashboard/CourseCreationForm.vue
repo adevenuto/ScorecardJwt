@@ -164,9 +164,11 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon" id="sizing-addon1">{{index}}</span>
                                 <input type="text" 
-                                    :class="[{'error': errors.has('coursecreate_s2.'+currentHole(index))},'form-control', 'num-only']"
+                                    :class="[{'error': errors.has('coursecreate_s2.'+currentHole(index))},'form-control', 'hole', 'num-only']"
 									v-validate="'required'"
 									data-vv-scope="coursecreate_s2" 
+									
+									
 									:name="currentHole(index)"
                                     placeholder="Length" 
                                     maxlength="3"
@@ -216,26 +218,36 @@
 				step2: false
 			}
 		},
+		created: function() {
+			// this.courseFormToggle();
+		},
 		methods: {
 			courseFormToggle() {
 				this.$emit('cancel');
 			},
 			stepForward() {
-				// this.$validator.validateAll('coursecreate_s1').then((result) => {
-				// 	if (result) {
+				this.$validator.validateAll('coursecreate_s1').then((result) => {
+					if (result) {
 						this.step1 = false;
 						this.step2 = true;
-				// 	}
-				// });
+					}
+				});
 			},
 			stepBack() {
 				this.step1 = true;
 				this.step2 = false;
 			},
 			createCourse() {
+				const that = this;
 				this.$validator.validateAll('coursecreate_s2').then((result) => {
 					if (result) {
-						
+						this.formData.holes = [];
+						let holesList = document.querySelectorAll('.hole');
+						for (var i = 0; i < holesList.length; ++i) {
+							let holeNum = i + 1;
+							let holeLength = holesList[i].value;
+							that.$set(this.formData.holes, i, {hole: holeNum, length: holeLength});
+						}
 					}
 				});
 			},
@@ -256,7 +268,7 @@
 		header {
 			font-size: 1.6rem;
 			text-align: center;
-			background: #096506;
+			background: #26c721;
 			color: #fff;
 		}
 		label {
