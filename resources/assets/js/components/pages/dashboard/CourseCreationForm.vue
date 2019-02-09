@@ -48,11 +48,12 @@
                         <label>Phone:</label>
                         <input v-model="formData.golfClub.phone" 
 								type="text" 
-								v-validate="'required|min:10'"
+								v-validate="'required|min:14'"
+								maxlength="14"
 								data-vv-as="phone"
 								data-vv-scope="coursecreate_s1"
 								name="course_phone"
-								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control']">
+								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control num-only']">
 						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_phone')">
 							{{errors.first('coursecreate-s1.course_phone')}}
 						</div> -->
@@ -218,8 +219,11 @@
 				step2: false
 			}
 		},
-		created: function() {
-			// this.courseFormToggle();
+		watch: {
+			'formData.golfClub.phone': function(val) {
+				let x = val.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+	    		this.formData.golfClub.phone = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+			}
 		},
 		methods: {
 			courseFormToggle() {
