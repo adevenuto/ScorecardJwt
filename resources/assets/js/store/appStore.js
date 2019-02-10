@@ -106,9 +106,6 @@ export default {
 			axios.get('/api/user/courses', {
 				headers: {
 					'Authorization': `Bearer ${context.state.currentUser.token}`
-				},
-				params: {
-					userId: context.getters.currentUser.id
 				}
 			}).then( res => {
 				updateJwtToken(res);
