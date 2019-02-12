@@ -62,13 +62,16 @@ a, a:hover, a:visited, a:focus {
 /***********************/
 .fade-enter-active, .fade-leave-active {
 	transition-property: opacity;
-	transition-duration: .15s;
+	transition-duration: .10s;
 }
 .fade-enter-active {
-	transition-delay: .15s;
+	transition-delay: .10s;
 }
 .fade-enter, .fade-leave-active {
 	opacity: 0
 }
-
+/***********************/
+/* Vue Cloak Directive */
+/***********************/
+[v-cloak] { display:none; }
 

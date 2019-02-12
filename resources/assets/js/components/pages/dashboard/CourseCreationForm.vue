@@ -253,6 +253,7 @@
 							that.$set(this.formData.holes, i, {hole: holeNum, length: holeLength});
 						}
 					}
+					console.log(this.formData)
 				});
 			},
 			currentHole(index) {
@@ -338,7 +339,7 @@
 				}
 			}
 			.hole-count .select-btn.selected {
-				background: #0e6f0e;
+				background: #2acd25;
 				color: #fff;
 			}
 			.rendered-holes {
@@ -353,8 +354,8 @@
 				.input-group-addon {
 					color: #ffffff;
 					min-width: 30px;
-					background-color: #0e6f0e;
-					border: 1px solid #0e6f0e;
+					background-color: #2acd25;
+					border: 1px solid #000;
 					margin-right: 1px;
     				border-radius: $g-btn-radius;
 				}

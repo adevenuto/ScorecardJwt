@@ -22,7 +22,7 @@
 	import Footer from './footer/Footer.vue';
 	import SideBarNav from './sidebarnav/SideBarNav.vue';
 	import Login from './auth/Login.vue';
-	import {checkTokenOnRefresh} from '../helpers/auth';
+	import {checkTokenGetUser} from '../helpers/auth'
     export default {
 		name: 'app-main',
 		components: {Messages, Header, Footer, SideBarNav, Login},
@@ -31,12 +31,8 @@
 				
 			}
 		},
-		created: function() {
-			const user = localStorage.getItem('user');
-			if (user) {
-				let user = this.$store.getters.currentUser;
-				checkTokenOnRefresh(user);
-			}
+		created() {
+			checkTokenGetUser();
 		},
 		computed: {
 			sideNavStatus() {

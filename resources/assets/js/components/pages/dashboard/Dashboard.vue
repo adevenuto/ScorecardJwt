@@ -24,7 +24,8 @@
 				</div>
 			</div>
 		</div>
-		<!-- <div class="col-md-12">
+		<transition name='fade' >
+		<div v-if="currentUser" class="col-md-12">
 			<h1 style="text-transform: capitalize;">{{currentUser.name}}'s Dashboard</h1>
 			<div>
 				<div v-for="course in currentUserCourses" :key="course.id">
@@ -34,7 +35,8 @@
 					<hr>
 				</div>
 			</div>
-		</div> -->
+		</div>
+		</transition>
 	</div>
 </template>
 
@@ -57,8 +59,7 @@
 			}
 		},
 		created: function() {
-			let currentUser = this.currentUser;
-			if(currentUser) this.$store.dispatch('fetchUserCourses', currentUser);
+			this.$store.dispatch('fetchUserCourses');
 		}, 
 		methods: {
 			courseFormToggle() {

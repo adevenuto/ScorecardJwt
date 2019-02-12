@@ -19,11 +19,11 @@ class CoursesController extends Controller
     }
     public function userCourses(Request $request)
     {   
-        $currentToken = JWTAuth::getToken();
+        $token = JWTAuth::getToken();
         $currentUser = Auth::user();
         $user = User::find($currentUser->id);
         $userCourses = $user->courses;
-        return response()->json($userCourses)->header('Authorization','Bearer '.$currentToken);
+        return response()->json($userCourses)->header('Authorization','Bearer '.$token);
     }
 
     public function store(Request $request)

@@ -24,11 +24,13 @@ Route::group(['prefix' => 'auth'], function ($router) {
     Route::post('user/send/activation/email', 'AuthController@sendActivationEmail');
     Route::post('user/password/reset/request', 'AuthController@sendPasswordResetEmail');
     Route::post('user/password/reset', 'AuthController@resetUserPassword');
-    Route::get('user/token/exp', 'AuthController@checkTokenExp');
+    
     Route::get('user/verify-uuid', 'AuthController@verifyUuid');
 });
 
 Route::group(['middleware' => ['jwtRequestIntercept', 'jwt.auth']], function($router){
-	Route::get('user/courses', 'CoursesController@userCourses');
+    Route::get('user/courses', 'CoursesController@userCourses');
+    Route::get('user/token/exp', 'AuthController@checkTokenExp');
+    Route::get('user', 'AuthController@authUser');
 });
 	

@@ -10,7 +10,7 @@
 			</div>
 		    <hr>
 		    <div class="auth" @click="toggleSideNav">
-		    	<template v-if="!currentUser">
+		    	<template v-if="!loggedIn">
 		    		<router-link to="/login">Login</router-link>
 		    		<router-link to="/register">register</router-link>
 		    	</template>
@@ -32,8 +32,8 @@
 			sideNavStatus() {
 				return this.$store.getters.sideNavStatus;
 			},
-			currentUser() {
-				return this.$store.getters.currentUser;
+			loggedIn() {
+				return this.$store.getters.loggedIn;
 			}
 		},
 		methods: {
@@ -41,8 +41,7 @@
 				return this.$store.commit('toggleSideNav');
 			},
 			logout() {
-				let user = this.$store.getters.currentUser;
-				return invalidateAndLogout(user);
+				return invalidateAndLogout();
 			}
 		}
 	}
