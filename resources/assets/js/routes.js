@@ -35,8 +35,7 @@ export const routes = [
 	},
 	{
 		path: '/dashboard',
-		component: Dashboard,
-		meta: {requiresAuth: true}
+		component: Dashboard
 	},
 	{
 		path: '/courses',

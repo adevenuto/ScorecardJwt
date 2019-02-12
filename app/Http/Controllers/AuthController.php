@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Illuminate\Support\Facades\Auth;
 use Webpatser\Uuid\Uuid;
 use Validator;
 use DB, Hash, Mail;
@@ -191,18 +192,19 @@ class AuthController extends Controller
         }
     }
 
-    public function checkTokenExp(Request $request) {
-        $token = $request->only('token');
+    public function checkTokenExp() {
+        $token = JWTAuth::getToken();
+        $authUser = JWTAuth::user();
         try {
             JWTAuth::parseToken($token)->authenticate();
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
-            return response()->json(['error'=> "Token has expired."], 200);
+            return response()->json(['error'=> "Token has expired."], 401);
         } catch (\Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
-            return response()->json(['error'=> "Token is invalid."], 200);
+            return response()->json(['error'=> "Token is invalid."], 401);
         } catch (\Tymon\JWTAuth\Exceptions\JWTException $e) {
-            return response()->json(['error'=> "Something went wrong processing your request."], 200);
+            return response()->json(['error'=> "Something went wrong processing your request."], 401);
         }
-        return response()->json(['success'=> "Token not expired"], 200);
+        return response()->json(['success'=> "Token not expired"], 200)->header('Authorization','Bearer '.$token);
     }
 
     public function logout(Request $request) {
@@ -210,16 +212,25 @@ class AuthController extends Controller
         return response()->json(['message' => 'Successfully logged out']);
     }
     
-    public function refresh() {
-        return $this->respondWithToken(auth('api')->refresh());
+    public function authUser() {
+        $token = JWTAuth::getToken();
+        $authUser = JWTAuth::user();
+        return response()->json([
+            'user' => [
+                'name'=>$authUser->name, 
+                'email'=>$authUser->email
+            ]
+        ])->header('Authorization','Bearer '.$token);
     }
     
     protected function respondWithToken($token) {
+        $authUser = JWTAuth::user();
         return response()->json([
             'access_token' => $token,
-            'user' => $this->guard()->user(),
-            'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60
+            'user' => [
+                'name'=>$authUser->name, 
+                'email'=>$authUser->email
+            ]
         ]);
     }
 

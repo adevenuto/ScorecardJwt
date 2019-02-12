@@ -48,11 +48,12 @@
                         <label>Phone:</label>
                         <input v-model="formData.golfClub.phone" 
 								type="text" 
-								v-validate="'required|min:10'"
+								v-validate="'required|min:14'"
+								maxlength="14"
 								data-vv-as="phone"
 								data-vv-scope="coursecreate_s1"
 								name="course_phone"
-								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control']">
+								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control num-only']">
 						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_phone')">
 							{{errors.first('coursecreate-s1.course_phone')}}
 						</div> -->
@@ -164,9 +165,11 @@
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon" id="sizing-addon1">{{index}}</span>
                                 <input type="text" 
-                                    :class="[{'error': errors.has('coursecreate_s2.'+currentHole(index))},'form-control', 'num-only']"
+                                    :class="[{'error': errors.has('coursecreate_s2.'+currentHole(index))},'form-control', 'hole', 'num-only']"
 									v-validate="'required'"
 									data-vv-scope="coursecreate_s2" 
+									
+									
 									:name="currentHole(index)"
                                     placeholder="Length" 
                                     maxlength="3"
@@ -216,27 +219,41 @@
 				step2: false
 			}
 		},
+		watch: {
+			'formData.golfClub.phone': function(val) {
+				let x = val.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
+	    		this.formData.golfClub.phone = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+			}
+		},
 		methods: {
 			courseFormToggle() {
 				this.$emit('cancel');
 			},
 			stepForward() {
-				// this.$validator.validateAll('coursecreate_s1').then((result) => {
-				// 	if (result) {
+				this.$validator.validateAll('coursecreate_s1').then((result) => {
+					if (result) {
 						this.step1 = false;
 						this.step2 = true;
-				// 	}
-				// });
+					}
+				});
 			},
 			stepBack() {
 				this.step1 = true;
 				this.step2 = false;
 			},
 			createCourse() {
+				const that = this;
 				this.$validator.validateAll('coursecreate_s2').then((result) => {
 					if (result) {
-						
+						this.formData.holes = [];
+						let holesList = document.querySelectorAll('.hole');
+						for (var i = 0; i < holesList.length; ++i) {
+							let holeNum = i + 1;
+							let holeLength = holesList[i].value;
+							that.$set(this.formData.holes, i, {hole: holeNum, length: holeLength});
+						}
 					}
+					console.log(this.formData)
 				});
 			},
 			currentHole(index) {
@@ -256,7 +273,7 @@
 		header {
 			font-size: 1.6rem;
 			text-align: center;
-			background: #096506;
+			background: #26c721;
 			color: #fff;
 		}
 		label {
@@ -322,7 +339,7 @@
 				}
 			}
 			.hole-count .select-btn.selected {
-				background: #0e6f0e;
+				background: #2acd25;
 				color: #fff;
 			}
 			.rendered-holes {
@@ -337,8 +354,8 @@
 				.input-group-addon {
 					color: #ffffff;
 					min-width: 30px;
-					background-color: #0e6f0e;
-					border: 1px solid #0e6f0e;
+					background-color: #2acd25;
+					border: 1px solid #000;
 					margin-right: 1px;
     				border-radius: $g-btn-radius;
 				}

@@ -1,18 +1,15 @@
-
-import {getLocalUser, updateJwtToken} from '../helpers/auth';
 import {router} from '../app';
+import {IsLoggedIn} from '../helpers/auth';
 
-const user = getLocalUser();
+const loginStatus = IsLoggedIn();
 
 export default {
 	state: {
 		navigation: {
 			sideNavIn: false,
 		},
-		currentUser: user,
-		isLoggedIn: !!user,
-		loading: false,
-		auth_error: null,
+		currentUser: null,
+		isLoggedIn: loginStatus,
 		courses: null,
 		user: {
 			courses: null
@@ -24,23 +21,16 @@ export default {
 			subtitle: null,
 			linkto: null
 		}
-
 	},
 	getters: {
 		sideNavStatus(state) {
 			return state.navigation.sideNavIn;
 		},
-		currentUser(state) {
-			return state.currentUser;
-		},
-		isLoggiedIn(state) {
+		loggedIn(state) {
 			return state.isLoggedIn;
 		},
-		isLoading(state) {
-			return state.loading;
-		},
-		authError(state) {
-			return state.auth_error;
+		currentUser(state) {
+			return state.currentUser;
 		},
 		getCourses(state) {
 			return state.courses;
@@ -78,21 +68,22 @@ export default {
 			},300);
 		},
 		loginSuccess(state, payload) {
-			state.currentUser = Object.assign({}, payload.data.user, {token: payload.data.access_token});
-			localStorage.setItem('user', JSON.stringify(state.currentUser));
+			localStorage.setItem('token', payload.data.access_token);
+			localStorage.setItem('logged_in', true);
+			state.currentUser = payload.data.user;
 			state.isLoggedIn = true;
-			state.loading = false;
-			state.auth_error = null;
-		},
-		loginFailed(state, err) {
-			state.auth_error = err;
+			
 		},
 		logOut(state) {
-			localStorage.removeItem('user');
-			state.isLoggedIn = false;
+			localStorage.removeItem('token');
+			localStorage.removeItem('logged_in');
 			state.currentUser = null;
-			state.auth_error = null;
+			state.isLoggedIn = false;
 			router.push('/');
+		},
+		setUser(state, payload) {
+			state.currentUser = payload.data.user;
+			state.isLoggedIn = true;
 		},
 		setCourses(state, courses) {
 			state.courses = courses;
@@ -103,15 +94,8 @@ export default {
 	},
 	actions: {
 		fetchUserCourses: function(context) {
-			axios.get('/api/user/courses', {
-				headers: {
-					'Authorization': `Bearer ${context.state.currentUser.token}`
-				},
-				params: {
-					userId: context.getters.currentUser.id
-				}
-			}).then( res => {
-				updateJwtToken(res);
+			axios.get('/api/user/courses')
+			.then( res => {
 				let courses = res.data;
 				context.commit('setUserCourses', courses);
 			}).catch( err => {
