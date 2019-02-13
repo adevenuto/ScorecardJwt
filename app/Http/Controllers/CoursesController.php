@@ -28,7 +28,7 @@ class CoursesController extends Controller
 
     public function store(Request $request)
     {   
-        
+        \Log::info($request);
     }
 
     public function show($id)

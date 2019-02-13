@@ -188,7 +188,7 @@
             </template>
             <template v-if="step2">
                 <div @click="stepBack" class="nav-btn btn btn-outline-secondary mr-4">Back</div>
-                <div @click="createCourse" class="nav-btn btn btn-outline-success">Create Course</div>
+                <div @click="createHoles" class="nav-btn btn btn-outline-success">Create Course</div>
             </template>
         </div>
     </form>
@@ -241,7 +241,7 @@
 				this.step1 = true;
 				this.step2 = false;
 			},
-			createCourse() {
+			createHoles() {
 				const that = this;
 				this.$validator.validateAll('coursecreate_s2').then((result) => {
 					if (result) {
@@ -252,9 +252,19 @@
 							let holeLength = holesList[i].value;
 							that.$set(this.formData.holes, i, {hole: holeNum, length: holeLength});
 						}
+						this.sendCourseData();
 					}
-					console.log(this.formData)
 				});
+			},
+			sendCourseData() {
+				const credentials = this.formData;
+				axios.post('api/user/course/create', credentials)
+				.then(payload => {
+
+				})
+				.catch( err => {
+
+				})
 			},
 			currentHole(index) {
 				return 'hole-'+index;
