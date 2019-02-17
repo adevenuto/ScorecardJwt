@@ -91,13 +91,14 @@
 		flex-direction: column;
 		justify-content: center;
 		border: 1px solid #000;
+		background: #fff;
 		border-radius: $g-container-radius;
 		min-height: 600px;
 	}
 
 	@media (min-width: 768px) {
 		.sidebar {
-			max-width: 450px;
+			max-width: 500px;
 		}
 		.container-fluid {
 			max-width: 1400px;

@@ -183,12 +183,12 @@
 
         <div class="form-nav">
             <template v-if="step1">
-                <div @click="courseFormToggle" class="nav-btn btn btn-outline-warning mr-4">Cancel</div>
-                <div @click="stepForward" class="nav-btn btn btn-outline-success">Next</div>
+                <div @click="courseFormToggle" class="nav-btn btn btn-sm btn-outline-secondary mr-4">Cancel</div>
+                <div @click="stepForward" class="nav-btn btn btn-success">Next</div>
             </template>
             <template v-if="step2">
-                <div @click="stepBack" class="nav-btn btn btn-outline-secondary mr-4">Back</div>
-                <div @click="createCourse" class="nav-btn btn btn-outline-success">Create Course</div>
+                <div @click="stepBack" class="nav-btn btn btn-sm btn-outline-secondary mr-4">Back</div>
+                <div @click="createHoles" class="nav-btn btn btn-success">Create Course</div>
             </template>
         </div>
     </form>
@@ -241,7 +241,7 @@
 				this.step1 = true;
 				this.step2 = false;
 			},
-			createCourse() {
+			createHoles() {
 				const that = this;
 				this.$validator.validateAll('coursecreate_s2').then((result) => {
 					if (result) {
@@ -252,9 +252,19 @@
 							let holeLength = holesList[i].value;
 							that.$set(this.formData.holes, i, {hole: holeNum, length: holeLength});
 						}
+						this.sendCourseData();
 					}
-					console.log(this.formData)
 				});
+			},
+			sendCourseData() {
+				const credentials = this.formData;
+				axios.post('api/user/course/create', credentials)
+				.then(payload => {
+
+				})
+				.catch( err => {
+
+				})
 			},
 			currentHole(index) {
 				return 'hole-'+index;
@@ -267,13 +277,15 @@
 	@import '~@/_global_variables.scss';
 
 	.slide-form {
-		border: 1px solid #000;
+		border: 1px solid #ddd;
 		margin-bottom: 10px;
 		border-radius: $g-container-radius;
+		background: #f9f9f9;
+		overflow: hidden;
 		header {
 			font-size: 1.6rem;
 			text-align: center;
-			background: #26c721;
+			background: #498600;
 			color: #fff;
 		}
 		label {
@@ -282,7 +294,7 @@
 			font-weight: bold;
 		}
 		input, select {
-			border: 1px solid #000 !important;
+			border: 1px solid #c1c1c1 !important;
 		}
 		input.error, select.error, label.error {
 			border: 1px solid #fb0000 !important;
@@ -290,11 +302,14 @@
 		.form-group {
 			margin-bottom: .3rem;
 		}
+		.form-control {
+			padding: 0.35rem 0.75rem;
+		}
 		.step {
 			display: flex;
 			align-items: center;
 			justify-content: space-around;
-			padding: 15px;
+			padding: 10px 15px;
 		}
 		.step.step-1 {
 			.form-left {
@@ -312,7 +327,7 @@
 		.step.step-2 {
 			.step2-container {
 				.hole-group {
-					border: 1px solid #000;
+					border: 1px solid #c1c1c1;
 					background: #f3f3f3;
 					border-radius: $g-container-radius;
 					padding: 10px;
@@ -329,7 +344,7 @@
 			}
 			.hole-count .select-btn {
 				padding: calc(.3rem + 2px) 35px;
-				border: 1px solid #000;
+				border: 1px solid #c1c1c1;
 				border-radius: $g-btn-radius;
 				margin-bottom: 10px;
 				cursor: pointer;
@@ -339,7 +354,7 @@
 				}
 			}
 			.hole-count .select-btn.selected {
-				background: #2acd25;
+				background: #529100;
 				color: #fff;
 			}
 			.rendered-holes {
@@ -352,10 +367,10 @@
 					transition: 250ms;
 				}
 				.input-group-addon {
-					color: #ffffff;
+					color: #fff;
 					min-width: 30px;
-					background-color: #2acd25;
-					border: 1px solid #000;
+					background-color: #529100;
+					border: 1px solid #c1c1c1;
 					margin-right: 1px;
     				border-radius: $g-btn-radius;
 				}
@@ -367,6 +382,7 @@
 			justify-content: center;
 			padding: 15px;
 			background: #fff;
+			border-top: 1px solid #dedede;
 			.nav-btn {
 				border-radius: $g-btn-radius;
 				padding: 10px 22px;
@@ -388,17 +404,16 @@
 		}
 		.slider-switch-container {
 			position: relative;
-			height: 18px;
-			width: 40px;
+			height: 15px;
+			width: 30px;
 			border-radius: 12px;
-			background: #D8D8D8;
+			background: #ffffff;
+			-webkit-box-shadow: inset 0px 0px 4px 0px #999;
 			box-shadow: inset 0px 0px 4px 0px #999;
 			.slider-switch-toggle {
 				position: absolute;
-				left: -1px;
-				top: -1px;
-				height: 20px;
-				width: 20px;
+				height: 15px;
+				width: 15px;
 				border-radius: 50%;
 				background: #fff;
 				border: 2px solid #a2a2a2;
@@ -406,18 +421,21 @@
 			}
 		}
 		input:checked + .slider-switch-container .slider-switch-toggle {
-			left: 21px !important;
+			left: 15px !important;
 			background: #ffffff;
     		border: 2px solid #64a345;
 			&:after {
-				background-image: url('/img/check.svg');
 				position: absolute;
+				transform: rotate(-45deg);
+				transition: all 100ms;
 				content: '';
-				width: 10px;
-				height: 8px;
-				left: 3px;
-				top: 4px;
-				background-size: cover;
+				width: 7px;
+				height: 4px;
+				left: 2px;
+				top: 3px;
+				border-bottom: 2px solid #70ad4f;
+				border-left: 2px solid #70ad4f;
+				background-size: contain;
 				background-repeat: no-repeat;
 			}
 		}

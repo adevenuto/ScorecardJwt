@@ -2,8 +2,8 @@
 	<div id="header-main">
 		<router-link to="/">
 			<div id="header-logo">
-				<img src="/img/logo.svg" class="logo" width="25px" alt="logo">
-				<span class="title">SCOR</span>
+				<img src="/img/golf-ball.svg" class="logo" width="25px" alt="logo">
+				<span class="title">Tee<span class='temp'>Tyme</span></span>
 			</div>
 		</router-link>
 		<div id="hamburger" 
@@ -39,9 +39,12 @@
 		flex-direction: row;
 		align-content: center;
 		justify-content: space-between;
-		background: #3c3d41;
+		background: #525252;
 		padding: 10px 20px;
 		color: #fff;
+	}
+	.temp {
+		color: #00ff05;
 	}
 	#header-main #header-logo {
 		display: flex;

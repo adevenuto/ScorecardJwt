@@ -3,7 +3,6 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Carbon;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Token;
 use Tymon\JWTAuth\Exceptions\JWTException;
