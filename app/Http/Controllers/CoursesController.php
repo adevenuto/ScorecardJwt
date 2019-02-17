@@ -2,26 +2,28 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\CoursesRepositoryInterface;
 use Illuminate\Support\Facades\Response;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use JWTAuth;
-use Webpatser\Uuid\Uuid;
-use App\Course;
-use App\User;
 
 class CoursesController extends Controller
-{
+{   
+    private $course;
+
+    public function __construct(CoursesRepositoryInterface $course) 
+    {
+        $this->course = $course;
+    }
     public function index()
     {   
-        $courses = Course::all();
+        $courses = $this->course->all();
         return response()->json($courses);
     }
     public function userCourses(Request $request)
     {   
         $token = JWTAuth::getToken();
-        $currentUser = Auth::user();
-        $user = User::find($currentUser->id);
+        $user = JWTAuth::user();
         $userCourses = $user->courses;
         return response()->json($userCourses)->header('Authorization','Bearer '.$token);
     }

@@ -57,7 +57,7 @@
 <style scoped>
 	/*FOOTER*/
 	#footer-main {
-	    background-color: #3c3d41;
+	    background-color: #525252;
 	    color: white;
 	    padding-top: 20px;
 	}
