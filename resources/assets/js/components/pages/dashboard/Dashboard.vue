@@ -73,22 +73,39 @@
 			};
 				
 			var autocomplete = new google.maps.places.Autocomplete(document.getElementById('autocomplete'), {types: ['geocode']});
-			autocomplete.setFields(['address_components', 'geometry']);
+			autocomplete.setFields(['address_components', 'geometry', 'formatted_address']);
 			autocomplete.addListener('place_changed', fillInAddress);
 			function fillInAddress() {
-
 				var place = autocomplete.getPlace();
 
-				for (var component in componentForm) {
-					document.getElementById(component).value = '';
-					document.getElementById(component).disabled = false;
-				}
+				var lat = place.geometry.location.lat();
+				var lat_field = $('#lat');
+				lat_field.val(lat);
+				lat_field[0].dispatchEvent(new CustomEvent('input'));
+				var lng = place.geometry.location.lng();
+				var lng_field = $('#lng');
+				lng_field.val(lng);
+				lng_field[0].dispatchEvent(new CustomEvent('input'));
 
+				var formatted_address = place.formatted_address;
+				var course_address_field = $('#course_address');
+				course_address_field.val(formatted_address);
+				course_address_field[0].dispatchEvent(new CustomEvent('input'));
+				
+				for (var component in componentForm) {
+					var target = $('#'+component);
+					target.val('');
+					target.prop( "disabled", true );
+					target[0].dispatchEvent(new CustomEvent('input'));
+				}
+				
 				for (var i = 0; i < place.address_components.length; i++) {
 					var addressType = place.address_components[i].types[0];
 					if (componentForm[addressType]) {
 						var val = place.address_components[i][componentForm[addressType]];
-						document.getElementById(addressType).value = val;
+						let targetField = $('#'+addressType);
+						targetField.val(val);
+						targetField[0].dispatchEvent(new CustomEvent('input'));
 					}
 				}
 			}

@@ -17,8 +17,7 @@
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
-                        <input v-model="formData.golfClub.address" 
-								id="autocomplete"
+                        <input id="autocomplete"
 								placeholder=""
 								v-validate="'required'"
 								data-vv-as="address"
@@ -26,6 +25,7 @@
 								name="course_address"
 								type="text" 
 								:class="[{error: errors.has('coursecreate_s1.course_address')}, 'form-control']">
+								<input id="course_address" type="text" class="hide" name="course_address" v-model="formData.golfClub.address">
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
@@ -49,14 +49,14 @@
 								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control num-only']">
                     </div>
 					<div id="hidden-course-form-fields">
-						<input type="hidden" id="lat" name="lat">
-						<input type="hidden" id="lng" name="lng">
-						<input type="hidden" id="street_number" name="street_number">
-						<input type="hidden" id="route" name="route">
-						<input type="hidden" id="locality" name="locality">
-						<input type="hidden" id="administrative_area_level_1" name="administrative_area_level_1">
-						<input type="hidden" id="postal_code" name="postal_code">
-						<input type="hidden" id="country" name="country">
+						<input type="text" class="hide coordinate" id="lat" v-model="formData.address_components.course_lat">
+						<input type="text" class="hide coordinate" id="lng" v-model="formData.address_components.course_lng">
+						<input type="text" class="hide" id="street_number" v-model="formData.address_components.street_number">
+						<input type="text" class="hide" id="route" v-model="formData.address_components.route">
+						<input type="text" class="hide" id="locality" v-model="formData.address_components.city">
+						<input type="text" class="hide" id="administrative_area_level_1" v-model="formData.address_components.state">
+						<input type="text" class="hide" id="postal_code" v-model="formData.address_components.postal_code">
+						<input type="text" class="hide" id="country" v-model="formData.address_components.country">
 					</div>
                 </div>
                 <div class="form-divider"></div>
@@ -168,8 +168,6 @@
                                     :class="[{'error': errors.has('coursecreate_s2.'+currentHole(index))},'form-control', 'hole', 'num-only']"
 									v-validate="'required'"
 									data-vv-scope="coursecreate_s2" 
-									
-									
 									:name="currentHole(index)"
                                     placeholder="Length" 
                                     maxlength="3"
@@ -208,7 +206,17 @@
 						drivingRange: false,
 						puttingGreen: false,
 						caddie: false,
-						proShop: false,
+						proShop: false
+					},
+					address_components: {
+						course_lat: null,
+						course_lng: null,
+						street_number: null,
+						route: null,
+						city: null,
+						state: null,
+						postal_code: null,
+						country: null
 					},
 					teeBox: null,
 					holeGroupName: null,
