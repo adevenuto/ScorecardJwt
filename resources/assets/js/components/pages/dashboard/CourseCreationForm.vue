@@ -14,22 +14,18 @@
 								name="course_name"
 								type="text" 
 								:class="[{error: errors.has('coursecreate_s1.course_name')},'letter_space-only', 'form-control']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate_s1.course_name')">
-							{{errors.first('coursecreate_s1.course_name')}}
-						</div> -->
                     </div>
                     <div class="form-group">
                         <label>Address:</label>
                         <input v-model="formData.golfClub.address" 
+								id="autocomplete"
+								placeholder=""
 								v-validate="'required'"
 								data-vv-as="address"
 								data-vv-scope="coursecreate_s1"
 								name="course_address"
 								type="text" 
 								:class="[{error: errors.has('coursecreate_s1.course_address')}, 'form-control']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate_s1.course_address')">
-							{{errors.first('coursecreate_s1.course_address')}}
-						</div> -->
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
@@ -40,9 +36,6 @@
 								name="course_email"
 								type="email" 
 								:class="[{error: errors.has('coursecreate_s1.course_email')}, 'form-control']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate_s1.course_email')">
-							{{errors.first('coursecreate_s1.course_email')}}
-						</div> -->
                     </div>
                     <div class="form-group">
                         <label>Phone:</label>
@@ -54,10 +47,17 @@
 								data-vv-scope="coursecreate_s1"
 								name="course_phone"
 								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control num-only']">
-						<!-- <div class="errors" v-show="errors.has('coursecreate-s1.course_phone')">
-							{{errors.first('coursecreate-s1.course_phone')}}
-						</div> -->
                     </div>
+					<div id="hidden-course-form-fields">
+						<input type="hidden" id="lat" name="lat">
+						<input type="hidden" id="lng" name="lng">
+						<input type="hidden" id="street_number" name="street_number">
+						<input type="hidden" id="route" name="route">
+						<input type="hidden" id="locality" name="locality">
+						<input type="hidden" id="administrative_area_level_1" name="administrative_area_level_1">
+						<input type="hidden" id="postal_code" name="postal_code">
+						<input type="hidden" id="country" name="country">
+					</div>
                 </div>
                 <div class="form-divider"></div>
                 <div class="form-right">
@@ -280,7 +280,7 @@
 		border: 1px solid #ddd;
 		margin-bottom: 10px;
 		border-radius: $g-container-radius;
-		background: #f9f9f9;
+		background: #fff;
 		overflow: hidden;
 		header {
 			font-size: 1.6rem;
