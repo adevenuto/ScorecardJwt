@@ -30,8 +30,9 @@
 			<div>
 				<div v-for="course in currentUserCourses" :key="course.id">
 					<h3 style="margin: 0;">{{course.name}}</h3>
-					<i>{{course.holes}}</i><br>
-					<i>{{course.email}}</i>
+					<i>{{course.address}}</i><br>
+					<i>{{course.email}}</i><br>
+					<i>{{course.phone_number}}</i>
 					<hr>
 				</div>
 			</div>

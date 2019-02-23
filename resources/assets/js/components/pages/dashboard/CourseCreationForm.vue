@@ -19,13 +19,14 @@
                         <label>Address:</label>
                         <input id="autocomplete"
 								placeholder=""
-								v-validate="'required'"
-								data-vv-as="address"
-								data-vv-scope="coursecreate_s1"
+								
+								
+
 								name="course_address"
 								type="text" 
 								:class="[{error: errors.has('coursecreate_s1.course_address')}, 'form-control']">
-								<input id="course_address" type="text" class="hide" name="course_address" v-model="formData.golfClub.address">
+								<input id="course_address" type="text" class="hide" name="course_address" 
+								v-model="formData.golfClub.address">
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
@@ -199,29 +200,29 @@
 			return {
 				formData: {
 					golfClub: {
-						name: null,
-						address: null,
-						email: null,
-						phone: null,
+						name: 'Hillside',
+						address: '3218 N Milwaukee Ave, Chicago, IL 60618, USA',
+						email: 'das@fds.com',
+						phone: '(231) 323-1232',
 						drivingRange: false,
 						puttingGreen: false,
 						caddie: false,
 						proShop: false
 					},
 					address_components: {
-						course_lat: null,
-						course_lng: null,
-						street_number: null,
-						route: null,
-						city: null,
-						state: null,
-						postal_code: null,
-						country: null
+						course_lat: '41.939392',
+						course_lng: '-87.72491100000002',
+						street_number: '3218',
+						route: 'North Milwaukee Avenue',
+						city: 'Chicago',
+						state: 'IL',
+						postal_code: '60618',
+						country: 'United States'
 					},
-					teeBox: null,
-					holeGroupName: null,
-					holeCount: null,
-					holes: []
+					teeBox: 'back',
+					holeGroupName: 'West',
+					holeCount: 9,
+					holes: [{hole: 1, length: '32'},{hole: 2, length: '321'},{hole: 3, length: '543'}]
 				},
 				step1: true,
 				step2: false
@@ -480,3 +481,8 @@
 		}	
 	}
 </style>
+
+
+// v-validate="'required'"
+// 								data-vv-as="address"
+// 								data-vv-scope="coursecreate_s1"
