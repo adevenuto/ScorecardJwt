@@ -37,9 +37,6 @@ class CreateCoursesTable extends Migration
             $table->string('postal_code',255)->nullable();
             $table->string('country',255)->nullable();
 
-            $table->string('tee_box',255)->nullable();
-            $table->string('hole_group_name',255)->default(null)->nullable();
-            $table->string('hole_count',255)->nullable();
             $table->timestamps();
         });
     }

@@ -10,10 +10,9 @@ class CreateHolesTable extends Migration
     {
         Schema::create('holes', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('course_id')->unsigned();
-            $table->foreign('course_id')->references('id')->on('courses');
+            $table->integer('hole_group_id')->unsigned();
             $table->string('hole_number',255);
-            $table->string('hole_tee_box')->nullable();
+            $table->string('length')->nullable();
             $table->timestamps();
         });
     }

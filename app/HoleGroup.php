@@ -15,5 +15,9 @@ class HoleGroup extends Model
     public function course() {
     	return $this->belongsTo('App\Course');
     }
+    // HoleGroup -> hasMany -> Holes
+    public function holes() {
+    	return $this->hasMany('App\Hole');
+    }
 }
 
