@@ -15,5 +15,6 @@ class DatabaseSeeder extends Seeder
         $this->call(UserVerificationSeeder::class);
         $this->call(CoursesTableSeeder::class);
         $this->call(HoleGroupSeeder::class);
+        $this->call(HolesTableSeeder::class);
     }
 }

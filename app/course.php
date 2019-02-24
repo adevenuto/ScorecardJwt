@@ -35,4 +35,8 @@ class Course extends Model
     public function holeGroups() {
     	return $this->hasMany('App\HoleGroup');
     }
+    // Find HoleGroupByTeebox
+    public function HoleGroupByTeebox($teebox) {
+        return $this->holeGroups->where('teebox','=',$teebox)->first();
+    }
 }
