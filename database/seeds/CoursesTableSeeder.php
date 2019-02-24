@@ -12,6 +12,6 @@ class CoursesTableSeeder extends Seeder
      */
     public function run()
     {
-    	DB::unprepared(File::get('storage/queries/courseDump2019_02_23.sql'));
+    	DB::unprepared(File::get('storage/queries/courseSeedQuery2019_02_23.sql'));
     }
 }

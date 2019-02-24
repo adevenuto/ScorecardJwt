@@ -15,6 +15,7 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id');
             $table->string('name',255);
             $table->string('address',255)->nullable();
             $table->string('email',255)->nullable();
@@ -40,11 +41,6 @@ class CreateCoursesTable extends Migration
             $table->string('hole_group_name',255)->default(null)->nullable();
             $table->string('hole_count',255)->nullable();
             $table->timestamps();
-        });
-        Schema::create('course_user', function(Blueprint $table) {
-            $table->integer('course_id');
-            $table->integer('user_id');
-            $table->primary(['course_id', 'user_id']);
         });
     }
 

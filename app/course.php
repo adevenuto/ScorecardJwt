@@ -27,9 +27,9 @@ class Course extends Model
         'country',
         'hole_count',
     ];
-    // Course belongs to many -> users
-    public function users() {
-    	return $this->belongsToMany('App\User');
+    // Course -> belongs to -> User
+    public function user() {
+    	return $this->belongsTo('App\User');
     }
     // Course -> has many -> HoleGroups
     public function holeGroups() {

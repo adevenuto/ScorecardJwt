@@ -3,7 +3,7 @@
 use Illuminate\Database\Seeder;
 
 
-class CourseUserRelationSeeder extends Seeder
+class HoleGroupSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,6 +12,6 @@ class CourseUserRelationSeeder extends Seeder
      */
     public function run()
     {
-    	DB::unprepared(File::get('storage/queries/course_user_2018-12-10.sql'));
+    	DB::unprepared(File::get('storage/queries/holeGroupSeedQuery2019-02-23.sql'));
     }
 }

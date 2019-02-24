@@ -19,6 +19,7 @@ class CoursesRepository implements CoursesRepositoryInterface
     }
     public function allUserCourses($user) 
     {   
+        \Log::info($user->courses);
         $userCourses = $user->courses;
         return $userCourses;
     }
