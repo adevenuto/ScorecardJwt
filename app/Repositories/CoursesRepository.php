@@ -17,9 +17,9 @@ class CoursesRepository implements CoursesRepositoryInterface
     {   
         return $this->course->all();
     }
-    public function allUserCourses($id) 
+    public function allUserCourses($user) 
     {   
-        $userCourses = User::find($id)->courses;
+        $userCourses = $user->courses;
         return $userCourses;
     }
 }

@@ -6,5 +6,5 @@ interface CoursesRepositoryInterface
 {
     public function all();
 
-    public function allUserCourses($id);
+    public function allUserCourses($user);
 }

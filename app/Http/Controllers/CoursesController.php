@@ -24,8 +24,7 @@ class CoursesController extends Controller
     {   
         $token = JWTAuth::getToken();
         $user = JWTAuth::user();
-        $userId = $user->id;
-        $userCourses = $this->course->allUserCourses($userId);
+        $userCourses = $this->course->allUserCourses($user);
         return response()->json($userCourses)->header('Authorization','Bearer '.$token);
     }
 

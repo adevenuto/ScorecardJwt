@@ -423,10 +423,11 @@
 				position: absolute;
 				height: 15px;
 				width: 15px;
+				left: 0;
 				border-radius: 50%;
 				background: #fff;
 				border: 2px solid #a2a2a2;
-				transition: 250ms;
+				transition: 200ms;
 			}
 		}
 		input:checked + .slider-switch-container .slider-switch-toggle {
