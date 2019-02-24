@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Course;
+use App\User;
 
 class CoursesRepository implements CoursesRepositoryInterface 
 {
@@ -15,5 +16,10 @@ class CoursesRepository implements CoursesRepositoryInterface
     public function all() 
     {   
         return $this->course->all();
+    }
+    public function allUserCourses($user) 
+    {   
+        $userCourses = $user->courses;
+        return $userCourses;
     }
 }
