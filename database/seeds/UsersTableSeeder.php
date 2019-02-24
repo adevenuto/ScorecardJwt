@@ -11,7 +11,6 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {   
-        \Log::info(Uuid::generate());
     	DB::table('users')->insert([
             'uuid' => Uuid::generate(),
             'name' => 'consumer',

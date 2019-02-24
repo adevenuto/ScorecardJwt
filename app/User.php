@@ -22,13 +22,26 @@ class User extends Authenticatable implements JWTSubject
         return $this->type == $type;
     }
     // user belongs to many courses
-    // determine which courses user created
     public function courses() 
     {
-        return $this->belongsToMany('App\Course');
+        return $this->hasMany('App\Course');
     }
     
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
     // Methods for JWT-Auth
     public function getJWTIdentifier()
     {
