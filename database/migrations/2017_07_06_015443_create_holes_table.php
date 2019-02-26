@@ -11,7 +11,7 @@ class CreateHolesTable extends Migration
         Schema::create('holes', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('hole_group_id')->unsigned();
-            $table->string('hole_number',255);
+            $table->string('hole_number',255)->nullable();
             $table->string('length')->nullable();
             $table->timestamps();
         });

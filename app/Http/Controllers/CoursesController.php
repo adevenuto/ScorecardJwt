@@ -30,7 +30,9 @@ class CoursesController extends Controller
 
     public function store(Request $request)
     {   
-        \Log::info($request);
+        $request = $request['golfClub'];
+        $request['user_id'] = JWTAuth::user()->id;
+        return $this->course->store($request);
     }
 
     public function show($id)

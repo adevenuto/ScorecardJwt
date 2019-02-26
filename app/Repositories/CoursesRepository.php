@@ -17,10 +17,30 @@ class CoursesRepository implements CoursesRepositoryInterface
     {   
         return $this->course->all();
     }
+
     public function allUserCourses($user) 
     {   
-        \Log::info($user->courses);
         $userCourses = $user->courses;
         return $userCourses;
+    }
+
+    public function store($request)
+    {   
+        \Log::info($request);
+        try {
+            $course = $this->course->create($request);
+            $status = 200;
+            $message = 'Course created';
+            $response = $course;
+        } catch (\Illuminate\Database\QueryException $e) {
+            $status = 500;
+            $message = 'Course not created';
+            $response = $e->getMessage();
+        } catch (\Exception $e) {
+            $status = 500;
+            $message = 'Course not created';
+            $response = $e->getMessage();
+        }
+        return response()->json(['message'=>$message, 'response'=>$response], $status);
     }
 }
