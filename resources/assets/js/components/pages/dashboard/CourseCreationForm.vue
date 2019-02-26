@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label>Phone:</label>
-                        <input v-model="formData.golfClub.phone" 
+                        <input v-model="formData.golfClub.phone_number" 
 								type="text" 
 								v-validate="'required|min:14'"
 								maxlength="14"
@@ -50,14 +50,15 @@
 								:class="[{error: errors.has('coursecreate_s1.course_phone')}, 'form-control num-only']">
                     </div>
 					<div id="hidden-course-form-fields">
-						<input type="text" class="hide coordinate" id="lat" v-model="formData.address_components.course_lat">
-						<input type="text" class="hide coordinate" id="lng" v-model="formData.address_components.course_lng">
-						<input type="text" class="hide" id="street_number" v-model="formData.address_components.street_number">
-						<input type="text" class="hide" id="route" v-model="formData.address_components.route">
-						<input type="text" class="hide" id="locality" v-model="formData.address_components.city">
-						<input type="text" class="hide" id="administrative_area_level_1" v-model="formData.address_components.state">
-						<input type="text" class="hide" id="postal_code" v-model="formData.address_components.postal_code">
-						<input type="text" class="hide" id="country" v-model="formData.address_components.country">
+						<!-- Address Components From Google Autocomplete -->
+						<input type="text" class="hide coordinate" id="lat" v-model="formData.golfClub.lat">
+						<input type="text" class="hide coordinate" id="lng" v-model="formData.golfClub.lng">
+						<input type="text" class="hide" id="street_number" v-model="formData.golfClub.street_number">
+						<input type="text" class="hide" id="route" v-model="formData.golfClub.route">
+						<input type="text" class="hide" id="locality" v-model="formData.golfClub.city">
+						<input type="text" class="hide" id="administrative_area_level_1" v-model="formData.golfClub.state">
+						<input type="text" class="hide" id="postal_code" v-model="formData.golfClub.postal_code">
+						<input type="text" class="hide" id="country" v-model="formData.golfClub.country">
 					</div>
                 </div>
                 <div class="form-divider"></div>
@@ -65,7 +66,7 @@
                     <div class="slider-switch">
                         <label for="driving-range"> 
                             <div class="text">Driving Range</div>
-                            <input v-model="formData.golfClub.drivingRange" type="checkbox" id="driving-range">
+                            <input v-model="formData.golfClub.driving_range" type="checkbox" id="driving-range">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -74,7 +75,7 @@
                     <div class="slider-switch">
                         <label for="putting-green"> 
                             <div class="text">Putting Green</div>
-                            <input v-model="formData.golfClub.puttingGreen" type="checkbox" id="putting-green">
+                            <input v-model="formData.golfClub.putting_green" type="checkbox" id="putting-green">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -92,7 +93,7 @@
                     <div class="slider-switch">
                         <label for="ProShop"> 
                             <div class="text">Pro Shop</div>
-                            <input v-model="formData.golfClub.proShop" type="checkbox" id="ProShop">
+                            <input v-model="formData.golfClub.pro_shop" type="checkbox" id="ProShop">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -110,7 +111,7 @@
                         </div>
                         <div class="form-group">
                             <label>Hole Group Name:</label>
-                            <input v-model="formData.holeGroupName" 
+                            <input v-model="formData.hole_group_name" 
 									name="name"
 									type="text" 
 									class="form-control">
@@ -203,15 +204,14 @@
 						name: 'Hillside',
 						address: '3218 N Milwaukee Ave, Chicago, IL 60618, USA',
 						email: 'das@fds.com',
-						phone: '(231) 323-1232',
-						drivingRange: false,
-						puttingGreen: false,
+						phone_number: '(231) 323-1232',
+						driving_range: false,
+						putting_green: false,
 						caddie: false,
-						proShop: false
-					},
-					address_components: {
-						course_lat: '41.939392',
-						course_lng: '-87.72491100000002',
+						pro_shop: false,
+						// Address components
+						lat: '41.939392',
+						lng: '-87.72491100000002',
 						street_number: '3218',
 						route: 'North Milwaukee Avenue',
 						city: 'Chicago',
@@ -220,18 +220,18 @@
 						country: 'United States'
 					},
 					teeBox: 'back',
-					holeGroupName: 'West',
+					hole_group_name: 'West',
 					holeCount: 9,
-					holes: [{hole: 1, length: '32'},{hole: 2, length: '321'},{hole: 3, length: '543'}]
+					holes: []
 				},
 				step1: true,
 				step2: false
 			}
 		},
 		watch: {
-			'formData.golfClub.phone': function(val) {
+			'formData.golfClub.phone_number': function(val) {
 				let x = val.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-	    		this.formData.golfClub.phone = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+	    		this.formData.golfClub.phone_number = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
 			}
 		},
 		methods: {

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Course extends Model
 {   
     protected $fillable = [
+        'user_id',
         'name',
         'address',
         'email',
@@ -16,7 +17,7 @@ class Course extends Model
         'driving_range',
         'putting_green',
         'caddie',
-        'pro_Shop',
+        'pro_shop',
         'lat',
         'lng',
         'street_number',
@@ -25,7 +26,6 @@ class Course extends Model
         'state',
         'postal_code',
         'country',
-        'hole_count',
     ];
     // Course -> belongs to -> User
     public function user() {

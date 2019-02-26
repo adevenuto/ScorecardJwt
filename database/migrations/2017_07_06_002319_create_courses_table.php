@@ -15,17 +15,17 @@ class CreateCoursesTable extends Migration
     {
         Schema::create('courses', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('user_id');
-            $table->string('name',255);
+            $table->integer('user_id')->unsigned()->nullable();
+            $table->string('name',255)->nullable();
             $table->string('address',255)->nullable();
             $table->string('email',255)->nullable();
-            $table->string('phone_number',255);
+            $table->string('phone_number',255)->nullable();
             $table->string('website',255)->nullable();
 
             $table->boolean('driving_range')->nullable();
             $table->boolean('putting_green')->nullable();
             $table->boolean('caddie')->nullable();
-            $table->boolean('pro_Shop')->nullable();
+            $table->boolean('pro_shop')->nullable();
 
             $table->string('lat',255)->nullable();
             $table->string('lng',255)->nullable();
@@ -49,6 +49,5 @@ class CreateCoursesTable extends Migration
     public function down()
     {
         Schema::dropIfExists('courses');
-        Schema::dropIfExists('course_user');
     }
 }
