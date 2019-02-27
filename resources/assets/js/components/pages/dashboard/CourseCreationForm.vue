@@ -1,13 +1,13 @@
 <template>
     <form class="slide-form" action="">
 		<header v-if="step1">Create A New Golf Course</header>
-		<header v-if="step2">Create Holes for {{formData.golfClub.name}}</header>
+		<header v-if="step2">Create Holes for {{form.name}}</header>
         <transition name="fade">
             <div v-show="step1" class="step step-1">
                 <div class="form-left"> 
                     <div class="form-group">
                         <label>Name:</label>
-                        <input v-model="formData.golfClub.name" 
+                        <input v-model="form.name" 
 								v-validate="'required'"
 								data-vv-as="name"
 								data-vv-scope="coursecreate_s1"
@@ -26,11 +26,11 @@
 								type="text" 
 								:class="[{error: errors.has('coursecreate_s1.course_address')}, 'form-control']">
 								<input id="course_address" type="text" class="hide" name="course_address" 
-								v-model="formData.golfClub.address">
+								v-model="form.address">
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
-                        <input v-model="formData.golfClub.email" 
+                        <input v-model="form.email" 
 								v-validate="'required|email'"
 								data-vv-as="email"
 								data-vv-scope="coursecreate_s1"
@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group">
                         <label>Phone:</label>
-                        <input v-model="formData.golfClub.phone_number" 
+                        <input v-model="form.phone_number" 
 								type="text" 
 								v-validate="'required|min:14'"
 								maxlength="14"
@@ -51,14 +51,14 @@
                     </div>
 					<div id="hidden-course-form-fields">
 						<!-- Address Components From Google Autocomplete -->
-						<input type="text" class="hide coordinate" id="lat" v-model="formData.golfClub.lat">
-						<input type="text" class="hide coordinate" id="lng" v-model="formData.golfClub.lng">
-						<input type="text" class="hide" id="street_number" v-model="formData.golfClub.street_number">
-						<input type="text" class="hide" id="route" v-model="formData.golfClub.route">
-						<input type="text" class="hide" id="locality" v-model="formData.golfClub.city">
-						<input type="text" class="hide" id="administrative_area_level_1" v-model="formData.golfClub.state">
-						<input type="text" class="hide" id="postal_code" v-model="formData.golfClub.postal_code">
-						<input type="text" class="hide" id="country" v-model="formData.golfClub.country">
+						<input type="text" class="hide coordinate" id="lat" v-model="form.lat">
+						<input type="text" class="hide coordinate" id="lng" v-model="form.lng">
+						<input type="text" class="hide" id="street_number" v-model="form.street_number">
+						<input type="text" class="hide" id="route" v-model="form.route">
+						<input type="text" class="hide" id="locality" v-model="form.city">
+						<input type="text" class="hide" id="administrative_area_level_1" v-model="form.state">
+						<input type="text" class="hide" id="postal_code" v-model="form.postal_code">
+						<input type="text" class="hide" id="country" v-model="form.country">
 					</div>
                 </div>
                 <div class="form-divider"></div>
@@ -66,7 +66,7 @@
                     <div class="slider-switch">
                         <label for="driving-range"> 
                             <div class="text">Driving Range</div>
-                            <input v-model="formData.golfClub.driving_range" type="checkbox" id="driving-range">
+                            <input v-model="form.driving_range" type="checkbox" id="driving-range">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -75,7 +75,7 @@
                     <div class="slider-switch">
                         <label for="putting-green"> 
                             <div class="text">Putting Green</div>
-                            <input v-model="formData.golfClub.putting_green" type="checkbox" id="putting-green">
+                            <input v-model="form.putting_green" type="checkbox" id="putting-green">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -84,7 +84,7 @@
                     <div class="slider-switch">
                         <label for="caddie"> 
                             <div class="text">Caddie</div>
-                            <input v-model="formData.golfClub.caddie" type="checkbox" id="caddie">
+                            <input v-model="form.caddie" type="checkbox" id="caddie">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -93,7 +93,7 @@
                     <div class="slider-switch">
                         <label for="ProShop"> 
                             <div class="text">Pro Shop</div>
-                            <input v-model="formData.golfClub.pro_shop" type="checkbox" id="ProShop">
+                            <input v-model="form.pro_shop" type="checkbox" id="ProShop">
                             <span class="slider-switch-container">
                             <span class="slider-switch-toggle"></span>
                             </span>
@@ -111,7 +111,7 @@
                         </div>
                         <div class="form-group">
                             <label>Hole Group Name:</label>
-                            <input v-model="formData.hole_group_name" 
+                            <input v-model="form.holeGroupName" 
 									name="name"
 									type="text" 
 									class="form-control">
@@ -121,26 +121,26 @@
                         <div class="hole-count">
                             <div>Number of holes</div>
                             <label :class="[
-									{'selected': formData.holeCount == '9'},
+									{'selected': form.holeCount == '9'},
 									{'error': errors.has('coursecreate_s2.hole-count')},'select-btn']" 
                                     for="hole-count-9">9
                             </label>
                             <input type="radio" 
 									class="hide" 
-									v-model="formData.holeCount" 
+									v-model="form.holeCount" 
 									:value="9" 
 									name="hole-count"
 									v-validate="'required'"
 									data-vv-scope="coursecreate_s2" 
 									id="hole-count-9">
                             <label :class="[
-									{'selected': formData.holeCount == '18'},
+									{'selected': form.holeCount == '18'},
 									{'error': errors.has('coursecreate_s2.hole-count')},'select-btn']" 
                                     for="hole-count-18">18
                             </label>
                             <input type="radio" 
 									class="hide" 
-									v-model="formData.holeCount" 
+									v-model="form.holeCount" 
 									:value="18" 
 									name="hole-count"
 									v-validate="'required'"
@@ -151,7 +151,7 @@
                             <div>Teebox</div>
                             <select :class="[{'error': errors.has('coursecreate_s2.tee-box')}, 'custom-select']" 
 									name="tee-box"
-									v-model="formData.teeBox"
+									v-model="form.teeBox"
 									v-validate="'required'"
 									data-vv-scope="coursecreate_s2">
                                 <option disabled :value="null">Select a teebox</option>
@@ -163,7 +163,7 @@
                         </div>
                     </div>
                     <div class="rendered-holes">
-                        <div v-for="index in formData.holeCount" :key="index" class="holes">
+                        <div v-for="index in form.holeCount" :key="index" class="holes">
                             <div class="input-group input-group-sm">
                                 <span class="input-group-addon" id="sizing-addon1">{{index}}</span>
                                 <input type="text" 
@@ -199,39 +199,38 @@
 		name: 'CourseCreationForm',
 		data() {
 			return {
-				formData: {
-					golfClub: {
-						name: 'Hillside',
-						address: '3218 N Milwaukee Ave, Chicago, IL 60618, USA',
-						email: 'das@fds.com',
-						phone_number: '(231) 323-1232',
-						driving_range: false,
-						putting_green: false,
-						caddie: false,
-						pro_shop: false,
-						// Address components
-						lat: '41.939392',
-						lng: '-87.72491100000002',
-						street_number: '3218',
-						route: 'North Milwaukee Avenue',
-						city: 'Chicago',
-						state: 'IL',
-						postal_code: '60618',
-						country: 'United States'
-					},
+				form: {
+					// Club Info
+					name: 'Hillside',
+					address: '3218 N Milwaukee Ave, Chicago, IL 60618, USA',
+					email: 'das@fds.com',
+					phone_number: '(231) 323-1232',
+					driving_range: false,
+					putting_green: false,
+					caddie: false,
+					pro_shop: false,
 					teeBox: 'back',
-					hole_group_name: 'West',
+					holeGroupName: 'West',
 					holeCount: 9,
-					holes: []
+					holes: [],
+					// Address components
+					lat: '41.939392',
+					lng: '-87.72491100000002',
+					street_number: '3218',
+					route: 'North Milwaukee Avenue',
+					city: 'Chicago',
+					state: 'IL',
+					postal_code: '60618',
+					country: 'United States',
 				},
 				step1: true,
 				step2: false
 			}
 		},
 		watch: {
-			'formData.golfClub.phone_number': function(val) {
+			'form.phone_number': function(val) {
 				let x = val.replace(/\D/g, '').match(/(\d{0,3})(\d{0,3})(\d{0,4})/);
-	    		this.formData.golfClub.phone_number = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
+	    		this.form.phone = !x[2] ? x[1] : '(' + x[1] + ') ' + x[2] + (x[3] ? '-' + x[3] : '');
 			}
 		},
 		methods: {
@@ -254,19 +253,19 @@
 				const that = this;
 				this.$validator.validateAll('coursecreate_s2').then((result) => {
 					if (result) {
-						this.formData.holes = [];
+						this.form.holes = [];
 						let holesList = document.querySelectorAll('.hole');
 						for (var i = 0; i < holesList.length; ++i) {
 							let holeNum = i + 1;
 							let holeLength = holesList[i].value;
-							that.$set(this.formData.holes, i, {hole: holeNum, length: holeLength});
+							that.$set(this.form.holes, i, {hole: holeNum, length: holeLength});
 						}
 						this.sendCourseData();
 					}
 				});
 			},
 			sendCourseData() {
-				const credentials = this.formData;
+				const credentials = this.form;
 				axios.post('api/user/course/create', credentials)
 				.then(payload => {
 

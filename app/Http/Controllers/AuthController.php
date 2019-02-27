@@ -16,7 +16,7 @@ use Illuminate\Mail\Message;
 class AuthController extends Controller
 {
     public function login(Request $request) {
-        // Check is user verified there email
+        // Check is user verified their email
         $user = User::where('email', '=', $request->email)->first();
         if($user) {
             $user_verified = $user->is_verified;

@@ -3,7 +3,6 @@
 namespace App\Repositories;
 
 use Illuminate\Http\Request;
-use Validator;
 use App\Course;
 use App\User;
 
@@ -28,17 +27,7 @@ class CoursesRepository implements CoursesRepositoryInterface
 
     public function store($request)
     {   
-        // \Log::info($request);
-        $rules = [
-            'name' => 'required|unique',
-            'address' => 'required|unique',
-        ];
-        $input = $request->only('name', 'address');
-        $validator = Validator::make($input, $rules);
-        if($validator->fails()) {
-            $error = $validator->messages();
-            return response()->json(['error' => $error]);
-        }
+        $request = $request->except('holes');
         try {
             $course = $this->course->create($request);
             $status = 200;
