@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use Illuminate\Http\Request;
 use App\Course;
 use App\User;
 
@@ -26,7 +27,7 @@ class CoursesRepository implements CoursesRepositoryInterface
 
     public function store($request)
     {   
-        \Log::info($request);
+        $request = $request->except('holes');
         try {
             $course = $this->course->create($request);
             $status = 200;

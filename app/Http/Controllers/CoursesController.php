@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Repositories\CoursesRepositoryInterface;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Http\Request;
+use Validator;
 use JWTAuth;
 
 class CoursesController extends Controller
@@ -30,8 +31,19 @@ class CoursesController extends Controller
 
     public function store(Request $request)
     {   
-        $request = $request['golfClub'];
         $request['user_id'] = JWTAuth::user()->id;
+        
+        $rules = [
+            'name' => 'required|unique:courses',
+            'address' => 'required|unique:courses',
+        ];
+        $input = $request->only('name', 'address');
+        
+        $validator = Validator::make($input, $rules);
+        if($validator->fails()) {
+            $error = $validator->messages();
+            return response()->json(['error' => $error]);
+        }
         return $this->course->store($request);
     }
 
